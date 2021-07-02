@@ -4,13 +4,17 @@ THE TOKENIZER IS SUPPOSED TO CONVERT A STREAM OF HTML INTO A GROUP OF HTML TOKEN
 SINCE HTML PARSERS ARE BUILT TO FORGIVE ALL SORTS OF ERRORS, HTML'S GRAMMAR CANNOT
 BE DEFINED WITH REGULAR EXPRESSIONS. TO PARSE HTML ONE CAN PICTURE A STATE MACHINE
 READING A STREAM OF HTML CHARACTER BY CHARACTER (POSSIBLY MORE IN SOME STATES)
-WHERE EACH CHARACTER CAN BE THOUGH OF AS AN EVENT WHICH CAN CAUSE A TRANSITION TO
+WHERE EACH CHARACTER CAN BE THOUGHT OF AS AN EVENT WHICH CAN CAUSE A TRANSITION TO
 ANOTHER STATE WHERE EACH STATE CAN HAVE EFFECTS LIKE TRANSITIONING TO ANOTHER STATE,
 EMITTING AN HTML TOKEN, ETC.
 """
+from lib.debugger import Debugger
 import json
 
 AMPERSAND_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/ampersand-entities.json"
+
+d = Debugger()
+dprint = d.print
 
 
 class Tokenizer:
@@ -50,11 +54,13 @@ class Tokenizer:
         # BUFFERS
         self.temp_buffer = ""
         self.return_state = None  # Used by char_ref_state as a buffer to return to the state it was invoked from
+        self.token_buffer = {}  # Used as a temporary buffer while creating tokens
 
     ###############################################################################################
     # OPERATIONS #
     def consume(self):
-        print(f"consume({'reconsuming' if self.reconsuming else ''}) -> ", end="")
+        mode = '[\033[33mRECONSUMING\033[0m] -> ' if self.reconsuming else '[CONSUMING]   -> '
+        dprint(f"\n|=>{mode}", end="")
         if self.index < len(self.stream):
             if not self.reconsuming:
                 self.next_char = self.stream[self.index]
@@ -63,18 +69,29 @@ class Tokenizer:
                 else:
                     self.current_char = self.stream[self.index - 1]
                 self.index += 1
-                print(f"Current Character: '{self.current_char}' | Next Character: '{self.next_char}'")
+                dprint(f"[Current Character: '{self.current_char}'] AND [Next Character: '{self.next_char}']\n")
                 return self.current_char, self.next_char
             else:
                 self.reconsuming = False
-                print(f"Current Character: '{self.current_char}' | Next Character: '{self.next_char}'")
+                dprint(f"[Current Character: '{self.current_char}'] AND [Next Character: '{self.next_char}']\n")
                 return self.current_char, self.next_char
         else:
-            print(f"Current Character: '{self.stream[-1]}' | Next Character: '' >-> OUT_OF_INDEX")
+            dprint(f"Current Character: '{self.stream[-1]}' | Next Character: '' >-> OUT_OF_INDEX\n")
             return self.stream[-1], ""
 
-    def emit(self, token, token_type):
-        self.output.append((token, token_type))
+    def emit(self, token_dict):
+        try:
+            attr_list = token_dict["attributes"]
+            duplicate_attrs = []
+            for i in range(len(attr_list)):
+                attr_name = attr_list[i][0]
+                if attr_name not in duplicate_attrs:
+                    duplicate_attrs.append(attr_name)
+                else:
+                    del token_dict["attributes"][i]
+        except IndexError:
+            pass
+        self.output.append(token_dict)
 
     def consumed_as_part_of_an_attr(self):
         # CHECKS IF THE RETURN STATE IS TO ANY ONE OF THE ATTRIBUTE STATES
@@ -89,26 +106,219 @@ class Tokenizer:
         if self.consumed_as_part_of_an_attr():
             pass  # append current temporary buffer to current attribute's value
         else:
-            self.emit(self.temp_buffer, "character")
+            self.emit({
+                "token": self.temp_buffer,
+                "token-type": "character"
+            })
 
     ###############################################################################################
     # STATES #
     """
     ################ DATA STATE ################
     STATUS: INCOMPLETE
-    CASES: 1
+    CASES: 2
     """
     def data_state(self):
         current_char, next_char = self.consume()
-
-        print(f"state: Data State | Current Character: {current_char} | Next Character: {next_char}")
+        # POSSIBLE BEGINNING OF AMPERSAND ENTITY (FOR EXAMPLE, &AElig;)
         if next_char == "&":
             self.return_state = self.data_state
             self.state = self.char_ref_state
             return
-        else:
-            # self.state = self.attr_val_single_quote_state
+        # POSSIBLE BEGINNING OF A TAG
+        elif next_char == "<":
+            self.state = self.tag_open_state
             return
+        # NULL CHARACTER
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error then emit current character as a character
+            self.emit({
+                "token": current_char,
+                "token-type": "character"
+            })
+        # END OF FILE (EOF) ENCOUNTERED
+        elif next_char == "":
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+        else:
+            self.emit({
+                "token": current_char,
+                "token-type": "character"
+            })
+            return
+
+    """
+    ################ TAG OPEN STATE ################
+    STATUS: COMPLETE
+    CASES: 6
+    """
+    def tag_open_state(self):
+        current_char, next_char = self.consume()
+        # POSSIBLE <!DOCTYPE type> declaration
+        if next_char == "!":
+            self.state = self.markup_declaration_open_state
+            return
+        # POSSIBLE END TAG </tag-name>
+        elif next_char == "/":
+            self.state = self.end_tag_open_state
+            return
+        # POSSIBLE BEGINNING OF TAG <tag-name>
+        elif next_char in self.ascii_alpha:
+            self.token_buffer = {
+                "token": "<",
+                "token-type": "tag",
+
+                # this item only exists in tag tokens
+                "tag-name": "",
+
+                # Attributes item is a list in the below form with the last item being the current attribute
+                # [[attr_name, attr_value],[attr_name, attr_value], [current_attr, current_attr_val]]
+                "attributes": []
+            }
+            self.reconsuming = True
+            self.state = self.tag_name_state
+            return
+        # BOGUS COMMENT BEGIN <?everything here is a comment until the closing angle bracket>
+        elif next_char == "?":
+            # GENERATE unexpected-question-mark-instead-of-tag-name parse-error
+            self.token_buffer = {
+                "token": "<",
+                "token-type": "comment",
+                "comment-data": ""
+            }
+            self.reconsuming = True
+            self.state = self.bogus_comment_state
+            return
+        # END OF FILE (EOF) ENCOUNTERED
+        elif next_char == "":
+            # GENERATE eof-before-tag-name parse-error
+            self.emit({
+                "token": "<",
+                "token-type": "less-than-sign"
+            })
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE invalid-first-character-of-tag-name parse-error
+            self.emit({
+                "token": "<",
+                "token-type": "less-than-sign"
+            })
+            self.reconsuming = True
+            self.state = self.data_state
+            return
+
+    """
+    ################ TAG NAME STATE ################
+    STATUS: COMPLETE
+    CASES: 10
+    """
+    def tag_name_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.before_attr_name_state
+            return
+        # SELF CLOSING TAG <br/>
+        elif next_char == "/":
+            self.state = self.self_closing_start_tage_state
+            return
+        elif next_char == ">":
+            self.state = self.data_state
+            self.emit(self.token_buffer)
+        elif next_char in self.ascii_upper_alpha:
+            self.token_buffer["token"] += next_char.lower()
+            self.token_buffer["tag-name"] += next_char.lower()
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            self.token_buffer["tag-name"] += "\uFFFD"
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+        else:
+            self.token_buffer["token"] += next_char
+            self.token_buffer["tag-name"] += next_char
+
+    """
+    ################ BEFORE ATTRIBUTE NAME STATE ################
+    STATUS: COMPLETE
+    CASES: 4
+    """
+    def before_attr_name_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # ignore
+        elif next_char in ["/", ">", ""]:
+            self.reconsuming = True
+            self.state = self.after_attr_name_state
+        elif next_char == "=":
+            # GENERATE unexpected-equals-sign-before-attribute-name parse-error
+            self.token_buffer["attributes"].append([current_char, ""])
+            self.state = self.attr_name_state
+            return
+        else:
+            self.token_buffer["attributes"].append(["", ""])
+            self.reconsuming = True
+            self.state = self.attr_name_state
+            return
+
+    """
+    ################ ATTRIBUTE NAME STATE ################
+    STATUS: COMPLETE
+    CASES: 6
+    """
+    def attr_name_state(self):
+        current_char, next_char = self.consume()
+        current_attribute_name = self.token_buffer["attributes"][-1][0]
+
+        if next_char in ["\t", "\r", "\n", "\f", " ", "/", ">", ""]:
+            self.reconsuming = True
+            self.state = self.after_attr_name_state
+            return
+        elif next_char == "=":
+            self.state = self.before_attr_val_state
+            return
+        elif next_char in self.ascii_upper_alpha:
+            current_attribute_name += next_char.lower()
+            return
+        elif next_char in "\0":
+            # GENERATE unexpected-null-character parse-error
+            current_attribute_name += "\uFFFD"  # REPLACEMENT CHARACTER
+            return
+        # MISSING =, i.e. <element attr_name" or <element _name' or <element attr_name<
+        elif next_char in ['"', "'", "<"]:
+            # GENERATE unexpected-character-in-attribute-name
+            current_attribute_name += next_char  # same treatment as the else block but generate parse error
+            return
+        else:
+            current_attribute_name += next_char
+            return
+
+    """
+    ################ MARKUP DECLARATION OPEN STATE ################
+    STATUS: INCOMPLETE
+    CASES: 0
+    """
+    def markup_declaration_open_state(self):
+        pass
+
+    """
+    ################ END TAG OPEN STATE ################
+    STATUS: INCOMPLETE
+    CASES: 0
+    """
+    def end_tag_open_state(self):
+        pass
+
     """
     ################ CHARACTER REFERENCE STATE ################
     STATUS: INCOMPLETE
@@ -129,21 +339,21 @@ class Tokenizer:
     """
     def named_char_ref_state(self):
         name_table_str = "\n".join(self.ampersand_table.keys())  # name section of ampersand table
-        # possible match in named character reference table
         back_track_pos = None  # If at last invalid identifier is found revert back to the last successful match index
-        back_track_buffer_pos = None  # Back track position in self.temp_buffer
+        back_track_buffer_pos = None  # Back track position/index for the Temporary buffer
         while self.index < len(self.stream):
             current_char, next_char = self.consume()
 
-            # Possibly successful incomplete match
+            # Possibly successful incomplete match in named reference table
             if next_char in self.ascii_alphanumeric and self.index != len(self.stream):
                 self.temp_buffer += next_char
-                # Successful match
+                # Update back_track positions only if successful match
                 if self.temp_buffer + "\n" in name_table_str:
                     back_track_pos = self.index - 1
                     back_track_buffer_pos = len(self.temp_buffer)
             # Revert to last successful match if possible and required or break when at last the identifier is invalid
             else:
+
                 self.temp_buffer += next_char
                 # Invalid identifier revert required
                 if self.temp_buffer[:-1] + ";\n" not in name_table_str:
@@ -196,7 +406,10 @@ class Tokenizer:
             if self.consumed_as_part_of_an_attr():
                 pass  # append current_char to current attribute's value
             else:
-                self.emit(next_char, "character")
+                self.emit({
+                    "token": next_char,
+                    "token-type": "character"
+                })
         elif next_char == ";":
             # Generate unknown-named-character-reference parse-error
             self.reconsuming = True
@@ -233,5 +446,9 @@ class Tokenizer:
     # MAIN RUNTIME #
     def tokenize(self):
         while self.index < len(self.stream):
+            # DEBUGGING #
+            state_name = self.state.__name__.upper().replace('_', ' ')
+            dprint(f"[{state_name}]: ", color="purple", end="")
+            # DEBUGGING OVER #
             self.state()
         print(self.output)
