@@ -13,7 +13,7 @@ import json
 
 AMPERSAND_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/ampersand-entities.json"
 
-d = Debugger()
+d = Debugger(2)
 dprint = d.print
 
 
@@ -59,7 +59,7 @@ class Tokenizer:
     ###############################################################################################
     # OPERATIONS #
     def consume(self):
-        mode = '[\033[33mRECONSUMING\033[0m] -> ' if self.reconsuming else '[CONSUMING]   -> '
+        mode = '[\033[96mRECONSUMING\033[0m] -> ' if self.reconsuming else '[CONSUMING]   -> '
         dprint(f"\n|=>{mode}", end="")
         if self.index < len(self.stream):
             if not self.reconsuming:
@@ -80,6 +80,7 @@ class Tokenizer:
             return self.stream[-1], ""
 
     def emit(self, token_dict):
+        # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER
         try:
             attr_list = token_dict["attributes"]
             duplicate_attrs = []
@@ -88,10 +89,16 @@ class Tokenizer:
                 if attr_name not in duplicate_attrs:
                     duplicate_attrs.append(attr_name)
                 else:
+                    # GENERATE duplicate-attribute parse-error
+                    dprint("[PARSE ERROR]: [DUPLICATE ATTRIBUTE]",
+                           debugging_mode=1, color="yellow")
                     del token_dict["attributes"][i]
         except IndexError:
             pass
         self.output.append(token_dict)
+
+        # EMPTY TOKEN BUFFER
+        self.token_buffer = {}
 
     def consumed_as_part_of_an_attr(self):
         # CHECKS IF THE RETURN STATE IS TO ANY ONE OF THE ATTRIBUTE STATES
@@ -132,6 +139,8 @@ class Tokenizer:
         # NULL CHARACTER
         elif next_char == "\0":
             # GENERATE unexpected-null-character parse-error then emit current character as a character
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
             self.emit({
                 "token": current_char,
                 "token-type": "character"
@@ -183,6 +192,8 @@ class Tokenizer:
         # BOGUS COMMENT BEGIN <?everything here is a comment until the closing angle bracket>
         elif next_char == "?":
             # GENERATE unexpected-question-mark-instead-of-tag-name parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED QUESTION MARK INSTEAD OF TAG NAME]",
+                   debugging_mode=2, color="yellow")
             self.token_buffer = {
                 "token": "<",
                 "token-type": "comment",
@@ -194,6 +205,8 @@ class Tokenizer:
         # END OF FILE (EOF) ENCOUNTERED
         elif next_char == "":
             # GENERATE eof-before-tag-name parse-error
+            dprint("[PARSE ERROR]: [EOF BEFORE TAG NAME]",
+                   debugging_mode=2, color="yellow")
             self.emit({
                 "token": "<",
                 "token-type": "less-than-sign"
@@ -205,6 +218,8 @@ class Tokenizer:
             return
         else:
             # GENERATE invalid-first-character-of-tag-name parse-error
+            dprint("[PARSE ERROR]: [INVALID FIRSTS CHARACTER OF TAG NAME]",
+                   debugging_mode=2, color="yellow")
             self.emit({
                 "token": "<",
                 "token-type": "less-than-sign"
@@ -226,19 +241,24 @@ class Tokenizer:
             return
         # SELF CLOSING TAG <br/>
         elif next_char == "/":
-            self.state = self.self_closing_start_tage_state
+            self.state = self.self_closing_start_tag_state
             return
         elif next_char == ">":
             self.state = self.data_state
+            self.token_buffer["token"] += ">"
             self.emit(self.token_buffer)
         elif next_char in self.ascii_upper_alpha:
             self.token_buffer["token"] += next_char.lower()
             self.token_buffer["tag-name"] += next_char.lower()
         elif next_char == "\0":
             # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
             self.token_buffer["tag-name"] += "\uFFFD"
         elif next_char == "":
             # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
             self.emit({
                 "token": "",
                 "token-type": "eof"
@@ -262,6 +282,8 @@ class Tokenizer:
             self.state = self.after_attr_name_state
         elif next_char == "=":
             # GENERATE unexpected-equals-sign-before-attribute-name parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED EQUALS SIGN BEFORE ATTRIBUTE NAME]",
+                   debugging_mode=2, color="yellow")
             self.token_buffer["attributes"].append([current_char, ""])
             self.state = self.attr_name_state
             return
@@ -278,7 +300,6 @@ class Tokenizer:
     """
     def attr_name_state(self):
         current_char, next_char = self.consume()
-        current_attribute_name = self.token_buffer["attributes"][-1][0]
 
         if next_char in ["\t", "\r", "\n", "\f", " ", "/", ">", ""]:
             self.reconsuming = True
@@ -288,19 +309,54 @@ class Tokenizer:
             self.state = self.before_attr_val_state
             return
         elif next_char in self.ascii_upper_alpha:
-            current_attribute_name += next_char.lower()
+            self.token_buffer["attributes"][-1][0] += next_char.lower()
             return
         elif next_char in "\0":
             # GENERATE unexpected-null-character parse-error
-            current_attribute_name += "\uFFFD"  # REPLACEMENT CHARACTER
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+
+            # self.token_buffer["attributes"][-1][0] is the current attribute name
+            self.token_buffer["attributes"][-1][0] += "\uFFFD"  # REPLACEMENT CHARACTER
             return
         # MISSING =, i.e. <element attr_name" or <element _name' or <element attr_name<
         elif next_char in ['"', "'", "<"]:
-            # GENERATE unexpected-character-in-attribute-name
-            current_attribute_name += next_char  # same treatment as the else block but generate parse error
+            # GENERATE unexpected-character-in-attribute-name parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED CHARACTER IN ATTRIBUTE NAME]",
+                   debugging_mode=2, color="yellow")
+            # same treatment as the else block but generate parse error
+
+            # self.token_buffer["attributes"][-1][0] is the current attribute name
+            self.token_buffer["attributes"][-1][0] += next_char
             return
         else:
-            current_attribute_name += next_char
+            # self.token_buffer["attributes"][-1][0] is the current attribute name
+            self.token_buffer["attributes"][-1][0] += next_char
+            return
+
+    """
+    ################ BEFORE ATTRIBUTE VALUE STATE ################
+    STATUS: COMPLETE
+    CASES: 5
+    """
+    def before_attr_val_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore these characters
+        elif next_char == '"':
+            self.state = self.attr_val_double_quote_state
+            return
+        elif next_char == "'":
+            self.state = self.attr_val_single_quote_state
+            return
+        elif next_char == ">":
+            self.state = self.data_state
+            self.token_buffer["token"] += ">"
+            self.emit(self.token_buffer)
+        else:
+            self.reconsuming = True
+            self.state = self.attr_val_unquoted_state
             return
 
     """
@@ -378,7 +434,9 @@ class Tokenizer:
                 self.state = self.return_state
                 return
             if self.temp_buffer[-1] != ";":
-                pass  # generate missing-semicolon-after-character-reference parse-error
+                # GENERATE missing-semicolon-after-character-reference parse-error
+                dprint("[PARSE ERROR]: [MISSING SEMICOLON AFTER CHARACTER REFERENCE]",
+                       debugging_mode=2, color="yellow")
 
             if self.temp_buffer[:-1] + ";\n" in name_table_str:
                 self.temp_buffer = self.temp_buffer[:-1] + ";"
@@ -411,7 +469,9 @@ class Tokenizer:
                     "token-type": "character"
                 })
         elif next_char == ";":
-            # Generate unknown-named-character-reference parse-error
+            # GENERATE unknown-named-character-reference parse-error
+            dprint("[PARSE ERROR]: [UNKNOWN NAMED CHARACTER REFERENCE]",
+                   debugging_mode=2, color="yellow")
             self.reconsuming = True
             self.state = self.return_state
         else:
@@ -420,27 +480,194 @@ class Tokenizer:
 
     """
     ################ ATTRIBUTE VALUE DOUBLE QUOTE STATE ################
-    STATUS: NOT STARTED BUT REFERENCED
+    STATUS: COMPLETE
     """
     def attr_val_double_quote_state(self):
-        self.consume()
-        return
+        current_char, next_char = self.consume()
+
+        if next_char == '"':
+            self.state = self.after_attr_val_quoted_state
+            return
+        elif next_char == "&":
+            self.return_state = self.attr_val_double_quote_state
+            self.state = self.char_ref_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+
+            self.token_buffer["attributes"][-1][1] += "\uFFFD"  # REPLACEMENT CHARACTER
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["attributes"][-1][1] += next_char
+            return
 
     """
     ################ ATTRIBUTE VALUE SINGLE QUOTE STATE ################
     STATUS: NOT STARTED BUT REFERENCED
     """
     def attr_val_single_quote_state(self):
-        self.consume()
-        return
+        current_char, next_char = self.consume()
+
+        if next_char == "'":
+            self.state = self.after_attr_val_quoted_state
+            return
+        elif next_char == "&":
+            self.return_state = self.attr_val_single_quote_state
+            self.state = self.char_ref_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+
+            self.token_buffer["attributes"][-1][1] += "\uFFFD"  # REPLACEMENT CHARACTER
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["attributes"][-1][1] += next_char
+            return
 
     """
     ################ ATTRIBUTE VALUE UNQUOTED STATE ################
-    STATUS: NOT STARTED BUT REFERENCED
+    STATUS: COMPLETE
     """
     def attr_val_unquoted_state(self):
-        self.consume()
-        return
+        current_char, next_char = self.consume()
+
+        # Empty attribute value <element attr= > or New attribute <element attr=value new_attr=new_val> on whitespace
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.before_attr_name_state
+            return
+        elif next_char == "&":
+            self.return_state = self.attr_val_unquoted_state
+            self.state = self.char_ref_state
+            return
+        elif next_char == ">":
+            self.state = self.data_state
+            self.token_buffer["token"] += ">"
+            self.emit(self.token_buffer)
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+        # same treatment as the else block except generate parse error
+        elif next_char in ['"', "'", "<", "=", "`"]:
+            # GENERATE unexpected-character-in-unquoted-attribute-value parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED CHARACTER IN UNQUOTED ATTRIBUTE VALUE]",
+                   debugging_mode=2, color="yellow")
+
+            # append character to current attribute's value
+            self.token_buffer["attributes"][-1][1] += next_char
+        else:
+            # append character to current attribute's value
+            self.token_buffer["attributes"][-1][1] += next_char
+
+    """
+    ################ AFTER ATTRIBUTE VALUE QUOTED STATE ################
+    STATUS: COMPLETE
+    """
+    def after_attr_val_quoted_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.before_attr_name_state
+            return
+        elif next_char == "/":
+            self.state = self.self_closing_start_tag_state
+            return
+        elif next_char == ">":
+            self.state = self.data_state
+            self.token_buffer["token"] += ">"
+            self.emit(self.token_buffer)
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+        else:
+            # GENERATE missing-whitespace-between-attributes parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE BETWEEN ATTRIBUTES]",
+                   debugging_mode=2, color="yellow")
+
+            self.reconsuming = True
+            self.state = self.before_attr_name_state
+            return
+
+    """
+    ################ AFTER ATTRIBUTE NAME STATE ################
+    STATUS: COMPLETE
+    """
+    def after_attr_name_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == "/":
+            self.state = self.self_closing_start_tag_state
+            return
+        elif next_char == "=":
+            self.state = self.before_attr_val_state
+            return
+        elif next_char == ">":
+            self.state = self.data_state
+            self.emit(self.token_buffer)
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+
+            self.emit({
+                "token": "",
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["attributes"].append(["", ""])
+            self.reconsuming = True
+            self.state = self.attr_name_state
+            return
+
+    """
+    ################ SELF CLOSING START TAG STATE ################
+    STATUS: INCOMPLETE
+    """
+    def self_closing_start_tag_state(self):
+        pass
+
+    """
+    ################ BOGUS COMMENT STATE ################
+    STATUS: INCOMPLETE
+    """
+    def bogus_comment_state(self):
+        pass
 
     ###############################################################################################
     # MAIN RUNTIME #
@@ -448,7 +675,8 @@ class Tokenizer:
         while self.index < len(self.stream):
             # DEBUGGING #
             state_name = self.state.__name__.upper().replace('_', ' ')
-            dprint(f"[{state_name}]: ", color="purple", end="")
+            dprint(f"[{state_name}]: ", color="magenta", end="")
             # DEBUGGING OVER #
             self.state()
+        # FINAL OUTPUT
         print(self.output)
