@@ -13,7 +13,7 @@ import json
 
 AMPERSAND_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/ampersand-entities.json"
 
-d = Debugger(2)
+d = Debugger(3)
 dprint = d.print
 
 
@@ -76,12 +76,14 @@ class Tokenizer:
                 dprint(f"[Current Character: '{self.current_char}'] AND [Next Character: '{self.next_char}']\n")
                 return self.current_char, self.next_char
         else:
-            dprint(f"Current Character: '{self.stream[-1]}' | Next Character: '' >-> OUT_OF_INDEX\n")
+            dprint(f"Current Character: '{self.stream[-1]}' | Next Character: ''")
+            dprint("|=>[OUT OF INDEX]-->", color="bright-green", end="")
+            dprint("[❌]", color="bright-red")
             return self.stream[-1], ""
 
     def emit(self, token_dict):
-        # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER
-        try:
+        # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER AND REMOVE IF IT EXISTS
+        if token_dict["token-type"] in ["start-tag", "end-tag"]:
             attr_list = token_dict["attributes"]
             duplicate_attrs = []
             for i in range(len(attr_list)):
@@ -93,8 +95,8 @@ class Tokenizer:
                     dprint("[PARSE ERROR]: [DUPLICATE ATTRIBUTE]",
                            debugging_mode=1, color="yellow")
                     del token_dict["attributes"][i]
-        except IndexError:
-            pass
+        elif token_dict["token-type"] == "eof":
+            print(self.token_buffer, self.temp_buffer)
         self.output.append(token_dict)
 
         # EMPTY TOKEN BUFFER
@@ -111,19 +113,29 @@ class Tokenizer:
 
     def flush_code_pt_consumed_as_char_ref(self):
         if self.consumed_as_part_of_an_attr():
-            pass  # append current temporary buffer to current attribute's value
+            # i.e. if buffer has valid named character then replace with its value in ampersand table
+            if self.temp_buffer in self.ampersand_table.keys():
+                print("here")
+                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+            elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
+                valid_ligature = self.temp_buffer[:-1] + ";"
+                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
+
+            # append current temporary buffer to current attribute's value
+            self.token_buffer["attributes"][-1][1] += self.temp_buffer
+            return
         else:
             self.emit({
-                "token": self.temp_buffer,
-                "token-type": "character"
+                "token-type": "character",
+                "data": self.temp_buffer
             })
+            return
 
     ###############################################################################################
     # STATES #
     """
     ################ DATA STATE ################
-    STATUS: INCOMPLETE
-    CASES: 2
+    STATUS: COMPLETE
     """
     def data_state(self):
         current_char, next_char = self.consume()
@@ -142,26 +154,24 @@ class Tokenizer:
             dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
                    debugging_mode=2, color="yellow")
             self.emit({
-                "token": current_char,
-                "token-type": "character"
+                "token-type": "character",
+                "data": next_char
             })
         # END OF FILE (EOF) ENCOUNTERED
         elif next_char == "":
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
         else:
             self.emit({
-                "token": current_char,
-                "token-type": "character"
+                "token-type": "character",
+                "data": next_char
             })
             return
 
     """
     ################ TAG OPEN STATE ################
     STATUS: COMPLETE
-    CASES: 6
     """
     def tag_open_state(self):
         current_char, next_char = self.consume()
@@ -176,13 +186,11 @@ class Tokenizer:
         # POSSIBLE BEGINNING OF TAG <tag-name>
         elif next_char in self.ascii_alpha:
             self.token_buffer = {
-                "token": "<",
-                "token-type": "tag",
+                "token-type": "start-tag",
 
-                # this item only exists in tag tokens
                 "tag-name": "",
-
-                # Attributes item is a list in the below form with the last item being the current attribute
+                "self-closing-flag": "unset",
+                # Attributes' value is a list in the below form with the last item being the current attribute
                 # [[attr_name, attr_value],[attr_name, attr_value], [current_attr, current_attr_val]]
                 "attributes": []
             }
@@ -195,9 +203,8 @@ class Tokenizer:
             dprint("[PARSE ERROR]: [UNEXPECTED QUESTION MARK INSTEAD OF TAG NAME]",
                    debugging_mode=2, color="yellow")
             self.token_buffer = {
-                "token": "<",
                 "token-type": "comment",
-                "comment-data": ""
+                "data": ""
             }
             self.reconsuming = True
             self.state = self.bogus_comment_state
@@ -208,11 +215,10 @@ class Tokenizer:
             dprint("[PARSE ERROR]: [EOF BEFORE TAG NAME]",
                    debugging_mode=2, color="yellow")
             self.emit({
-                "token": "<",
-                "token-type": "less-than-sign"
+                "token-type": "character",
+                "data": "<"
             })
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
             return
@@ -221,8 +227,8 @@ class Tokenizer:
             dprint("[PARSE ERROR]: [INVALID FIRSTS CHARACTER OF TAG NAME]",
                    debugging_mode=2, color="yellow")
             self.emit({
-                "token": "<",
-                "token-type": "less-than-sign"
+                "token-type": "character",
+                "data": "<"
             })
             self.reconsuming = True
             self.state = self.data_state
@@ -245,10 +251,8 @@ class Tokenizer:
             return
         elif next_char == ">":
             self.state = self.data_state
-            self.token_buffer["token"] += ">"
             self.emit(self.token_buffer)
         elif next_char in self.ascii_upper_alpha:
-            self.token_buffer["token"] += next_char.lower()
             self.token_buffer["tag-name"] += next_char.lower()
         elif next_char == "\0":
             # GENERATE unexpected-null-character parse-error
@@ -260,11 +264,9 @@ class Tokenizer:
             dprint("[PARSE ERROR]: [EOF IN TAG]",
                    debugging_mode=2, color="yellow")
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
         else:
-            self.token_buffer["token"] += next_char
             self.token_buffer["tag-name"] += next_char
 
     """
@@ -352,8 +354,8 @@ class Tokenizer:
             return
         elif next_char == ">":
             self.state = self.data_state
-            self.token_buffer["token"] += ">"
             self.emit(self.token_buffer)
+            return
         else:
             self.reconsuming = True
             self.state = self.attr_val_unquoted_state
@@ -362,10 +364,539 @@ class Tokenizer:
     """
     ################ MARKUP DECLARATION OPEN STATE ################
     STATUS: INCOMPLETE
-    CASES: 0
+    CASES: 3
     """
     def markup_declaration_open_state(self):
-        pass
+        i = self.index
+        self.consume()
+
+        # COMMENT BEGINNING <!--
+        if self.stream[i:i+2] == "--":
+            # CONSUME ONE MORE CHARACTER TO COMPENSATE FOR THE SECOND HYPHEN (-)
+            self.consume()
+            self.token_buffer = {
+                "token-type": "comment",
+                "data": ""
+            }
+            self.state = self.comment_start_state
+            return
+        # DOCTYPE DECLARATION <!DOCTYPE
+        elif self.stream[i:i+7] == "DOCTYPE":
+            # COMPENSATE INDEX FOR THE DOCTYPE
+            self.index += 6
+            self.state = self.doctype_state
+            return
+        # [CDATA[
+        elif self.stream[i:i+7] == "[CDATA[":
+            # TODO: THE TOKENIZER IS CURRENTLY IGNORING [CDATA[ IMPLEMENT CDATA
+            return
+        else:
+            # GENERATE incorrectly-opened-comment parse-error
+            dprint("[PARSE ERROR]: [INCORRECTLY OPENED COMMENT]",
+                   debugging_mode=1, color="yellow")
+
+            self.token_buffer = {
+                "token-type": "comment",
+                "data": ""
+            }
+
+            self.state = self.bogus_comment_state
+            return
+
+    """
+    ################ COMMENT START STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_start_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "-":
+            self.state = self.comment_start_dash_state
+            return
+        elif next_char == ">":
+            # GENERATE abrupt-closing-of-empty-comment parse-error
+            dprint("[PARSE ERROR]: [ABRUPT CLOSING OF EMPTY COMMENT]",
+                   debugging_mode=1, color="yellow")
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        else:
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT START DASH STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_start_dash_state(self):
+        current_char, next_char = self.consume()
+
+        # <!-- COMMENT --
+        if next_char == "-":
+            self.state = self.comment_end_state
+            return
+        # <!-- COMMENT ->
+        elif next_char == ">":
+            # GENERATE abrupt-closing-of-empty-comment parse-error
+            dprint("[PARSE ERROR]: [ABRUPT CLOSING OF EMPTY COMMENT]",
+                   debugging_mode=1, color="yellow")
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        # <!-- COMMENT
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+        else:
+            self.token_buffer["data"] += "-"
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_state(self):
+        current_char, next_char = self.consume()
+
+        # <!-- COMMENT<
+        if next_char == ">":
+            self.token_buffer["data"] += next_char
+            self.state = self.comment_less_than_sign_state
+            return
+        elif next_char == "-":
+            self.state = self.comment_end_dash_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+
+            self.token_buffer["data"] += "\uFFFD"  # REPLACEMENT CHARACTER
+            return
+        else:
+            self.token_buffer["data"] += next_char
+            return
+
+    """
+    ################ COMMENT LESS THAN SIGN STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_less_than_sign_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "!":
+            self.token_buffer["data"] += next_char
+            self.state = self.comment_less_than_sign_bang_state
+            return
+        elif next_char == "<":
+            self.token_buffer["data"] += next_char
+            return
+        else:
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT LESS THAN SIGN BANG STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_less_than_sign_bang_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "-":
+            self.state = self.comment_less_than_sign_bang_dash_state
+            return
+        else:
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT LESS THAN SIGN BANG DASH STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_less_than_sign_bang_dash_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "-":
+            self.state = self.comment_less_than_sign_bang_dash_dash_state
+            return
+        else:
+            self.reconsuming = True
+            self.state = self.comment_end_dash_state
+            return
+
+    """
+    ################ COMMENT LESS THAN SIGN BANG DASH DASH STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_less_than_sign_bang_dash_dash_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in [">", ""]:
+            self.reconsuming = True
+            self.state = self.comment_end_state
+            return
+        else:
+            # GENERATE nested-comment parse-error
+            dprint("[PARSE ERROR]: [NESTED COMMENT]",
+                   debugging_mode=2, color="yellow")
+            self.reconsuming = True
+            self.state = self.comment_end_state
+            return
+
+    """
+    ################ COMMENT END DASH STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_end_dash_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "-":
+            self.state = self.comment_end_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-comment parse-error
+            dprint("[PARSE ERROR]: [EOF IN COMMENT]",
+                   debugging_mode=2, color="yellow")
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["data"] += "-"
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT END STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_end_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "!":
+            self.state = self.comment_end_bang_state
+            return
+        elif next_char == "-":
+            self.token_buffer["data"] += "-"
+            return
+        elif next_char == "":
+            # GENERATE eof-in-comment parse-error
+            dprint("[PARSE ERROR]: [EOF IN COMMENT]",
+                   debugging_mode=2, color="yellow")
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["data"] += "--"
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ COMMENT END BANG STATE ################
+    STATUS: COMPLETE
+    """
+    def comment_end_bang_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "-":
+            self.token_buffer["data"] += "--!"
+            self.state = self.comment_end_dash_state
+            return
+        elif next_char == ">":
+            # GENERATE incorrectly-closed-comment parse-error
+            dprint("[PARSE ERROR]: [INCORRECTLY CLOSED COMMENT]",
+                   debugging_mode=2, color="yellow")
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-comment parse-error
+            dprint("[PARSE ERROR]: [EOF IN COMMENT]",
+                   debugging_mode=2, color="yellow")
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["data"] += "--!"
+            self.reconsuming = True
+            self.state = self.comment_state
+            return
+
+    """
+    ################ DOCTYPE STATE ################
+    STATUS: COMPLETE
+    """
+    def doctype_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.before_doctype_name_state
+            return
+        elif next_char == ">":
+            self.reconsuming = True
+            self.state = self.before_doctype_name_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "missing",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-whitespace-before-doctype-name parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE BEFORE DOCTYPE NAME]",
+                   debugging_mode=2, color="yellow")
+            self.reconsuming = True
+            self.state = self.before_doctype_name_state
+            return
+
+    """
+    ################ BEFORE DOCTYPE NAME STATE ################
+    STATUS: COMPLETE
+    """
+    def before_doctype_name_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore these characters
+        elif next_char in self.ascii_upper_alpha:
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": next_char.lower(),
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks-flag": False
+            }
+            self.state = self.doctype_name_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "\uFFFD",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks-flag": False
+            }
+            self.state = self.doctype_name_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-doctype-name parse-error
+            dprint("[PARSE ERROR]: [MISSING DOCTYPE NAME]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "\uFFFD",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks-flag": True
+            }
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "missing",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": next_char,
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+
+            self.state = self.doctype_name_state
+            return
+
+    """
+    ################ DOCTYPE NAME STATE ################
+    STATUS: COMPLETE
+    """
+    def doctype_name_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.after_doctype_name_state
+            return
+        elif next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char in self.ascii_upper_alpha:
+            self.token_buffer["name"] += next_char.lower()
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "missing",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["name"] += next_char
+            return
+
+    """
+    ################ AFTER DOCTYPE NAME STATE ################
+    STATUS: COMPLETE
+    """
+    def after_doctype_name_state(self):
+        i = self.index
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore these characters
+        elif next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "missing",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            if self.stream[i:i+6] == "PUBLIC":
+                self.index += 5  # compensating for skipping PUBLIC consumption char by char
+                self.state = self.after_doctype_public_keyword_state
+                return
+            elif self.stream[i:i+6] == "SYSTEM":
+                self.index += 5  # compensating for skipping SYSTEM consumption char by char
+                self.state = self.after_doctype_system_keyword_state
+                return
+            else:
+                # GENERATE invalid-character-sequence-after-doctype-name parse-error
+                dprint("[PARSE ERROR]: [INVALID CHARACTER SEQUENCE AFTER DOCTYPE NAME]",
+                       debugging_mode=2, color="yellow")
+                self.token_buffer["force-quirks-flag"] = True
+                self.reconsuming = True
+                self.state = self.bogus_doctype_state
+                return
+
+    """
+    ################ AFTER DOCTYPE PUBLIC KEYWORD STATE ################
+    STATUS: COMPLETE
+    """
+    def after_doctype_public_keyword_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.before_doctype_public_identifier_state
+            return
+        elif next_char == '"':
+            # GENERATE missing-whitespace-after-doctype-public-keyword parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE AFTER DOCTYPE PUBLIC KEYWORD]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["public-identifier"] = ""
+            self.state = self.doctype_public_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            # GENERATE missing-whitespace-after-doctype-public-keyword parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE AFTER DOCTYPE PUBLIC KEYWORD]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["public-identifier"] = ""
+            self.state = self.doctype_public_identifier_single_quoted_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "DOCTYPE",
+                "name": "missing",
+                "public-identifier": "missing",
+                "system-identifier": "missing",
+                "force-quirks": True
+            }
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
 
     """
     ################ END TAG OPEN STATE ################
@@ -382,7 +913,6 @@ class Tokenizer:
     """
     def char_ref_state(self):
         current_char, next_char = self.consume()
-        print(f"state: Character Reference State | Current Character: {current_char} | Next Character: {next_char}")
         self.temp_buffer = ""  # empty the buffer in-case characters left from previous operations
         self.temp_buffer = "&"
         if next_char in self.ascii_alphanumeric:
@@ -409,6 +939,8 @@ class Tokenizer:
                     back_track_buffer_pos = len(self.temp_buffer)
             # Revert to last successful match if possible and required or break when at last the identifier is invalid
             else:
+                if next_char != ";":
+                    self.reconsuming = True
 
                 self.temp_buffer += next_char
                 # Invalid identifier revert required
@@ -416,7 +948,6 @@ class Tokenizer:
                     # Revert Possible
                     if back_track_pos is not None:
                         self.index = back_track_pos
-                        self.consume()
                         self.temp_buffer = self.temp_buffer[:back_track_buffer_pos]
                         break
                     # Revert Not Possible
@@ -426,7 +957,8 @@ class Tokenizer:
                     break
         # VALID MATCH FOUND
         if self.temp_buffer[:-1] + ";\n" in name_table_str or self.temp_buffer in name_table_str:
-            print(f"\033[32mVALID MATCH FOUND -> {self.temp_buffer}\033[0m")
+            dprint(f"|=>[VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]",
+                   debugging_mode=3, color="green")
             current_char, next_char = self.consume()
             if self.consumed_as_part_of_an_attr() and self.temp_buffer[-1] != ";"\
                     and next_char in self.ascii_alphanumeric + "=":
@@ -438,8 +970,7 @@ class Tokenizer:
                 dprint("[PARSE ERROR]: [MISSING SEMICOLON AFTER CHARACTER REFERENCE]",
                        debugging_mode=2, color="yellow")
 
-            if self.temp_buffer[:-1] + ";\n" in name_table_str:
-                self.temp_buffer = self.temp_buffer[:-1] + ";"
+            self.temp_buffer = self.temp_buffer[:-1] + ";"
             self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
             self.flush_code_pt_consumed_as_char_ref()
             self.reconsuming = True
@@ -447,7 +978,8 @@ class Tokenizer:
             return
         # NO VALID MATCH EXISTS
         else:
-            print(f"\033[91mNO VALID MATCH FOUND -> {self.temp_buffer}\033[0m")
+            dprint(f"|=>[NO VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]",
+                   debugging_mode=3, color="red")
             self.flush_code_pt_consumed_as_char_ref()
             self.state = self.ambiguous_ampersand_state
             return
@@ -458,15 +990,14 @@ class Tokenizer:
     """
     def ambiguous_ampersand_state(self):
         current_char, next_char = self.consume()
-        print("ambiguous", current_char, next_char)
 
         if next_char in self.ascii_alphanumeric:
             if self.consumed_as_part_of_an_attr():
                 pass  # append current_char to current attribute's value
             else:
                 self.emit({
-                    "token": next_char,
-                    "token-type": "character"
+                    "token-type": "character",
+                    "data": next_char
                 })
         elif next_char == ";":
             # GENERATE unknown-named-character-reference parse-error
@@ -505,7 +1036,6 @@ class Tokenizer:
                    debugging_mode=2, color="yellow")
 
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
             return
@@ -540,7 +1070,6 @@ class Tokenizer:
                    debugging_mode=2, color="yellow")
 
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
             return
@@ -565,7 +1094,6 @@ class Tokenizer:
             return
         elif next_char == ">":
             self.state = self.data_state
-            self.token_buffer["token"] += ">"
             self.emit(self.token_buffer)
             return
         elif next_char == "":
@@ -574,9 +1102,9 @@ class Tokenizer:
                    debugging_mode=2, color="yellow")
 
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
+            return
         # same treatment as the else block except generate parse error
         elif next_char in ['"', "'", "<", "=", "`"]:
             # GENERATE unexpected-character-in-unquoted-attribute-value parse-error
@@ -585,9 +1113,11 @@ class Tokenizer:
 
             # append character to current attribute's value
             self.token_buffer["attributes"][-1][1] += next_char
+            return
         else:
             # append character to current attribute's value
             self.token_buffer["attributes"][-1][1] += next_char
+            return
 
     """
     ################ AFTER ATTRIBUTE VALUE QUOTED STATE ################
@@ -604,7 +1134,6 @@ class Tokenizer:
             return
         elif next_char == ">":
             self.state = self.data_state
-            self.token_buffer["token"] += ">"
             self.emit(self.token_buffer)
             return
         elif next_char == "":
@@ -645,7 +1174,6 @@ class Tokenizer:
                    debugging_mode=2, color="yellow")
 
             self.emit({
-                "token": "",
                 "token-type": "eof"
             })
             return
@@ -657,10 +1185,31 @@ class Tokenizer:
 
     """
     ################ SELF CLOSING START TAG STATE ################
-    STATUS: INCOMPLETE
+    STATUS: COMPLETE
     """
     def self_closing_start_tag_state(self):
-        pass
+        current_char, next_char = self.consume()
+
+        if next_char == ">":
+            self.token_buffer["self-closing-flag"] = "set"
+            self.state = self.data_state
+            self.emit(self.token_buffer)
+            return
+        elif next_char == "":
+            # GENERATE eof-in-tag parse-error
+            dprint("[PARSE ERROR]: [EOF IN TAG]",
+                   debugging_mode=2, color="yellow")
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE unexpected-solidus-in-tag parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED SOLIDUS IN TAG]",
+                   debugging_mode=2, color="yellow")
+            self.reconsuming = True
+            self.state = self.before_attr_name_state
+            return
 
     """
     ################ BOGUS COMMENT STATE ################
@@ -678,5 +1227,11 @@ class Tokenizer:
             dprint(f"[{state_name}]: ", color="magenta", end="")
             # DEBUGGING OVER #
             self.state()
+
+        # IF EOF REACHED AND TOKEN BUFFER IS STILL NOT EMPTY EMIT TOKEN BUFFER TO OUTPUT
+        if self.token_buffer:
+            self.emit(self.token_buffer)
+
         # FINAL OUTPUT
-        print(self.output)
+        output = str(self.output).encode("utf8").decode("utf8").replace("},", "},\n ")
+        dprint(f"[FINAL OUTPUT]: {output}", color="bright-green")
