@@ -1337,11 +1337,54 @@ class Tokenizer:
 
     """
     ################ END TAG OPEN STATE ################
-    STATUS: INCOMPLETE
-    CASES: 0
+    STATUS: COMPLETE
     """
     def end_tag_open_state(self):
-        pass
+        current_char, next_char = self.consume()
+
+        if next_char in self.ascii_alpha:
+            self.token_buffer = {
+                "token-type": "end-tag",
+                "tag-name": "",
+                "self-closing-flag": "unset",
+                "attributes": []
+            }
+            self.reconsuming = True
+            self.state = self.tag_name_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-end-tag-name parse-error
+            dprint("[PARSE ERROR]: [MISSING END TAG NAME]",
+                   debugging_mode=2, color="yellow")
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-before-tag-name parse-error
+            dprint("[PARSE ERROR]: [EOF BEFORE TAG NAME]",
+                   debugging_mode=2, color="yellow")
+            self.emit({
+                "token-type": "character",
+                "data": "<"
+            })
+            self.emit({
+                "token-type": "character",
+                "data": "/"
+            })
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE invalid-first-character-of-tag-name parse-error
+            dprint("[PARSE ERROR]: [INVALID FIRST CHARACTER OF TAG NAME]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer = {
+                "token-type": "comment",
+                "data": ""
+            }
+            self.reconsuming = True
+            self.state = self.bogus_comment_state
+            return
 
     """
     ################ CHARACTER REFERENCE STATE ################
@@ -1349,6 +1392,7 @@ class Tokenizer:
     CASES: 1
     """
     def char_ref_state(self):
+        # TODO: FINISH REST OF THE CASES
         current_char, next_char = self.consume()
         self.temp_buffer = ""  # empty the buffer in-case characters left from previous operations
         self.temp_buffer = "&"
@@ -1482,7 +1526,7 @@ class Tokenizer:
 
     """
     ################ ATTRIBUTE VALUE SINGLE QUOTE STATE ################
-    STATUS: NOT STARTED BUT REFERENCED
+    STATUS: COMPLETE
     """
     def attr_val_single_quote_state(self):
         current_char, next_char = self.consume()
@@ -1650,10 +1694,28 @@ class Tokenizer:
 
     """
     ################ BOGUS COMMENT STATE ################
-    STATUS: INCOMPLETE
+    STATUS: COMPLETE
     """
     def bogus_comment_state(self):
-        pass
+        current_char, next_char = self.consume()
+
+        if next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["data"] += "\uFFFD"
+        else:
+            self.token_buffer["data"] += next_char
 
     ###############################################################################################
     # MAIN RUNTIME #
