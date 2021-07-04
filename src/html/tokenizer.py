@@ -897,6 +897,443 @@ class Tokenizer:
             self.reconsuming = True
             self.state = self.bogus_doctype_state
             return
+    """
+    ################ BEFORE DOCTYPE PUBLIC IDENTIFIER STATE ################
+    STATUS: COMPLETE
+    """
+    def before_doctype_public_identifier_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == '"':
+            self.token_buffer["public-identifier"] = ""
+            self.state = self.doctype_public_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            self.token_buffer["public-identifier"] = ""
+            self.state = self.doctype_public_identifier_single_quoted_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ DOCTYPE PUBLIC IDENTIFIER DOUBLE QUOTED STATE ################
+    STATUS: COMPLETE
+    """
+    def doctype_public_identifier_double_quoted_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == '"':
+            self.state = self.after_doctype_public_identifier_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["public-identifier"] += "\uFFFD"
+            return
+        elif next_char == ">":
+            # GENERATE abrupt-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [ABRUPT DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["public-identifier"] += next_char
+            return
+
+    """
+    ################ DOCTYPE PUBLIC IDENTIFIER SINGLE QUOTED STATE ################
+    STATUS: COMPLETE
+    """
+
+    def doctype_public_identifier_single_quoted_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "'":
+            self.state = self.after_doctype_public_identifier_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["public-identifier"] += "\uFFFD"
+            return
+        elif next_char == ">":
+            # GENERATE abrupt-doctype-public-identifier parse-error
+            dprint("[PARSE ERROR]: [ABRUPT DOCTYPE PUBLIC IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["public-identifier"] += next_char
+            return
+
+    """
+    ################ AFTER DOCTYPE PUBLIC IDENTIFIER STATE ################
+    STATUS: COMPLETE
+    """
+    def after_doctype_public_identifier_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            self.state = self.between_doctype_public_and_system_identifiers_state
+            return
+        elif next_char == '>':
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == '"':
+            # GENERATE missing-whitespace-between-doctype-public-and-system-identifiers parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE BETWEEN DOCTYPE PUBLIC AND SYSTEM IDENTIFIERS]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            # GENERATE missing-whitespace-between-doctype-public-and-system-identifiers parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE BETWEEN DOCTYPE PUBLIC AND SYSTEM IDENTIFIERS]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_single_quoted_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ BETWEEN DOCTYPE PUBLIC AND SYSTEM IDENTIFIERS STATE ################
+    STATUS: COMPLETE
+    """
+    def between_doctype_public_and_system_identifiers_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == '"':
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_single_quoted_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ AFTER DOCTYPE SYSTEM KEYWORD STATE ################
+    STATUS: COMPLETE
+    """
+    def after_doctype_system_keyword_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == '"':
+            # GENERATE missing-whitespace-after-doctype-system-keyword parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE AFTER DOCTYPE SYSTEM KEYWORD]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            # GENERATE missing-whitespace-after-doctype-system-keyword parse-error
+            dprint("[PARSE ERROR]: [MISSING WHITESPACE AFTER DOCTYPE SYSTEM KEYWORD]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_single_quoted_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ BEFORE DOCTYPE SYSTEM IDENTIFIER STATE ################
+    STATUS: COMPLETE
+    """
+    def before_doctype_system_identifier_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == '"':
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_double_quoted_state
+            return
+        elif next_char == "'":
+            self.token_buffer["system-identifier"] = ""
+            self.state = self.doctype_system_identifier_single_quoted_state
+            return
+        elif next_char == ">":
+            # GENERATE missing-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE missing-quote-before-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [MISSING QUOTE BEFORE DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ DOCTYPE SYSTEM IDENTIFIER DOUBLE QUOTED STATE ################
+    STATUS: COMPLETE
+    """
+    def doctype_system_identifier_double_quoted_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == '"':
+            self.state = self.after_doctype_system_identifier_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] += "\uFFFD"
+            return
+        elif next_char == ">":
+            # GENERATE abrupt-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [ABRUPT DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["system-identifier"] += next_char
+            return
+
+    """
+    ################ DOCTYPE SYSTEM IDENTIFIER SINGLE QUOTED STATE ################
+    STATUS: COMPLETE
+    """
+    def doctype_system_identifier_single_quoted_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == "'":
+            self.state = self.after_doctype_system_identifier_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["system-identifier"] += "\uFFFD"
+            return
+        elif next_char == ">":
+            # GENERATE abrupt-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [ABRUPT DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            self.token_buffer["system-identifier"] += next_char
+            return
+
+    """
+    ################ AFTER DOCTYPE SYSTEM IDENTIFIER STATE ################
+    STATUS: COMPLETE
+    """
+    def after_doctype_system_identifier_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
+            return  # i.e. ignore the character
+        elif next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "":
+            # GENERATE eof-in-doctype parse-error
+            dprint("[PARSE ERROR]: [EOF IN DOCTYPE]",
+                   debugging_mode=2, color="yellow")
+            self.token_buffer["force-quirks-flag"] = True
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
+            return
+        else:
+            # GENERATE unexpected-character-after-doctype-system-identifier parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED CHARACTER AFTER DOCTYPE SYSTEM IDENTIFIER]",
+                   debugging_mode=2, color="yellow")
+            self.reconsuming = True
+            self.state = self.bogus_doctype_state
+            return
+
+    """
+    ################ BOGUS DOCTYPE STATE ################
+    STATUS: COMPLETE
+    """
+    def bogus_doctype_state(self):
+        current_char, next_char = self.consume()
+
+        if next_char == ">":
+            self.emit(self.token_buffer)
+            self.state = self.data_state
+            return
+        elif next_char == "\0":
+            # GENERATE unexpected-null-character parse-error
+            dprint("[PARSE ERROR]: [UNEXPECTED NULL CHARACTER]",
+                   debugging_mode=2, color="yellow")
+            return  # i.e. ignore the character
+        elif next_char == "":
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": ""
+            })
+            return
+        else:
+            return  # i.e. ignore the character
 
     """
     ################ END TAG OPEN STATE ################
