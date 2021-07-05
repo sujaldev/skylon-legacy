@@ -1,0 +1,137 @@
+[
+  {
+    "description": "Commented close tag in RCDATA or RAWTEXT",
+    "initialStates": [
+      "RCDATA state",
+      "RAWTEXT state"
+    ],
+    "lastStartTag": "xmp",
+    "input": "foo<!--</xmp>--></xmp>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "foo<!--"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "character",
+        "data": "-->"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Bogus comment in RCDATA or RAWTEXT",
+    "initialStates": [
+      "RCDATA state",
+      "RAWTEXT state"
+    ],
+    "lastStartTag": "xmp",
+    "input": "foo<!-->baz</xmp>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "foo<!-->baz"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "End tag surrounded by bogus comment in RCDATA or RAWTEXT",
+    "initialStates": [
+      "RCDATA state",
+      "RAWTEXT state"
+    ],
+    "lastStartTag": "xmp",
+    "input": "foo<!--></xmp><!-->baz</xmp>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "foo<!-->"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "comment",
+        "data": ""
+      },
+      {
+        "token-type": "character",
+        "data": "baz"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ],
+    "errors": [
+      {
+        "code": "abrupt-closing-of-empty-comment",
+        "line": 1,
+        "col": 19
+      }
+    ]
+  },
+  {
+    "description": "Commented entities in RCDATA",
+    "initialStates": [
+      "RCDATA state"
+    ],
+    "lastStartTag": "xmp",
+    "input": " &amp; <!-- &amp; --> &amp; </xmp>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": " & <!-- & --> & "
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Incorrect comment ending sequences in RCDATA or RAWTEXT",
+    "initialStates": [
+      "RCDATA state",
+      "RAWTEXT state"
+    ],
+    "lastStartTag": "xmp",
+    "input": "foo<!-- x --x>x-- >x--!>x--<></xmp>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "foo<!-- x --x>x-- >x--!>x--<>"
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "xmp",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  }
+]

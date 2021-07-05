@@ -1,0 +1,1557 @@
+[
+  {
+    "description": "< in attribute name",
+    "input": "<z/0  <>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "0",
+            ""
+          ],
+          [
+            "<",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-solidus-in-tag",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "unexpected-character-in-attribute-name",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "< in unquoted attribute value",
+    "input": "<z x=<>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "x",
+            "<"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "= in unquoted attribute value",
+    "input": "<z z=z=z>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "z=z"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "= attribute",
+    "input": "<z =>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "=",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-equals-sign-before-attribute-name",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "== attribute",
+    "input": "<z ==>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "=",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-equals-sign-before-attribute-name",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "missing-attribute-value",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "=== attribute",
+    "input": "<z ===>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "=",
+            "="
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-equals-sign-before-attribute-name",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "==== attribute",
+    "input": "<z ====>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "=",
+            "=="
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-equals-sign-before-attribute-name",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 6
+      },
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "\" after ampersand in double-quoted attribute value",
+    "input": "<z z=\"&\">",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "&"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "' after ampersand in double-quoted attribute value",
+    "input": "<z z=\"&'\">",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "&'"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "' after ampersand in single-quoted attribute value",
+    "input": "<z z='&'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "&"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "\" after ampersand in single-quoted attribute value",
+    "input": "<z z='&\"'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "&\""
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Text after bogus character reference",
+    "input": "<z z='&xlink_xmlns;'>bar<z>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "&xlink_xmlns;"
+          ]
+        ]
+      },
+      {
+        "token-type": "character",
+        "data": "bar"
+      },
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Text after hex character reference",
+    "input": "<z z='&#x0020; foo'>bar<z>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "z",
+            "  foo"
+          ]
+        ]
+      },
+      {
+        "token-type": "character",
+        "data": "bar"
+      },
+      {
+        "token-type": "start-tag",
+        "tag-name": "z",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Attribute name starting with \"",
+    "input": "<foo \"='bar'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "\"",
+            "bar"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-attribute-name",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Attribute name starting with '",
+    "input": "<foo '='bar'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "'",
+            "bar"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-attribute-name",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Attribute name containing \"",
+    "input": "<foo a\"b='bar'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a\"b",
+            "bar"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-attribute-name",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "Attribute name containing '",
+    "input": "<foo a'b='bar'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a'b",
+            "bar"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-attribute-name",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "Unquoted attribute value containing '",
+    "input": "<foo a=b'c>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b'c"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Unquoted attribute value containing \"",
+    "input": "<foo a=b\"c>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b\"c"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Double-quoted attribute value not followed by whitespace",
+    "input": "<foo a=\"b\"c>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-whitespace-between-attributes",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Single-quoted attribute value not followed by whitespace",
+    "input": "<foo a='b'c>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "foo",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            ""
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-whitespace-between-attributes",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Quoted attribute followed by permitted /",
+    "input": "<br a='b'/>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "br",
+        "self-closing-flag": "set",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Quoted attribute followed by non-permitted /",
+    "input": "<bar a='b'/>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "bar",
+        "self-closing-flag": "set",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "CR EOF after doctype name",
+    "input": "<!doctype html \r",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "eof-in-doctype",
+        "line": 2,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "CR EOF in tag name",
+    "input": "<z\r",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 2,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Slash EOF in tag name",
+    "input": "<z/",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "Zero hex numeric entity",
+    "input": "&#x0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 5
+      },
+      {
+        "code": "null-character-reference",
+        "line": 1,
+        "col": 5
+      }
+    ]
+  },
+  {
+    "description": "Zero decimal numeric entity",
+    "input": "&#0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "null-character-reference",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "Zero-prefixed hex numeric entity",
+    "input": "&#x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "A"
+      }
+    ]
+  },
+  {
+    "description": "Zero-prefixed decimal numeric entity",
+    "input": "&#000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000065;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "A"
+      }
+    ]
+  },
+  {
+    "description": "Empty hex numeric entities",
+    "input": "&#x &#X ",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&#x &#X "
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 4
+      },
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 8
+      }
+    ]
+  },
+  {
+    "description": "Invalid digit in hex numeric entity",
+    "input": "&#xZ",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&#xZ"
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "Empty decimal numeric entities",
+    "input": "&# &#; ",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&# &#; "
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Invalid digit in decimal numeric entity",
+    "input": "&#A",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&#A"
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "Non-BMP numeric entity",
+    "input": "&#x10000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud800\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Maximum non-BMP numeric entity",
+    "input": "&#X10FFFF;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Above maximum numeric entity",
+    "input": "&#x110000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "32-bit hex numeric entity",
+    "input": "&#x80000041;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 13
+      }
+    ]
+  },
+  {
+    "description": "33-bit hex numeric entity",
+    "input": "&#x100000041;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 14
+      }
+    ]
+  },
+  {
+    "description": "33-bit decimal numeric entity",
+    "input": "&#4294967361;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 14
+      }
+    ]
+  },
+  {
+    "description": "65-bit hex numeric entity",
+    "input": "&#x10000000000000041;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 22
+      }
+    ]
+  },
+  {
+    "description": "65-bit decimal numeric entity",
+    "input": "&#18446744073709551681;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 24
+      }
+    ]
+  },
+  {
+    "description": "Surrogate code point edge cases",
+    "input": "&#xD7FF;&#xD800;&#xD801;&#xDFFE;&#xDFFF;&#xE000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud7ff\ufffd\ufffd\ufffd\ufffd\ue000"
+      }
+    ],
+    "errors": [
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 17
+      },
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 25
+      },
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 33
+      },
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 41
+      }
+    ]
+  },
+  {
+    "description": "Uppercase start tag name",
+    "input": "<X>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Uppercase end tag name",
+    "input": "</X>",
+    "output": [
+      {
+        "token-type": "end-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Uppercase attribute name",
+    "input": "<x X>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "x",
+            ""
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Tag/attribute name case edge values",
+    "input": "<x@AZ[`az{ @AZ[`az{>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "x@az[`az{",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "@az[`az{",
+            ""
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Duplicate different-case attributes",
+    "input": "<x x=1 x=2 X=3>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "x",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "duplicate-attribute",
+        "line": 1,
+        "col": 9
+      },
+      {
+        "code": "duplicate-attribute",
+        "line": 1,
+        "col": 13
+      }
+    ]
+  },
+  {
+    "description": "Uppercase close tag attributes",
+    "input": "</x X>",
+    "output": [
+      {
+        "token-type": "end-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ],
+    "errors": [
+      {
+        "code": "end-tag-with-attributes",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Duplicate close tag attributes",
+    "input": "</x x x>",
+    "output": [
+      {
+        "token-type": "end-tag",
+        "tag-name": "x",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ],
+    "errors": [
+      {
+        "code": "duplicate-attribute",
+        "line": 1,
+        "col": 8
+      },
+      {
+        "code": "end-tag-with-attributes",
+        "line": 1,
+        "col": 8
+      }
+    ]
+  },
+  {
+    "description": "Permitted slash",
+    "input": "<br/>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "br",
+        "self-closing-flag": "set",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Non-permitted slash",
+    "input": "<xr/>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "xr",
+        "self-closing-flag": "set",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Permitted slash but in close tag",
+    "input": "</br/>",
+    "output": [
+      {
+        "token-type": "end-tag",
+        "tag-name": "br",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ],
+    "errors": [
+      {
+        "code": "end-tag-with-trailing-solidus",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Doctype public case-sensitivity (1)",
+    "input": "<!DoCtYpE HtMl PuBlIc \"AbC\" \"XyZ\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "AbC",
+        "system-identifier": "XyZ",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Doctype public case-sensitivity (2)",
+    "input": "<!dOcTyPe hTmL pUbLiC \"aBc\" \"xYz\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "aBc",
+        "system-identifier": "xYz",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Doctype system case-sensitivity (1)",
+    "input": "<!DoCtYpE HtMl SyStEm \"XyZ\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "XyZ",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Doctype system case-sensitivity (2)",
+    "input": "<!dOcTyPe hTmL sYsTeM \"xYz\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "xYz",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "U+0000 in lookahead region after non-matching character",
+    "input": "<!doc>\u0000",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "doc"
+      },
+      {
+        "token-type": "character",
+        "data": "\u0000"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "unexpected-null-character",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "U+0000 in lookahead region",
+    "input": "<!doc\u0000",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "doc\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "unexpected-null-character",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "U+0080 in lookahead region",
+    "input": "<!doc\u0080",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "doc\u0080"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "U+FDD1 in lookahead region",
+    "input": "<!doc\ufdd1",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "doc\ufdd1"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "U+1FFFF in lookahead region",
+    "input": "<!doc\ud83f\udfff",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "doc\ud83f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      },
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "CR followed by non-LF",
+    "input": "\r?",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n?"
+      }
+    ]
+  },
+  {
+    "description": "CR at EOF",
+    "input": "\r",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n"
+      }
+    ]
+  },
+  {
+    "description": "LF at EOF",
+    "input": "\n",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n"
+      }
+    ]
+  },
+  {
+    "description": "CR LF",
+    "input": "\r\n",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n"
+      }
+    ]
+  },
+  {
+    "description": "CR CR",
+    "input": "\r\r",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n\n"
+      }
+    ]
+  },
+  {
+    "description": "LF LF",
+    "input": "\n\n",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n\n"
+      }
+    ]
+  },
+  {
+    "description": "LF CR",
+    "input": "\n\r",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n\n"
+      }
+    ]
+  },
+  {
+    "description": "text CR CR CR text",
+    "input": "text\r\r\rtext",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "text\n\n\ntext"
+      }
+    ]
+  },
+  {
+    "description": "Doctype publik",
+    "input": "<!DOCTYPE html PUBLIK \"AbC\" \"XyZ\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-character-sequence-after-doctype-name",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Doctype publi",
+    "input": "<!DOCTYPE html PUBLI",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-character-sequence-after-doctype-name",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Doctype sistem",
+    "input": "<!DOCTYPE html SISTEM \"AbC\">",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-character-sequence-after-doctype-name",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Doctype sys",
+    "input": "<!DOCTYPE html SYS",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-character-sequence-after-doctype-name",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Doctype html x>text",
+    "input": "<!DOCTYPE html x>text",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      },
+      {
+        "token-type": "character",
+        "data": "text"
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-character-sequence-after-doctype-name",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Grave accent in unquoted attribute",
+    "input": "<a a=aa`>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "a",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "aa`"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 8
+      }
+    ]
+  },
+  {
+    "description": "EOF in tag name state ",
+    "input": "<a",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "EOF in before attribute name state",
+    "input": "<a ",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "EOF in attribute name state",
+    "input": "<a a",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 5
+      }
+    ]
+  },
+  {
+    "description": "EOF in after attribute name state",
+    "input": "<a a ",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "EOF in before attribute value state",
+    "input": "<a a =",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  },
+  {
+    "description": "EOF in attribute value (double quoted) state",
+    "input": "<a a =\"a",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "EOF in attribute value (single quoted) state",
+    "input": "<a a ='a",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "EOF in attribute value (unquoted) state",
+    "input": "<a a =a",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 8
+      }
+    ]
+  },
+  {
+    "description": "EOF in after attribute value state",
+    "input": "<a a ='a'",
+    "output": [],
+    "errors": [
+      {
+        "code": "eof-in-tag",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "description": "<!---- >",
+    "input": "<!---- >",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "-- >"
+      }
+    ],
+    "errors": [
+      {
+        "code": "eof-in-comment",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  }
+]

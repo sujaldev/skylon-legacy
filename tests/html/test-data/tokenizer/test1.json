@@ -1,0 +1,1024 @@
+[
+  {
+    "description": "Correct Doctype lowercase",
+    "input": "<!DOCTYPE html>",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Correct Doctype uppercase",
+    "input": "<!DOCTYPE HTML>",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Correct Doctype mixed case",
+    "input": "<!DOCTYPE HtMl>",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Correct Doctype case with EOF",
+    "input": "<!DOCTYPE HtMl",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "html",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "eof-in-doctype",
+        "line": 1,
+        "col": 15
+      }
+    ]
+  },
+  {
+    "description": "Truncated doctype start",
+    "input": "<!DOC>",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "DOC"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "Doctype in error",
+    "input": "<!DOCTYPE foo>",
+    "output": [
+      {
+        "token-type": "DOCTYPE",
+        "name": "foo",
+        "public-identifier": "missing",
+        "system-identifier": "missing",
+        "force-quirks": true
+      }
+    ]
+  },
+  {
+    "description": "Single Start Tag",
+    "input": "<h>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Empty end tag",
+    "input": "</>",
+    "output": [],
+    "errors": [
+      {
+        "code": "missing-end-tag-name",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "Empty start tag",
+    "input": "<>",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<>"
+      }
+    ],
+    "errors": [
+      {
+        "code": "invalid-first-character-of-tag-name",
+        "line": 1,
+        "col": 2
+      }
+    ]
+  },
+  {
+    "description": "Start Tag w/attribute",
+    "input": "<h a='b'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Start Tag w/attribute no quotes",
+    "input": "<h a=b>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Start/End Tag",
+    "input": "<h></h>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Two unclosed start tags",
+    "input": "<p>One<p>Two",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "p",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "character",
+        "data": "One"
+      },
+      {
+        "token-type": "start-tag",
+        "tag-name": "p",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "character",
+        "data": "Two"
+      }
+    ]
+  },
+  {
+    "description": "End Tag w/attribute",
+    "input": "<h></h a='b'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ],
+    "errors": [
+      {
+        "code": "end-tag-with-attributes",
+        "line": 1,
+        "col": 13
+      }
+    ]
+  },
+  {
+    "description": "Multiple atts",
+    "input": "<h a='b' c='d'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Multiple atts no space",
+    "input": "<h a='b'c='d'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-whitespace-between-attributes",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Repeated attr",
+    "input": "<h a='b' a='d'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "b"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "duplicate-attribute",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Simple comment",
+    "input": "<!--comment-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "comment"
+      }
+    ]
+  },
+  {
+    "description": "Comment, Central dash no space",
+    "input": "<!----->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "-"
+      }
+    ]
+  },
+  {
+    "description": "Comment, two central dashes",
+    "input": "<!-- --comment -->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " --comment "
+      }
+    ]
+  },
+  {
+    "description": "Comment, central less-than bang",
+    "input": "<!--<!-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "<!"
+      }
+    ]
+  },
+  {
+    "description": "Unfinished comment",
+    "input": "<!--comment",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "comment"
+      }
+    ],
+    "errors": [
+      {
+        "code": "eof-in-comment",
+        "line": 1,
+        "col": 12
+      }
+    ]
+  },
+  {
+    "description": "Unfinished comment after start of nested comment",
+    "input": "<!-- <!--",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <!"
+      }
+    ],
+    "errors": [
+      {
+        "code": "eof-in-comment",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Start of a comment",
+    "input": "<!-",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": "-"
+      }
+    ],
+    "errors": [
+      {
+        "code": "incorrectly-opened-comment",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "Short comment",
+    "input": "<!-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": ""
+      }
+    ],
+    "errors": [
+      {
+        "code": "abrupt-closing-of-empty-comment",
+        "line": 1,
+        "col": 5
+      }
+    ]
+  },
+  {
+    "description": "Short comment two",
+    "input": "<!--->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": ""
+      }
+    ],
+    "errors": [
+      {
+        "code": "abrupt-closing-of-empty-comment",
+        "line": 1,
+        "col": 6
+      }
+    ]
+  },
+  {
+    "description": "Short comment three",
+    "input": "<!---->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": ""
+      }
+    ]
+  },
+  {
+    "description": "< in comment",
+    "input": "<!-- <test-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <test"
+      }
+    ]
+  },
+  {
+    "description": "<! in comment",
+    "input": "<!-- <!test-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <!test"
+      }
+    ]
+  },
+  {
+    "description": "<!- in comment",
+    "input": "<!-- <!-test-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <!-test"
+      }
+    ]
+  },
+  {
+    "description": "Nested comment",
+    "input": "<!-- <!--test-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <!--test"
+      }
+    ],
+    "errors": [
+      {
+        "code": "nested-comment",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Nested comment with extra <",
+    "input": "<!-- <<!--test-->",
+    "output": [
+      {
+        "token-type": "comment",
+        "data": " <<!--test"
+      }
+    ],
+    "errors": [
+      {
+        "code": "nested-comment",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "< in script data",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<test-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<test-->"
+      }
+    ]
+  },
+  {
+    "description": "<! in script data",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!test-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!test-->"
+      }
+    ]
+  },
+  {
+    "description": "<!- in script data",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!-test-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!-test-->"
+      }
+    ]
+  },
+  {
+    "description": "Escaped script data",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--test-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--test-->"
+      }
+    ]
+  },
+  {
+    "description": "< in script HTML comment",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!-- < test -->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!-- < test -->"
+      }
+    ]
+  },
+  {
+    "description": "</ in script HTML comment",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!-- </ test -->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!-- </ test -->"
+      }
+    ]
+  },
+  {
+    "description": "Start tag in script HTML comment",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!-- <test> -->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!-- <test> -->"
+      }
+    ]
+  },
+  {
+    "description": "End tag in script HTML comment",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!-- </test> -->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!-- </test> -->"
+      }
+    ]
+  },
+  {
+    "description": "- in script HTML comment double escaped",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--<script>-</script>-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--<script>-</script>-->"
+      }
+    ]
+  },
+  {
+    "description": "-- in script HTML comment double escaped",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--<script>--</script>-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--<script>--</script>-->"
+      }
+    ]
+  },
+  {
+    "description": "--- in script HTML comment double escaped",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--<script>---</script>-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--<script>---</script>-->"
+      }
+    ]
+  },
+  {
+    "description": "- spaced in script HTML comment double escaped",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--<script> - </script>-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--<script> - </script>-->"
+      }
+    ]
+  },
+  {
+    "description": "-- spaced in script HTML comment double escaped",
+    "initialStates": [
+      "Script data state"
+    ],
+    "input": "<!--<script> -- </script>-->",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<!--<script> -- </script>-->"
+      }
+    ]
+  },
+  {
+    "description": "Ampersand EOF",
+    "input": "&",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&"
+      }
+    ]
+  },
+  {
+    "description": "Ampersand ampersand EOF",
+    "input": "&&",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&&"
+      }
+    ]
+  },
+  {
+    "description": "Ampersand space EOF",
+    "input": "& ",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "& "
+      }
+    ]
+  },
+  {
+    "description": "Unfinished entity",
+    "input": "&f",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&f"
+      }
+    ]
+  },
+  {
+    "description": "Ampersand, number sign",
+    "input": "&#",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&#"
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 3
+      }
+    ]
+  },
+  {
+    "description": "Unfinished numeric entity",
+    "input": "&#x",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&#x"
+      }
+    ],
+    "errors": [
+      {
+        "code": "absence-of-digits-in-numeric-character-reference",
+        "line": 1,
+        "col": 4
+      }
+    ]
+  },
+  {
+    "description": "Entity with trailing semicolon (1)",
+    "input": "I'm &not;it",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I'm \u00acit"
+      }
+    ]
+  },
+  {
+    "description": "Entity with trailing semicolon (2)",
+    "input": "I'm &notin;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I'm \u2209"
+      }
+    ]
+  },
+  {
+    "description": "Entity without trailing semicolon (1)",
+    "input": "I'm &notit",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I'm \u00acit"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Entity without trailing semicolon (2)",
+    "input": "I'm &notin",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I'm \u00acin"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Partial entity match at end of file",
+    "input": "I'm &no",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I'm &no"
+      }
+    ]
+  },
+  {
+    "description": "Non-ASCII character reference name",
+    "input": "&\u00ac;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&\u00ac;"
+      }
+    ]
+  },
+  {
+    "description": "ASCII decimal entity",
+    "input": "&#0036;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "$"
+      }
+    ]
+  },
+  {
+    "description": "ASCII hexadecimal entity",
+    "input": "&#x3f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "?"
+      }
+    ]
+  },
+  {
+    "description": "Hexadecimal entity in attribute",
+    "input": "<h a='&#x3f;'></h>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "?"
+          ]
+        ]
+      },
+      {
+        "token-type": "end-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": []
+      }
+    ]
+  },
+  {
+    "description": "Entity in attribute without semicolon ending in x",
+    "input": "<h a='&notx'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "&notx"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Entity in attribute without semicolon ending in 1",
+    "input": "<h a='&not1'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "&not1"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Entity in attribute without semicolon ending in i",
+    "input": "<h a='&noti'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "&noti"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Entity in attribute without semicolon",
+    "input": "<h a='&COPY'>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "h",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "\u00a9"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 12
+      }
+    ]
+  },
+  {
+    "description": "Unquoted attribute ending in ampersand",
+    "input": "<s o=& t>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "s",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "o",
+            "&"
+          ],
+          [
+            "t",
+            ""
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "description": "Unquoted attribute at end of tag with final character of &, with tag followed by characters",
+    "input": "<a a=a&>foo",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "a",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "a&"
+          ]
+        ]
+      },
+      {
+        "token-type": "character",
+        "data": "foo"
+      }
+    ]
+  },
+  {
+    "description": "plaintext element",
+    "input": "<plaintext>foobar",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "plaintext",
+        "self-closing-flag": "unset",
+        "attributes": []
+      },
+      {
+        "token-type": "character",
+        "data": "foobar"
+      }
+    ]
+  },
+  {
+    "description": "Open angled bracket in unquoted attribute value state",
+    "input": "<a a=f<>",
+    "output": [
+      {
+        "token-type": "start-tag",
+        "tag-name": "a",
+        "self-closing-flag": "unset",
+        "attributes": [
+          [
+            "a",
+            "f<"
+          ]
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "code": "unexpected-character-in-unquoted-attribute-value",
+        "line": 1,
+        "col": 7
+      }
+    ]
+  }
+]

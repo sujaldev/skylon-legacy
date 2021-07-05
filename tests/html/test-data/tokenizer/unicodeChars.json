@@ -1,0 +1,3890 @@
+[
+  {
+    "description": "Invalid Unicode character U+0001",
+    "input": "\u0001",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0001"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0002",
+    "input": "\u0002",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0002"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0003",
+    "input": "\u0003",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0003"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0004",
+    "input": "\u0004",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0004"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0005",
+    "input": "\u0005",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0005"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0006",
+    "input": "\u0006",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0006"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0007",
+    "input": "\u0007",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0007"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0008",
+    "input": "\b",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+000B",
+    "input": "\u000b",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+000E",
+    "input": "\u000e",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000e"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+000F",
+    "input": "\u000f",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0010",
+    "input": "\u0010",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0010"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0011",
+    "input": "\u0011",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0011"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0012",
+    "input": "\u0012",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0012"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0013",
+    "input": "\u0013",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0013"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0014",
+    "input": "\u0014",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0014"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0015",
+    "input": "\u0015",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0015"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0016",
+    "input": "\u0016",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0016"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0017",
+    "input": "\u0017",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0017"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0018",
+    "input": "\u0018",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0018"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+0019",
+    "input": "\u0019",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0019"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001A",
+    "input": "\u001a",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001a"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001B",
+    "input": "\u001b",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001C",
+    "input": "\u001c",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001c"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001D",
+    "input": "\u001d",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001d"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001E",
+    "input": "\u001e",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001e"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+001F",
+    "input": "\u001f",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+007F",
+    "input": "\u007f",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u007f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD0",
+    "input": "\ufdd0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd0"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD1",
+    "input": "\ufdd1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd1"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD2",
+    "input": "\ufdd2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd2"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD3",
+    "input": "\ufdd3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd3"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD4",
+    "input": "\ufdd4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd4"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD5",
+    "input": "\ufdd5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd5"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD6",
+    "input": "\ufdd6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd6"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD7",
+    "input": "\ufdd7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd7"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD8",
+    "input": "\ufdd8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd8"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDD9",
+    "input": "\ufdd9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd9"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDA",
+    "input": "\ufdda",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdda"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDB",
+    "input": "\ufddb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddb"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDC",
+    "input": "\ufddc",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddc"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDD",
+    "input": "\ufddd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDE",
+    "input": "\ufdde",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdde"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDDF",
+    "input": "\ufddf",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddf"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE0",
+    "input": "\ufde0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde0"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE1",
+    "input": "\ufde1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde1"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE2",
+    "input": "\ufde2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde2"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE3",
+    "input": "\ufde3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde3"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE4",
+    "input": "\ufde4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde4"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE5",
+    "input": "\ufde5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde5"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE6",
+    "input": "\ufde6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde6"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE7",
+    "input": "\ufde7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde7"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE8",
+    "input": "\ufde8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde8"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDE9",
+    "input": "\ufde9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde9"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDEA",
+    "input": "\ufdea",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdea"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDEB",
+    "input": "\ufdeb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdeb"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDEC",
+    "input": "\ufdec",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdec"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDED",
+    "input": "\ufded",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufded"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDEE",
+    "input": "\ufdee",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdee"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FDEF",
+    "input": "\ufdef",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdef"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FFFE",
+    "input": "\ufffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FFFF",
+    "input": "\uffff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uffff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+1FFFE",
+    "input": "\ud83f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+1FFFF",
+    "input": "\ud83f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+2FFFE",
+    "input": "\ud87f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+2FFFF",
+    "input": "\ud87f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+3FFFE",
+    "input": "\ud8bf\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+3FFFF",
+    "input": "\ud8bf\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+4FFFE",
+    "input": "\ud8ff\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+4FFFF",
+    "input": "\ud8ff\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+5FFFE",
+    "input": "\ud93f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+5FFFF",
+    "input": "\ud93f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+6FFFE",
+    "input": "\ud97f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+6FFFF",
+    "input": "\ud97f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+7FFFE",
+    "input": "\ud9bf\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+7FFFF",
+    "input": "\ud9bf\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+8FFFE",
+    "input": "\ud9ff\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+8FFFF",
+    "input": "\ud9ff\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+9FFFE",
+    "input": "\uda3f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+9FFFF",
+    "input": "\uda3f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+AFFFE",
+    "input": "\uda7f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+AFFFF",
+    "input": "\uda7f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+BFFFE",
+    "input": "\udabf\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+BFFFF",
+    "input": "\udabf\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+CFFFE",
+    "input": "\udaff\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+CFFFF",
+    "input": "\udaff\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+DFFFE",
+    "input": "\udb3f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+DFFFF",
+    "input": "\udb3f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+EFFFE",
+    "input": "\udb7f\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+EFFFF",
+    "input": "\udb7f\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FFFFE",
+    "input": "\udbbf\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+FFFFF",
+    "input": "\udbbf\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+10FFFE",
+    "input": "\udbff\udffe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Invalid Unicode character U+10FFFF",
+    "input": "\udbff\udfff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-in-input-stream",
+        "line": 1,
+        "col": 1
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0009",
+    "input": "\t",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\t"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+000A",
+    "input": "\n",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0020",
+    "input": " ",
+    "output": [
+      {
+        "token-type": "character",
+        "data": " "
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0021",
+    "input": "!",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "!"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0022",
+    "input": "\"",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\""
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0023",
+    "input": "#",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "#"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0024",
+    "input": "$",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "$"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0025",
+    "input": "%",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "%"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0026",
+    "input": "&",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0027",
+    "input": "'",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "'"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0028",
+    "input": "(",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "("
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0029",
+    "input": ")",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ")"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002A",
+    "input": "*",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "*"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002B",
+    "input": "+",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "+"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002C",
+    "input": ",",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ","
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002D",
+    "input": "-",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "-"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002E",
+    "input": ".",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "."
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+002F",
+    "input": "/",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "/"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0030",
+    "input": "0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0031",
+    "input": "1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0032",
+    "input": "2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0033",
+    "input": "3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0034",
+    "input": "4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0035",
+    "input": "5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0036",
+    "input": "6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0037",
+    "input": "7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0038",
+    "input": "8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0039",
+    "input": "9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+003A",
+    "input": ":",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ":"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+003B",
+    "input": ";",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ";"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+003D",
+    "input": "=",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "="
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+003E",
+    "input": ">",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ">"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+003F",
+    "input": "?",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "?"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0040",
+    "input": "@",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "@"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0041",
+    "input": "A",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "A"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0042",
+    "input": "B",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "B"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0043",
+    "input": "C",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "C"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0044",
+    "input": "D",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "D"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0045",
+    "input": "E",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "E"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0046",
+    "input": "F",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "F"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0047",
+    "input": "G",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "G"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0048",
+    "input": "H",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "H"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0049",
+    "input": "I",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004A",
+    "input": "J",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "J"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004B",
+    "input": "K",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "K"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004C",
+    "input": "L",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "L"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004D",
+    "input": "M",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "M"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004E",
+    "input": "N",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "N"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+004F",
+    "input": "O",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "O"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0050",
+    "input": "P",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "P"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0051",
+    "input": "Q",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Q"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0052",
+    "input": "R",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "R"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0053",
+    "input": "S",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "S"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0054",
+    "input": "T",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "T"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0055",
+    "input": "U",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "U"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0056",
+    "input": "V",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "V"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0057",
+    "input": "W",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "W"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0058",
+    "input": "X",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "X"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0059",
+    "input": "Y",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Y"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005A",
+    "input": "Z",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Z"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005B",
+    "input": "[",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "["
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005C",
+    "input": "\\",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\\"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005D",
+    "input": "]",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "]"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005E",
+    "input": "^",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "^"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+005F",
+    "input": "_",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "_"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0060",
+    "input": "`",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "`"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0061",
+    "input": "a",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "a"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0062",
+    "input": "b",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "b"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0063",
+    "input": "c",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "c"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0064",
+    "input": "d",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "d"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0065",
+    "input": "e",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "e"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0066",
+    "input": "f",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "f"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0067",
+    "input": "g",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "g"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0068",
+    "input": "h",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "h"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0069",
+    "input": "i",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "i"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006A",
+    "input": "j",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "j"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006B",
+    "input": "k",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "k"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006C",
+    "input": "l",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "l"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006D",
+    "input": "m",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "m"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006E",
+    "input": "n",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "n"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+006F",
+    "input": "o",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "o"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0070",
+    "input": "p",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "p"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0071",
+    "input": "q",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "q"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0072",
+    "input": "r",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "r"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0073",
+    "input": "s",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "s"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0074",
+    "input": "t",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "t"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0075",
+    "input": "u",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "u"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0076",
+    "input": "v",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "v"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0077",
+    "input": "w",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "w"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0078",
+    "input": "x",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "x"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+0079",
+    "input": "y",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "y"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+007A",
+    "input": "z",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "z"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+007B",
+    "input": "{",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "{"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+007C",
+    "input": "|",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "|"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+007D",
+    "input": "}",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "}"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+007E",
+    "input": "~",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "~"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A0",
+    "input": "\u00a0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A1",
+    "input": "\u00a1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A2",
+    "input": "\u00a2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A3",
+    "input": "\u00a3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A4",
+    "input": "\u00a4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A5",
+    "input": "\u00a5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A6",
+    "input": "\u00a6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A7",
+    "input": "\u00a7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A8",
+    "input": "\u00a8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00A9",
+    "input": "\u00a9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AA",
+    "input": "\u00aa",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00aa"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AB",
+    "input": "\u00ab",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ab"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AC",
+    "input": "\u00ac",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ac"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AD",
+    "input": "\u00ad",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ad"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AE",
+    "input": "\u00ae",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ae"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00AF",
+    "input": "\u00af",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00af"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B0",
+    "input": "\u00b0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B1",
+    "input": "\u00b1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B2",
+    "input": "\u00b2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B3",
+    "input": "\u00b3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B4",
+    "input": "\u00b4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B5",
+    "input": "\u00b5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B6",
+    "input": "\u00b6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B7",
+    "input": "\u00b7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B8",
+    "input": "\u00b8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00B9",
+    "input": "\u00b9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BA",
+    "input": "\u00ba",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ba"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BB",
+    "input": "\u00bb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bb"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BC",
+    "input": "\u00bc",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bc"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BD",
+    "input": "\u00bd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BE",
+    "input": "\u00be",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00be"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00BF",
+    "input": "\u00bf",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bf"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C0",
+    "input": "\u00c0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C1",
+    "input": "\u00c1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C2",
+    "input": "\u00c2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C3",
+    "input": "\u00c3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C4",
+    "input": "\u00c4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C5",
+    "input": "\u00c5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C6",
+    "input": "\u00c6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C7",
+    "input": "\u00c7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C8",
+    "input": "\u00c8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00C9",
+    "input": "\u00c9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CA",
+    "input": "\u00ca",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ca"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CB",
+    "input": "\u00cb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cb"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CC",
+    "input": "\u00cc",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cc"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CD",
+    "input": "\u00cd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CE",
+    "input": "\u00ce",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ce"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00CF",
+    "input": "\u00cf",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cf"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D0",
+    "input": "\u00d0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D1",
+    "input": "\u00d1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D2",
+    "input": "\u00d2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D3",
+    "input": "\u00d3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D4",
+    "input": "\u00d4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D5",
+    "input": "\u00d5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D6",
+    "input": "\u00d6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D7",
+    "input": "\u00d7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D8",
+    "input": "\u00d8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00D9",
+    "input": "\u00d9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DA",
+    "input": "\u00da",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00da"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DB",
+    "input": "\u00db",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00db"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DC",
+    "input": "\u00dc",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00dc"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DD",
+    "input": "\u00dd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00dd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DE",
+    "input": "\u00de",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00de"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00DF",
+    "input": "\u00df",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00df"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E0",
+    "input": "\u00e0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E1",
+    "input": "\u00e1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E2",
+    "input": "\u00e2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E3",
+    "input": "\u00e3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E4",
+    "input": "\u00e4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E5",
+    "input": "\u00e5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E6",
+    "input": "\u00e6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E7",
+    "input": "\u00e7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E8",
+    "input": "\u00e8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00E9",
+    "input": "\u00e9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00EA",
+    "input": "\u00ea",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ea"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00EB",
+    "input": "\u00eb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00eb"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00EC",
+    "input": "\u00ec",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ec"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00ED",
+    "input": "\u00ed",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ed"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00EE",
+    "input": "\u00ee",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ee"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00EF",
+    "input": "\u00ef",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ef"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F0",
+    "input": "\u00f0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F1",
+    "input": "\u00f1",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f1"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F2",
+    "input": "\u00f2",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f2"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F3",
+    "input": "\u00f3",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f3"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F4",
+    "input": "\u00f4",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f4"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F5",
+    "input": "\u00f5",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f5"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F6",
+    "input": "\u00f6",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f6"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F7",
+    "input": "\u00f7",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f7"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F8",
+    "input": "\u00f8",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f8"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00F9",
+    "input": "\u00f9",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f9"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FA",
+    "input": "\u00fa",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fa"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FB",
+    "input": "\u00fb",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fb"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FC",
+    "input": "\u00fc",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fc"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FD",
+    "input": "\u00fd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FE",
+    "input": "\u00fe",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fe"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+00FF",
+    "input": "\u00ff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ff"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+D7FF",
+    "input": "\ud7ff",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud7ff"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+E000",
+    "input": "\ue000",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ue000"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+FDCF",
+    "input": "\ufdcf",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdcf"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+FDF0",
+    "input": "\ufdf0",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdf0"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+FFFD",
+    "input": "\ufffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+10000",
+    "input": "\ud800\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud800\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+1FFFD",
+    "input": "\ud83f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+20000",
+    "input": "\ud840\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud840\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+2FFFD",
+    "input": "\ud87f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+30000",
+    "input": "\ud880\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud880\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+3FFFD",
+    "input": "\ud8bf\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+40000",
+    "input": "\ud8c0\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8c0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+4FFFD",
+    "input": "\ud8ff\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+50000",
+    "input": "\ud900\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud900\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+5FFFD",
+    "input": "\ud93f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+60000",
+    "input": "\ud940\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud940\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+6FFFD",
+    "input": "\ud97f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+70000",
+    "input": "\ud980\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud980\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+7FFFD",
+    "input": "\ud9bf\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+80000",
+    "input": "\ud9c0\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9c0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+8FFFD",
+    "input": "\ud9ff\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+90000",
+    "input": "\uda00\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda00\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+9FFFD",
+    "input": "\uda3f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+A0000",
+    "input": "\uda40\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda40\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+AFFFD",
+    "input": "\uda7f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+B0000",
+    "input": "\uda80\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda80\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+BFFFD",
+    "input": "\udabf\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+C0000",
+    "input": "\udac0\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udac0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+CFFFD",
+    "input": "\udaff\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+D0000",
+    "input": "\udb00\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb00\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+DFFFD",
+    "input": "\udb3f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+E0000",
+    "input": "\udb40\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb40\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+EFFFD",
+    "input": "\udb7f\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+F0000",
+    "input": "\udb80\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb80\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+FFFFD",
+    "input": "\udbbf\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+100000",
+    "input": "\udbc0\udc00",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbc0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid Unicode character U+10FFFD",
+    "input": "\udbff\udffd",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udffd"
+      }
+    ]
+  }
+]

@@ -1,0 +1,4134 @@
+[
+  {
+    "description": "Invalid unterminated numeric entity character overflow before EOF",
+    "input": "&#11111111111",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 14
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 14
+      }
+    ]
+  },
+  {
+    "description": "Invalid unterminated numeric entity character overflow before EOF",
+    "input": "&#1111111111",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 13
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 13
+      }
+    ]
+  },
+  {
+    "description": "Invalid unterminated numeric entity character overflow before EOF",
+    "input": "&#111111111111",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 15
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 15
+      }
+    ]
+  },
+  {
+    "description": "Invalid unterminated numeric entity character overflow",
+    "input": "&#11111111111x",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffdx"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 14
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 14
+      }
+    ]
+  },
+  {
+    "description": "Invalid unterminated numeric entity character overflow",
+    "input": "&#1111111111x",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffdx"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 13
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 13
+      }
+    ]
+  },
+  {
+    "description": "Invalid unterminated numeric entity character overflow",
+    "input": "&#111111111111x",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffdx"
+      }
+    ],
+    "errors": [
+      {
+        "code": "missing-semicolon-after-character-reference",
+        "line": 1,
+        "col": 15
+      },
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 15
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character overflow",
+    "input": "&#11111111111;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 15
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character overflow",
+    "input": "&#1111111111;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 14
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character overflow",
+    "input": "&#111111111111;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "character-reference-outside-unicode-range",
+        "line": 1,
+        "col": 16
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0000",
+    "input": "&#x0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "null-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0001",
+    "input": "&#x0001;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0001"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0002",
+    "input": "&#x0002;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0002"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0003",
+    "input": "&#x0003;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0003"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0004",
+    "input": "&#x0004;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0004"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0005",
+    "input": "&#x0005;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0005"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0006",
+    "input": "&#x0006;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0006"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0007",
+    "input": "&#x0007;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0007"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0008",
+    "input": "&#x0008;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+000B",
+    "input": "&#x000b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+000E",
+    "input": "&#x000e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000e"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+000F",
+    "input": "&#x000f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u000f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0010",
+    "input": "&#x0010;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0010"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0011",
+    "input": "&#x0011;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0011"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0012",
+    "input": "&#x0012;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0012"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0013",
+    "input": "&#x0013;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0013"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0014",
+    "input": "&#x0014;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0014"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0015",
+    "input": "&#x0015;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0015"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0016",
+    "input": "&#x0016;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0016"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0017",
+    "input": "&#x0017;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0017"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0018",
+    "input": "&#x0018;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0018"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+0019",
+    "input": "&#x0019;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u0019"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001A",
+    "input": "&#x001a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001a"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001B",
+    "input": "&#x001b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001b"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001C",
+    "input": "&#x001c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001c"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001D",
+    "input": "&#x001d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001d"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001E",
+    "input": "&#x001e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001e"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+001F",
+    "input": "&#x001f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u001f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+007F",
+    "input": "&#x007f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u007f"
+      }
+    ],
+    "errors": [
+      {
+        "code": "control-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+D800",
+    "input": "&#xd800;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+DFFF",
+    "input": "&#xdfff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "surrogate-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD0",
+    "input": "&#xfdd0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd0"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD1",
+    "input": "&#xfdd1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd1"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD2",
+    "input": "&#xfdd2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd2"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD3",
+    "input": "&#xfdd3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd3"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD4",
+    "input": "&#xfdd4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd4"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD5",
+    "input": "&#xfdd5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd5"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD6",
+    "input": "&#xfdd6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd6"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD7",
+    "input": "&#xfdd7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd7"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD8",
+    "input": "&#xfdd8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd8"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDD9",
+    "input": "&#xfdd9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdd9"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDA",
+    "input": "&#xfdda;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdda"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDB",
+    "input": "&#xfddb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddb"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDC",
+    "input": "&#xfddc;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddc"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDD",
+    "input": "&#xfddd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddd"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDE",
+    "input": "&#xfdde;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdde"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDDF",
+    "input": "&#xfddf;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufddf"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE0",
+    "input": "&#xfde0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde0"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE1",
+    "input": "&#xfde1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde1"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE2",
+    "input": "&#xfde2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde2"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE3",
+    "input": "&#xfde3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde3"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE4",
+    "input": "&#xfde4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde4"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE5",
+    "input": "&#xfde5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde5"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE6",
+    "input": "&#xfde6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde6"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE7",
+    "input": "&#xfde7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde7"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE8",
+    "input": "&#xfde8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde8"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDE9",
+    "input": "&#xfde9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufde9"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDEA",
+    "input": "&#xfdea;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdea"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDEB",
+    "input": "&#xfdeb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdeb"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDEC",
+    "input": "&#xfdec;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdec"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDED",
+    "input": "&#xfded;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufded"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDEE",
+    "input": "&#xfdee;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdee"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FDEF",
+    "input": "&#xfdef;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdef"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FFFE",
+    "input": "&#xfffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FFFF",
+    "input": "&#xffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uffff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 9
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+1FFFE",
+    "input": "&#x1fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+1FFFF",
+    "input": "&#x1ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+2FFFE",
+    "input": "&#x2fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+2FFFF",
+    "input": "&#x2ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+3FFFE",
+    "input": "&#x3fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+3FFFF",
+    "input": "&#x3ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+4FFFE",
+    "input": "&#x4fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+4FFFF",
+    "input": "&#x4ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+5FFFE",
+    "input": "&#x5fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+5FFFF",
+    "input": "&#x5ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+6FFFE",
+    "input": "&#x6fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+6FFFF",
+    "input": "&#x6ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+7FFFE",
+    "input": "&#x7fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+7FFFF",
+    "input": "&#x7ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+8FFFE",
+    "input": "&#x8fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+8FFFF",
+    "input": "&#x8ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+9FFFE",
+    "input": "&#x9fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+9FFFF",
+    "input": "&#x9ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+AFFFE",
+    "input": "&#xafffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+AFFFF",
+    "input": "&#xaffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+BFFFE",
+    "input": "&#xbfffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+BFFFF",
+    "input": "&#xbffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+CFFFE",
+    "input": "&#xcfffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+CFFFF",
+    "input": "&#xcffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+DFFFE",
+    "input": "&#xdfffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+DFFFF",
+    "input": "&#xdffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+EFFFE",
+    "input": "&#xefffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+EFFFF",
+    "input": "&#xeffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FFFFE",
+    "input": "&#xffffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+FFFFF",
+    "input": "&#xfffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 10
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+10FFFE",
+    "input": "&#x10fffe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udffe"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Invalid numeric entity character U+10FFFF",
+    "input": "&#x10ffff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udfff"
+      }
+    ],
+    "errors": [
+      {
+        "code": "noncharacter-character-reference",
+        "line": 1,
+        "col": 11
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0009",
+    "input": "&#x0009;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\t"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+000A",
+    "input": "&#x000a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\n"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0020",
+    "input": "&#x0020;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": " "
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0021",
+    "input": "&#x0021;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "!"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0022",
+    "input": "&#x0022;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\""
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0023",
+    "input": "&#x0023;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "#"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0024",
+    "input": "&#x0024;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "$"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0025",
+    "input": "&#x0025;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "%"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0026",
+    "input": "&#x0026;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "&"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0027",
+    "input": "&#x0027;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "'"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0028",
+    "input": "&#x0028;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "("
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0029",
+    "input": "&#x0029;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ")"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002A",
+    "input": "&#x002a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "*"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002B",
+    "input": "&#x002b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "+"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002C",
+    "input": "&#x002c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ","
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002D",
+    "input": "&#x002d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "-"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002E",
+    "input": "&#x002e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "."
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+002F",
+    "input": "&#x002f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "/"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0030",
+    "input": "&#x0030;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0031",
+    "input": "&#x0031;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0032",
+    "input": "&#x0032;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0033",
+    "input": "&#x0033;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0034",
+    "input": "&#x0034;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0035",
+    "input": "&#x0035;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0036",
+    "input": "&#x0036;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0037",
+    "input": "&#x0037;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0038",
+    "input": "&#x0038;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0039",
+    "input": "&#x0039;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003A",
+    "input": "&#x003a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ":"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003B",
+    "input": "&#x003b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ";"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003C",
+    "input": "&#x003c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "<"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003D",
+    "input": "&#x003d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "="
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003E",
+    "input": "&#x003e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": ">"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+003F",
+    "input": "&#x003f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "?"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0040",
+    "input": "&#x0040;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "@"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0041",
+    "input": "&#x0041;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "A"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0042",
+    "input": "&#x0042;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "B"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0043",
+    "input": "&#x0043;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "C"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0044",
+    "input": "&#x0044;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "D"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0045",
+    "input": "&#x0045;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "E"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0046",
+    "input": "&#x0046;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "F"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0047",
+    "input": "&#x0047;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "G"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0048",
+    "input": "&#x0048;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "H"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0049",
+    "input": "&#x0049;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "I"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004A",
+    "input": "&#x004a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "J"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004B",
+    "input": "&#x004b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "K"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004C",
+    "input": "&#x004c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "L"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004D",
+    "input": "&#x004d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "M"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004E",
+    "input": "&#x004e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "N"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+004F",
+    "input": "&#x004f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "O"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0050",
+    "input": "&#x0050;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "P"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0051",
+    "input": "&#x0051;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Q"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0052",
+    "input": "&#x0052;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "R"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0053",
+    "input": "&#x0053;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "S"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0054",
+    "input": "&#x0054;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "T"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0055",
+    "input": "&#x0055;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "U"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0056",
+    "input": "&#x0056;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "V"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0057",
+    "input": "&#x0057;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "W"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0058",
+    "input": "&#x0058;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "X"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0059",
+    "input": "&#x0059;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Y"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005A",
+    "input": "&#x005a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "Z"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005B",
+    "input": "&#x005b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "["
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005C",
+    "input": "&#x005c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\\"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005D",
+    "input": "&#x005d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "]"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005E",
+    "input": "&#x005e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "^"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+005F",
+    "input": "&#x005f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "_"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0060",
+    "input": "&#x0060;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "`"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0061",
+    "input": "&#x0061;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "a"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0062",
+    "input": "&#x0062;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "b"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0063",
+    "input": "&#x0063;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "c"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0064",
+    "input": "&#x0064;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "d"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0065",
+    "input": "&#x0065;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "e"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0066",
+    "input": "&#x0066;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "f"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0067",
+    "input": "&#x0067;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "g"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0068",
+    "input": "&#x0068;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "h"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0069",
+    "input": "&#x0069;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "i"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006A",
+    "input": "&#x006a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "j"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006B",
+    "input": "&#x006b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "k"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006C",
+    "input": "&#x006c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "l"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006D",
+    "input": "&#x006d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "m"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006E",
+    "input": "&#x006e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "n"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+006F",
+    "input": "&#x006f;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "o"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0070",
+    "input": "&#x0070;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "p"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0071",
+    "input": "&#x0071;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "q"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0072",
+    "input": "&#x0072;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "r"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0073",
+    "input": "&#x0073;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "s"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0074",
+    "input": "&#x0074;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "t"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0075",
+    "input": "&#x0075;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "u"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0076",
+    "input": "&#x0076;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "v"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0077",
+    "input": "&#x0077;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "w"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0078",
+    "input": "&#x0078;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "x"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+0079",
+    "input": "&#x0079;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "y"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+007A",
+    "input": "&#x007a;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "z"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+007B",
+    "input": "&#x007b;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "{"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+007C",
+    "input": "&#x007c;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "|"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+007D",
+    "input": "&#x007d;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "}"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+007E",
+    "input": "&#x007e;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "~"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A0",
+    "input": "&#x00a0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A1",
+    "input": "&#x00a1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A2",
+    "input": "&#x00a2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A3",
+    "input": "&#x00a3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A4",
+    "input": "&#x00a4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A5",
+    "input": "&#x00a5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A6",
+    "input": "&#x00a6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A7",
+    "input": "&#x00a7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A8",
+    "input": "&#x00a8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00A9",
+    "input": "&#x00a9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00a9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AA",
+    "input": "&#x00aa;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00aa"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AB",
+    "input": "&#x00ab;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ab"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AC",
+    "input": "&#x00ac;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ac"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AD",
+    "input": "&#x00ad;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ad"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AE",
+    "input": "&#x00ae;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ae"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00AF",
+    "input": "&#x00af;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00af"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B0",
+    "input": "&#x00b0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B1",
+    "input": "&#x00b1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B2",
+    "input": "&#x00b2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B3",
+    "input": "&#x00b3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B4",
+    "input": "&#x00b4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B5",
+    "input": "&#x00b5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B6",
+    "input": "&#x00b6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B7",
+    "input": "&#x00b7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B8",
+    "input": "&#x00b8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00B9",
+    "input": "&#x00b9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00b9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BA",
+    "input": "&#x00ba;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ba"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BB",
+    "input": "&#x00bb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bb"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BC",
+    "input": "&#x00bc;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bc"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BD",
+    "input": "&#x00bd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BE",
+    "input": "&#x00be;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00be"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00BF",
+    "input": "&#x00bf;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00bf"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C0",
+    "input": "&#x00c0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C1",
+    "input": "&#x00c1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C2",
+    "input": "&#x00c2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C3",
+    "input": "&#x00c3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C4",
+    "input": "&#x00c4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C5",
+    "input": "&#x00c5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C6",
+    "input": "&#x00c6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C7",
+    "input": "&#x00c7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C8",
+    "input": "&#x00c8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00C9",
+    "input": "&#x00c9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00c9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CA",
+    "input": "&#x00ca;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ca"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CB",
+    "input": "&#x00cb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cb"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CC",
+    "input": "&#x00cc;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cc"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CD",
+    "input": "&#x00cd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CE",
+    "input": "&#x00ce;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ce"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00CF",
+    "input": "&#x00cf;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00cf"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D0",
+    "input": "&#x00d0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D1",
+    "input": "&#x00d1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D2",
+    "input": "&#x00d2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D3",
+    "input": "&#x00d3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D4",
+    "input": "&#x00d4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D5",
+    "input": "&#x00d5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D6",
+    "input": "&#x00d6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D7",
+    "input": "&#x00d7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D8",
+    "input": "&#x00d8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00D9",
+    "input": "&#x00d9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00d9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DA",
+    "input": "&#x00da;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00da"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DB",
+    "input": "&#x00db;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00db"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DC",
+    "input": "&#x00dc;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00dc"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DD",
+    "input": "&#x00dd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00dd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DE",
+    "input": "&#x00de;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00de"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00DF",
+    "input": "&#x00df;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00df"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E0",
+    "input": "&#x00e0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E1",
+    "input": "&#x00e1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E2",
+    "input": "&#x00e2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E3",
+    "input": "&#x00e3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E4",
+    "input": "&#x00e4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E5",
+    "input": "&#x00e5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E6",
+    "input": "&#x00e6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E7",
+    "input": "&#x00e7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E8",
+    "input": "&#x00e8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00E9",
+    "input": "&#x00e9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00e9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00EA",
+    "input": "&#x00ea;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ea"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00EB",
+    "input": "&#x00eb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00eb"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00EC",
+    "input": "&#x00ec;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ec"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00ED",
+    "input": "&#x00ed;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ed"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00EE",
+    "input": "&#x00ee;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ee"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00EF",
+    "input": "&#x00ef;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ef"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F0",
+    "input": "&#x00f0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F1",
+    "input": "&#x00f1;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f1"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F2",
+    "input": "&#x00f2;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f2"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F3",
+    "input": "&#x00f3;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f3"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F4",
+    "input": "&#x00f4;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f4"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F5",
+    "input": "&#x00f5;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f5"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F6",
+    "input": "&#x00f6;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f6"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F7",
+    "input": "&#x00f7;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f7"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F8",
+    "input": "&#x00f8;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f8"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00F9",
+    "input": "&#x00f9;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00f9"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FA",
+    "input": "&#x00fa;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fa"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FB",
+    "input": "&#x00fb;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fb"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FC",
+    "input": "&#x00fc;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fc"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FD",
+    "input": "&#x00fd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FE",
+    "input": "&#x00fe;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00fe"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+00FF",
+    "input": "&#x00ff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\u00ff"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+D7FF",
+    "input": "&#xd7ff;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud7ff"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+E000",
+    "input": "&#xe000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ue000"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+FDCF",
+    "input": "&#xfdcf;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdcf"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+FDF0",
+    "input": "&#xfdf0;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufdf0"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+FFFD",
+    "input": "&#xfffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ufffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+10000",
+    "input": "&#x10000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud800\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+1FFFD",
+    "input": "&#x1fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud83f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+20000",
+    "input": "&#x20000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud840\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+2FFFD",
+    "input": "&#x2fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud87f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+30000",
+    "input": "&#x30000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud880\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+3FFFD",
+    "input": "&#x3fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8bf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+40000",
+    "input": "&#x40000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8c0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+4FFFD",
+    "input": "&#x4fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud8ff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+50000",
+    "input": "&#x50000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud900\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+5FFFD",
+    "input": "&#x5fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud93f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+60000",
+    "input": "&#x60000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud940\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+6FFFD",
+    "input": "&#x6fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud97f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+70000",
+    "input": "&#x70000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud980\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+7FFFD",
+    "input": "&#x7fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9bf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+80000",
+    "input": "&#x80000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9c0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+8FFFD",
+    "input": "&#x8fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\ud9ff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+90000",
+    "input": "&#x90000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda00\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+9FFFD",
+    "input": "&#x9fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda3f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+A0000",
+    "input": "&#xa0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda40\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+AFFFD",
+    "input": "&#xafffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda7f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+B0000",
+    "input": "&#xb0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\uda80\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+BFFFD",
+    "input": "&#xbfffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udabf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+C0000",
+    "input": "&#xc0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udac0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+CFFFD",
+    "input": "&#xcfffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udaff\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+D0000",
+    "input": "&#xd0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb00\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+DFFFD",
+    "input": "&#xdfffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb3f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+E0000",
+    "input": "&#xe0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb40\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+EFFFD",
+    "input": "&#xefffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb7f\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+F0000",
+    "input": "&#xf0000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udb80\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+FFFFD",
+    "input": "&#xffffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbbf\udffd"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+100000",
+    "input": "&#x100000;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbc0\udc00"
+      }
+    ]
+  },
+  {
+    "description": "Valid numeric entity character U+10FFFD",
+    "input": "&#x10fffd;",
+    "output": [
+      {
+        "token-type": "character",
+        "data": "\udbff\udffd"
+      }
+    ]
+  }
+]
