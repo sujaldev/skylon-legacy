@@ -28,7 +28,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@escapeFlag#0"
   },
   {
     "description": "Bogus comment in RCDATA or RAWTEXT",
@@ -49,7 +50,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@escapeFlag#1"
   },
   {
     "description": "End tag surrounded by bogus comment in RCDATA or RAWTEXT",
@@ -91,7 +93,8 @@
         "line": 1,
         "col": 19
       }
-    ]
+    ],
+    "id": "tokenizer@escapeFlag#2"
   },
   {
     "description": "Commented entities in RCDATA",
@@ -111,7 +114,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@escapeFlag#3"
   },
   {
     "description": "Incorrect comment ending sequences in RCDATA or RAWTEXT",
@@ -132,6 +136,7 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@escapeFlag#4"
   }
 ]

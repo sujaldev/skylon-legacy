@@ -17,7 +17,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test2#0"
   },
   {
     "description": "DOCTYPE without space before name",
@@ -37,7 +38,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test2#1"
   },
   {
     "description": "Incorrect DOCTYPE without a space before name",
@@ -57,7 +59,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test2#2"
   },
   {
     "description": "DOCTYPE with publicId",
@@ -70,7 +73,8 @@
         "system-identifier": "missing",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test2#3"
   },
   {
     "description": "DOCTYPE with EOF after PUBLIC",
@@ -90,7 +94,8 @@
         "col": 22,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#4"
   },
   {
     "description": "DOCTYPE with EOF after PUBLIC '",
@@ -110,7 +115,8 @@
         "col": 24,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#5"
   },
   {
     "description": "DOCTYPE with EOF after PUBLIC 'x",
@@ -130,7 +136,8 @@
         "col": 25,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#6"
   },
   {
     "description": "DOCTYPE with systemId",
@@ -143,7 +150,8 @@
         "system-identifier": "-//W3C//DTD HTML Transitional 4.01//EN",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test2#7"
   },
   {
     "description": "DOCTYPE with single-quoted systemId",
@@ -156,7 +164,8 @@
         "system-identifier": "-//W3C//DTD HTML Transitional 4.01//EN",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test2#8"
   },
   {
     "description": "DOCTYPE with publicId and systemId",
@@ -169,7 +178,8 @@
         "system-identifier": "-//W3C//DTD HTML Transitional 4.01//EN",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test2#9"
   },
   {
     "description": "DOCTYPE with > in double-quoted publicId",
@@ -193,7 +203,8 @@
         "col": 24,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#10"
   },
   {
     "description": "DOCTYPE with > in single-quoted publicId",
@@ -217,7 +228,8 @@
         "col": 24,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#11"
   },
   {
     "description": "DOCTYPE with > in double-quoted systemId",
@@ -241,7 +253,8 @@
         "col": 30,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#12"
   },
   {
     "description": "DOCTYPE with > in single-quoted systemId",
@@ -265,7 +278,8 @@
         "col": 30,
         "line": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#13"
   },
   {
     "description": "Incomplete doctype",
@@ -285,7 +299,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test2#14"
   },
   {
     "description": "Numeric entity representing the NUL character",
@@ -302,7 +317,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@test2#15"
   },
   {
     "description": "Hexadecimal entity representing the NUL character",
@@ -319,7 +335,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test2#16"
   },
   {
     "description": "Numeric entity representing a codepoint after 1114111 (U+10FFFF)",
@@ -336,7 +353,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test2#17"
   },
   {
     "description": "Hexadecimal entity representing a codepoint after 1114111 (U+10FFFF)",
@@ -353,7 +371,8 @@
         "line": 1,
         "col": 13
       }
-    ]
+    ],
+    "id": "tokenizer@test2#18"
   },
   {
     "description": "Hexadecimal entity pair representing a surrogate pair",
@@ -375,7 +394,8 @@
         "line": 1,
         "col": 17
       }
-    ]
+    ],
+    "id": "tokenizer@test2#19"
   },
   {
     "description": "Hexadecimal entity with mixed uppercase and lowercase",
@@ -385,7 +405,8 @@
         "token-type": "character",
         "data": "\uabcd"
       }
-    ]
+    ],
+    "id": "tokenizer@test2#20"
   },
   {
     "description": "Entity without a name",
@@ -395,7 +416,8 @@
         "token-type": "character",
         "data": "&;"
       }
-    ]
+    ],
+    "id": "tokenizer@test2#21"
   },
   {
     "description": "Unescaped ampersand in attribute value",
@@ -412,7 +434,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test2#22"
   },
   {
     "description": "StartTag containing <",
@@ -424,7 +447,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test2#23"
   },
   {
     "description": "Non-void element containing trailing /",
@@ -436,7 +460,8 @@
         "self-closing-flag": "set",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test2#24"
   },
   {
     "description": "Void element with permitted slash",
@@ -448,7 +473,8 @@
         "self-closing-flag": "set",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test2#25"
   },
   {
     "description": "Void element with permitted slash (with attribute)",
@@ -465,7 +491,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test2#26"
   },
   {
     "description": "StartTag containing /",
@@ -489,7 +516,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test2#27"
   },
   {
     "description": "Double-quoted attribute value",
@@ -506,7 +534,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test2#28"
   },
   {
     "description": "Unescaped </",
@@ -523,7 +552,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test2#29"
   },
   {
     "description": "Illegal end tag name",
@@ -540,7 +570,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test2#30"
   },
   {
     "description": "Simili processing instruction",
@@ -557,7 +588,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@test2#31"
   },
   {
     "description": "A bogus comment stops at >, even if preceeded by two dashes",
@@ -574,7 +606,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@test2#32"
   },
   {
     "description": "Unescaped <",
@@ -591,7 +624,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test2#33"
   },
   {
     "description": "Null Byte Replacement",
@@ -608,7 +642,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test2#34"
   },
   {
     "description": "Comment with dash",
@@ -625,7 +660,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test2#35"
   },
   {
     "description": "Entity + newline",
@@ -635,7 +671,8 @@
         "token-type": "character",
         "data": "\nx\n>\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test2#36"
   },
   {
     "description": "Start tag with no attributes but space before the greater-than sign",
@@ -647,7 +684,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test2#37"
   },
   {
     "description": "Empty attribute followed by uppercase attribute",
@@ -668,7 +706,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test2#38"
   },
   {
     "description": "Double-quote after attribute name",
@@ -696,7 +735,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test2#39"
   },
   {
     "description": "Single-quote after attribute name",
@@ -724,7 +764,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test2#40"
   },
   {
     "description": "Empty end tag with following characters",
@@ -741,7 +782,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test2#41"
   },
   {
     "description": "Empty end tag with following tag",
@@ -768,7 +810,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test2#42"
   },
   {
     "description": "Empty end tag with following comment",
@@ -793,7 +836,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test2#43"
   },
   {
     "description": "Empty end tag with following end tag",
@@ -820,6 +864,7 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test2#44"
   }
 ]

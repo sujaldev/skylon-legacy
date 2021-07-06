@@ -10,7 +10,8 @@
         "system-identifier": "missing",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test1#0"
   },
   {
     "description": "Correct Doctype uppercase",
@@ -23,7 +24,8 @@
         "system-identifier": "missing",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test1#1"
   },
   {
     "description": "Correct Doctype mixed case",
@@ -36,7 +38,8 @@
         "system-identifier": "missing",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test1#2"
   },
   {
     "description": "Correct Doctype case with EOF",
@@ -56,7 +59,8 @@
         "line": 1,
         "col": 15
       }
-    ]
+    ],
+    "id": "tokenizer@test1#3"
   },
   {
     "description": "Truncated doctype start",
@@ -73,7 +77,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test1#4"
   },
   {
     "description": "Doctype in error",
@@ -86,7 +91,8 @@
         "system-identifier": "missing",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test1#5"
   },
   {
     "description": "Single Start Tag",
@@ -98,7 +104,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test1#6"
   },
   {
     "description": "Empty end tag",
@@ -110,7 +117,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test1#7"
   },
   {
     "description": "Empty start tag",
@@ -127,7 +135,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@test1#8"
   },
   {
     "description": "Start Tag w/attribute",
@@ -144,7 +153,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#9"
   },
   {
     "description": "Start Tag w/attribute no quotes",
@@ -161,7 +171,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#10"
   },
   {
     "description": "Start/End Tag",
@@ -179,7 +190,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test1#11"
   },
   {
     "description": "Two unclosed start tags",
@@ -205,7 +217,8 @@
         "token-type": "character",
         "data": "Two"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#12"
   },
   {
     "description": "End Tag w/attribute",
@@ -230,7 +243,8 @@
         "line": 1,
         "col": 13
       }
-    ]
+    ],
+    "id": "tokenizer@test1#13"
   },
   {
     "description": "Multiple atts",
@@ -251,7 +265,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#14"
   },
   {
     "description": "Multiple atts no space",
@@ -279,7 +294,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test1#15"
   },
   {
     "description": "Repeated attr",
@@ -303,7 +319,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test1#16"
   },
   {
     "description": "Simple comment",
@@ -313,7 +330,8 @@
         "token-type": "comment",
         "data": "comment"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#17"
   },
   {
     "description": "Comment, Central dash no space",
@@ -323,7 +341,8 @@
         "token-type": "comment",
         "data": "-"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#18"
   },
   {
     "description": "Comment, two central dashes",
@@ -333,7 +352,8 @@
         "token-type": "comment",
         "data": " --comment "
       }
-    ]
+    ],
+    "id": "tokenizer@test1#19"
   },
   {
     "description": "Comment, central less-than bang",
@@ -343,7 +363,8 @@
         "token-type": "comment",
         "data": "<!"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#20"
   },
   {
     "description": "Unfinished comment",
@@ -360,7 +381,8 @@
         "line": 1,
         "col": 12
       }
-    ]
+    ],
+    "id": "tokenizer@test1#21"
   },
   {
     "description": "Unfinished comment after start of nested comment",
@@ -377,7 +399,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test1#22"
   },
   {
     "description": "Start of a comment",
@@ -394,7 +417,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test1#23"
   },
   {
     "description": "Short comment",
@@ -411,7 +435,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@test1#24"
   },
   {
     "description": "Short comment two",
@@ -428,7 +453,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test1#25"
   },
   {
     "description": "Short comment three",
@@ -438,7 +464,8 @@
         "token-type": "comment",
         "data": ""
       }
-    ]
+    ],
+    "id": "tokenizer@test1#26"
   },
   {
     "description": "< in comment",
@@ -448,7 +475,8 @@
         "token-type": "comment",
         "data": " <test"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#27"
   },
   {
     "description": "<! in comment",
@@ -458,7 +486,8 @@
         "token-type": "comment",
         "data": " <!test"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#28"
   },
   {
     "description": "<!- in comment",
@@ -468,7 +497,8 @@
         "token-type": "comment",
         "data": " <!-test"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#29"
   },
   {
     "description": "Nested comment",
@@ -485,7 +515,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test1#30"
   },
   {
     "description": "Nested comment with extra <",
@@ -502,7 +533,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test1#31"
   },
   {
     "description": "< in script data",
@@ -515,7 +547,8 @@
         "token-type": "character",
         "data": "<test-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#32"
   },
   {
     "description": "<! in script data",
@@ -528,7 +561,8 @@
         "token-type": "character",
         "data": "<!test-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#33"
   },
   {
     "description": "<!- in script data",
@@ -541,7 +575,8 @@
         "token-type": "character",
         "data": "<!-test-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#34"
   },
   {
     "description": "Escaped script data",
@@ -554,7 +589,8 @@
         "token-type": "character",
         "data": "<!--test-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#35"
   },
   {
     "description": "< in script HTML comment",
@@ -567,7 +603,8 @@
         "token-type": "character",
         "data": "<!-- < test -->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#36"
   },
   {
     "description": "</ in script HTML comment",
@@ -580,7 +617,8 @@
         "token-type": "character",
         "data": "<!-- </ test -->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#37"
   },
   {
     "description": "Start tag in script HTML comment",
@@ -593,7 +631,8 @@
         "token-type": "character",
         "data": "<!-- <test> -->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#38"
   },
   {
     "description": "End tag in script HTML comment",
@@ -606,7 +645,8 @@
         "token-type": "character",
         "data": "<!-- </test> -->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#39"
   },
   {
     "description": "- in script HTML comment double escaped",
@@ -619,7 +659,8 @@
         "token-type": "character",
         "data": "<!--<script>-</script>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#40"
   },
   {
     "description": "-- in script HTML comment double escaped",
@@ -632,7 +673,8 @@
         "token-type": "character",
         "data": "<!--<script>--</script>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#41"
   },
   {
     "description": "--- in script HTML comment double escaped",
@@ -645,7 +687,8 @@
         "token-type": "character",
         "data": "<!--<script>---</script>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#42"
   },
   {
     "description": "- spaced in script HTML comment double escaped",
@@ -658,7 +701,8 @@
         "token-type": "character",
         "data": "<!--<script> - </script>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#43"
   },
   {
     "description": "-- spaced in script HTML comment double escaped",
@@ -671,7 +715,8 @@
         "token-type": "character",
         "data": "<!--<script> -- </script>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#44"
   },
   {
     "description": "Ampersand EOF",
@@ -681,7 +726,8 @@
         "token-type": "character",
         "data": "&"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#45"
   },
   {
     "description": "Ampersand ampersand EOF",
@@ -691,7 +737,8 @@
         "token-type": "character",
         "data": "&&"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#46"
   },
   {
     "description": "Ampersand space EOF",
@@ -701,7 +748,8 @@
         "token-type": "character",
         "data": "& "
       }
-    ]
+    ],
+    "id": "tokenizer@test1#47"
   },
   {
     "description": "Unfinished entity",
@@ -711,7 +759,8 @@
         "token-type": "character",
         "data": "&f"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#48"
   },
   {
     "description": "Ampersand, number sign",
@@ -728,7 +777,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test1#49"
   },
   {
     "description": "Unfinished numeric entity",
@@ -745,7 +795,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test1#50"
   },
   {
     "description": "Entity with trailing semicolon (1)",
@@ -755,7 +806,8 @@
         "token-type": "character",
         "data": "I'm \u00acit"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#51"
   },
   {
     "description": "Entity with trailing semicolon (2)",
@@ -765,7 +817,8 @@
         "token-type": "character",
         "data": "I'm \u2209"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#52"
   },
   {
     "description": "Entity without trailing semicolon (1)",
@@ -782,7 +835,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test1#53"
   },
   {
     "description": "Entity without trailing semicolon (2)",
@@ -799,7 +853,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test1#54"
   },
   {
     "description": "Partial entity match at end of file",
@@ -809,7 +864,8 @@
         "token-type": "character",
         "data": "I'm &no"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#55"
   },
   {
     "description": "Non-ASCII character reference name",
@@ -819,7 +875,8 @@
         "token-type": "character",
         "data": "&\u00ac;"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#56"
   },
   {
     "description": "ASCII decimal entity",
@@ -829,7 +886,8 @@
         "token-type": "character",
         "data": "$"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#57"
   },
   {
     "description": "ASCII hexadecimal entity",
@@ -839,7 +897,8 @@
         "token-type": "character",
         "data": "?"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#58"
   },
   {
     "description": "Hexadecimal entity in attribute",
@@ -862,7 +921,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test1#59"
   },
   {
     "description": "Entity in attribute without semicolon ending in x",
@@ -879,7 +939,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#60"
   },
   {
     "description": "Entity in attribute without semicolon ending in 1",
@@ -896,7 +957,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#61"
   },
   {
     "description": "Entity in attribute without semicolon ending in i",
@@ -913,7 +975,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#62"
   },
   {
     "description": "Entity in attribute without semicolon",
@@ -937,7 +1000,8 @@
         "line": 1,
         "col": 12
       }
-    ]
+    ],
+    "id": "tokenizer@test1#63"
   },
   {
     "description": "Unquoted attribute ending in ampersand",
@@ -958,7 +1022,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test1#64"
   },
   {
     "description": "Unquoted attribute at end of tag with final character of &, with tag followed by characters",
@@ -979,7 +1044,8 @@
         "token-type": "character",
         "data": "foo"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#65"
   },
   {
     "description": "plaintext element",
@@ -995,7 +1061,8 @@
         "token-type": "character",
         "data": "foobar"
       }
-    ]
+    ],
+    "id": "tokenizer@test1#66"
   },
   {
     "description": "Open angled bracket in unquoted attribute value state",
@@ -1019,6 +1086,7 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test1#67"
   }
 ]

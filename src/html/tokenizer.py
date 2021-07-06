@@ -63,6 +63,9 @@ class Tokenizer:
         self.debugger = Debugger(self.debug_lvl)
         self.dprint = self.debugger.print
 
+        # INITIATE TOKENIZING PROCESS
+        self.tokenize()
+
     ###############################################################################################
     # OPERATIONS #
     def consume(self):
@@ -112,10 +115,13 @@ class Tokenizer:
         if self.consumed_as_part_of_an_attr():
             # i.e. if buffer has valid named character then replace with its value in ampersand table
             if self.temp_buffer in self.ampersand_table.keys():
-                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+                pass
+                # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                # self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
             elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
                 valid_ligature = self.temp_buffer[:-1] + ";"
-                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
+                # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                # self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
 
             # append current temporary buffer to current attribute's value
             self.token_buffer["attributes"][-1][1] += self.temp_buffer
@@ -394,7 +400,6 @@ class Tokenizer:
             return
         else:
             # GENERATE incorrectly-opened-comment parse-error
-            print("here")
             self.generate_parse_error("INCORRECTLY OPENED COMMENT]")
 
             self.token_buffer = {
@@ -1395,7 +1400,8 @@ class Tokenizer:
                 self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE]")
 
             self.temp_buffer = self.temp_buffer[:-1] + ";"
-            self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+            # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+            # self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
             self.flush_code_pt_consumed_as_char_ref()
             self.reconsuming = True
             self.state = self.return_state

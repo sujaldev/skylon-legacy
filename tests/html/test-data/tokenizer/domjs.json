@@ -14,7 +14,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#0"
   },
   {
     "description": "CRLF in bogus comment state",
@@ -31,7 +32,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#1"
   },
   {
     "description": "CRLFLF in bogus comment state",
@@ -48,7 +50,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#2"
   },
   {
     "description": "Raw NUL replacement",
@@ -72,7 +75,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#3"
   },
   {
     "description": "NUL in CDATA section",
@@ -86,7 +90,8 @@
         "token-type": "character",
         "data": "\\u0000"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#4"
   },
   {
     "description": "NUL in script HTML comment",
@@ -117,7 +122,8 @@
         "line": 1,
         "col": 36
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#5"
   },
   {
     "description": "NUL in script HTML comment - double escaped",
@@ -148,7 +154,8 @@
         "line": 1,
         "col": 48
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#6"
   },
   {
     "description": "EOF in script HTML comment",
@@ -168,7 +175,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#7"
   },
   {
     "description": "EOF in script HTML comment after dash",
@@ -188,7 +196,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#8"
   },
   {
     "description": "EOF in script HTML comment after dash dash",
@@ -208,7 +217,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#9"
   },
   {
     "description": "EOF in script HTML comment double escaped after dash",
@@ -228,7 +238,8 @@
         "line": 1,
         "col": 14
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#10"
   },
   {
     "description": "EOF in script HTML comment double escaped after dash dash",
@@ -248,7 +259,8 @@
         "line": 1,
         "col": 15
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#11"
   },
   {
     "description": "EOF in script HTML comment - double escaped",
@@ -268,7 +280,8 @@
         "line": 1,
         "col": 13
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#12"
   },
   {
     "description": "Dash in script HTML comment",
@@ -281,7 +294,8 @@
         "token-type": "character",
         "data": "<!-- - -->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#13"
   },
   {
     "description": "Dash less-than in script HTML comment",
@@ -294,7 +308,8 @@
         "token-type": "character",
         "data": "<!-- -< -->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#14"
   },
   {
     "description": "Dash at end of script HTML comment",
@@ -307,7 +322,8 @@
         "token-type": "character",
         "data": "<!--test--->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#15"
   },
   {
     "description": "</script> in script HTML comment",
@@ -337,7 +353,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#16"
   },
   {
     "description": "</script> in script HTML comment - double escaped",
@@ -357,7 +374,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#17"
   },
   {
     "description": "</script> in script HTML comment - double escaped with nested <script>",
@@ -387,7 +405,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#18"
   },
   {
     "description": "</script> in script HTML comment - double escaped with abrupt end",
@@ -417,7 +436,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#19"
   },
   {
     "description": "Incomplete start tag in script HTML comment double escaped",
@@ -441,7 +461,8 @@
         "token-type": "character",
         "data": "-->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#20"
   },
   {
     "description": "Unclosed start tag in script HTML comment double escaped",
@@ -465,7 +486,8 @@
         "token-type": "character",
         "data": "-->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#21"
   },
   {
     "description": "Incomplete end tag in script HTML comment double escaped",
@@ -479,7 +501,8 @@
         "token-type": "character",
         "data": "<!--<script></scrip>-->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#22"
   },
   {
     "description": "Unclosed end tag in script HTML comment double escaped",
@@ -493,7 +516,8 @@
         "token-type": "character",
         "data": "<!--<script></script-->"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#23"
   },
   {
     "description": "leading U+FEFF must pass through",
@@ -510,7 +534,8 @@
         "token-type": "character",
         "data": "\\uFEFFfoo\\uFEFFbar"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#24"
   },
   {
     "description": "Non BMP-charref in RCDATA",
@@ -523,7 +548,8 @@
         "token-type": "character",
         "data": "\u2242\u0338"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#25"
   },
   {
     "description": "Bad charref in RCDATA",
@@ -543,7 +569,8 @@
         "line": 1,
         "col": 14
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#26"
   },
   {
     "description": "lowercase endtags",
@@ -561,7 +588,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#27"
   },
   {
     "description": "bad endtag (space before name)",
@@ -577,7 +605,8 @@
         "token-type": "character",
         "data": "</ XMP>"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#28"
   },
   {
     "description": "bad endtag (not matching last start tag)",
@@ -593,7 +622,8 @@
         "token-type": "character",
         "data": "</xm>"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#29"
   },
   {
     "description": "bad endtag (without close bracket)",
@@ -609,7 +639,8 @@
         "token-type": "character",
         "data": "</xm "
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#30"
   },
   {
     "description": "bad endtag (trailing solidus)",
@@ -625,7 +656,8 @@
         "token-type": "character",
         "data": "</xm/"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#31"
   },
   {
     "description": "Non BMP-charref in attribute",
@@ -642,7 +674,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#32"
   },
   {
     "description": "--!NUL in comment ",
@@ -660,7 +693,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#33"
   },
   {
     "description": "space EOF after doctype ",
@@ -680,7 +714,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#34"
   },
   {
     "description": "CDATA in HTML content",
@@ -697,7 +732,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#35"
   },
   {
     "description": "CDATA content",
@@ -710,7 +746,8 @@
         "token-type": "character",
         "data": "foo&#32;"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#36"
   },
   {
     "description": "CDATA followed by HTML content",
@@ -723,7 +760,8 @@
         "token-type": "character",
         "data": "foo&#32; "
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#37"
   },
   {
     "description": "CDATA with extra bracket",
@@ -736,7 +774,8 @@
         "token-type": "character",
         "data": "foo]"
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#38"
   },
   {
     "description": "CDATA without end marker",
@@ -756,7 +795,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#39"
   },
   {
     "description": "CDATA with single bracket ending",
@@ -776,7 +816,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#40"
   },
   {
     "description": "CDATA with two brackets ending",
@@ -796,6 +837,7 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@domjs#41"
   }
 ]

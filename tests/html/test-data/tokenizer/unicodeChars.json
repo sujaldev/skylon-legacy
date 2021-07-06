@@ -14,7 +14,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#0"
   },
   {
     "description": "Invalid Unicode character U+0002",
@@ -31,7 +32,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#1"
   },
   {
     "description": "Invalid Unicode character U+0003",
@@ -48,7 +50,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#2"
   },
   {
     "description": "Invalid Unicode character U+0004",
@@ -65,7 +68,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#3"
   },
   {
     "description": "Invalid Unicode character U+0005",
@@ -82,7 +86,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#4"
   },
   {
     "description": "Invalid Unicode character U+0006",
@@ -99,7 +104,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#5"
   },
   {
     "description": "Invalid Unicode character U+0007",
@@ -116,7 +122,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#6"
   },
   {
     "description": "Invalid Unicode character U+0008",
@@ -133,7 +140,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#7"
   },
   {
     "description": "Invalid Unicode character U+000B",
@@ -150,7 +158,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#8"
   },
   {
     "description": "Invalid Unicode character U+000E",
@@ -167,7 +176,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#9"
   },
   {
     "description": "Invalid Unicode character U+000F",
@@ -184,7 +194,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#10"
   },
   {
     "description": "Invalid Unicode character U+0010",
@@ -201,7 +212,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#11"
   },
   {
     "description": "Invalid Unicode character U+0011",
@@ -218,7 +230,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#12"
   },
   {
     "description": "Invalid Unicode character U+0012",
@@ -235,7 +248,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#13"
   },
   {
     "description": "Invalid Unicode character U+0013",
@@ -252,7 +266,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#14"
   },
   {
     "description": "Invalid Unicode character U+0014",
@@ -269,7 +284,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#15"
   },
   {
     "description": "Invalid Unicode character U+0015",
@@ -286,7 +302,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#16"
   },
   {
     "description": "Invalid Unicode character U+0016",
@@ -303,7 +320,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#17"
   },
   {
     "description": "Invalid Unicode character U+0017",
@@ -320,7 +338,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#18"
   },
   {
     "description": "Invalid Unicode character U+0018",
@@ -337,7 +356,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#19"
   },
   {
     "description": "Invalid Unicode character U+0019",
@@ -354,7 +374,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#20"
   },
   {
     "description": "Invalid Unicode character U+001A",
@@ -371,7 +392,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#21"
   },
   {
     "description": "Invalid Unicode character U+001B",
@@ -388,7 +410,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#22"
   },
   {
     "description": "Invalid Unicode character U+001C",
@@ -405,7 +428,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#23"
   },
   {
     "description": "Invalid Unicode character U+001D",
@@ -422,7 +446,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#24"
   },
   {
     "description": "Invalid Unicode character U+001E",
@@ -439,7 +464,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#25"
   },
   {
     "description": "Invalid Unicode character U+001F",
@@ -456,7 +482,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#26"
   },
   {
     "description": "Invalid Unicode character U+007F",
@@ -473,7 +500,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#27"
   },
   {
     "description": "Invalid Unicode character U+FDD0",
@@ -490,7 +518,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#28"
   },
   {
     "description": "Invalid Unicode character U+FDD1",
@@ -507,7 +536,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#29"
   },
   {
     "description": "Invalid Unicode character U+FDD2",
@@ -524,7 +554,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#30"
   },
   {
     "description": "Invalid Unicode character U+FDD3",
@@ -541,7 +572,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#31"
   },
   {
     "description": "Invalid Unicode character U+FDD4",
@@ -558,7 +590,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#32"
   },
   {
     "description": "Invalid Unicode character U+FDD5",
@@ -575,7 +608,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#33"
   },
   {
     "description": "Invalid Unicode character U+FDD6",
@@ -592,7 +626,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#34"
   },
   {
     "description": "Invalid Unicode character U+FDD7",
@@ -609,7 +644,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#35"
   },
   {
     "description": "Invalid Unicode character U+FDD8",
@@ -626,7 +662,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#36"
   },
   {
     "description": "Invalid Unicode character U+FDD9",
@@ -643,7 +680,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#37"
   },
   {
     "description": "Invalid Unicode character U+FDDA",
@@ -660,7 +698,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#38"
   },
   {
     "description": "Invalid Unicode character U+FDDB",
@@ -677,7 +716,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#39"
   },
   {
     "description": "Invalid Unicode character U+FDDC",
@@ -694,7 +734,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#40"
   },
   {
     "description": "Invalid Unicode character U+FDDD",
@@ -711,7 +752,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#41"
   },
   {
     "description": "Invalid Unicode character U+FDDE",
@@ -728,7 +770,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#42"
   },
   {
     "description": "Invalid Unicode character U+FDDF",
@@ -745,7 +788,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#43"
   },
   {
     "description": "Invalid Unicode character U+FDE0",
@@ -762,7 +806,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#44"
   },
   {
     "description": "Invalid Unicode character U+FDE1",
@@ -779,7 +824,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#45"
   },
   {
     "description": "Invalid Unicode character U+FDE2",
@@ -796,7 +842,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#46"
   },
   {
     "description": "Invalid Unicode character U+FDE3",
@@ -813,7 +860,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#47"
   },
   {
     "description": "Invalid Unicode character U+FDE4",
@@ -830,7 +878,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#48"
   },
   {
     "description": "Invalid Unicode character U+FDE5",
@@ -847,7 +896,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#49"
   },
   {
     "description": "Invalid Unicode character U+FDE6",
@@ -864,7 +914,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#50"
   },
   {
     "description": "Invalid Unicode character U+FDE7",
@@ -881,7 +932,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#51"
   },
   {
     "description": "Invalid Unicode character U+FDE8",
@@ -898,7 +950,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#52"
   },
   {
     "description": "Invalid Unicode character U+FDE9",
@@ -915,7 +968,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#53"
   },
   {
     "description": "Invalid Unicode character U+FDEA",
@@ -932,7 +986,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#54"
   },
   {
     "description": "Invalid Unicode character U+FDEB",
@@ -949,7 +1004,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#55"
   },
   {
     "description": "Invalid Unicode character U+FDEC",
@@ -966,7 +1022,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#56"
   },
   {
     "description": "Invalid Unicode character U+FDED",
@@ -983,7 +1040,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#57"
   },
   {
     "description": "Invalid Unicode character U+FDEE",
@@ -1000,7 +1058,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#58"
   },
   {
     "description": "Invalid Unicode character U+FDEF",
@@ -1017,7 +1076,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#59"
   },
   {
     "description": "Invalid Unicode character U+FFFE",
@@ -1034,7 +1094,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#60"
   },
   {
     "description": "Invalid Unicode character U+FFFF",
@@ -1051,7 +1112,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#61"
   },
   {
     "description": "Invalid Unicode character U+1FFFE",
@@ -1068,7 +1130,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#62"
   },
   {
     "description": "Invalid Unicode character U+1FFFF",
@@ -1085,7 +1148,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#63"
   },
   {
     "description": "Invalid Unicode character U+2FFFE",
@@ -1102,7 +1166,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#64"
   },
   {
     "description": "Invalid Unicode character U+2FFFF",
@@ -1119,7 +1184,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#65"
   },
   {
     "description": "Invalid Unicode character U+3FFFE",
@@ -1136,7 +1202,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#66"
   },
   {
     "description": "Invalid Unicode character U+3FFFF",
@@ -1153,7 +1220,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#67"
   },
   {
     "description": "Invalid Unicode character U+4FFFE",
@@ -1170,7 +1238,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#68"
   },
   {
     "description": "Invalid Unicode character U+4FFFF",
@@ -1187,7 +1256,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#69"
   },
   {
     "description": "Invalid Unicode character U+5FFFE",
@@ -1204,7 +1274,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#70"
   },
   {
     "description": "Invalid Unicode character U+5FFFF",
@@ -1221,7 +1292,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#71"
   },
   {
     "description": "Invalid Unicode character U+6FFFE",
@@ -1238,7 +1310,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#72"
   },
   {
     "description": "Invalid Unicode character U+6FFFF",
@@ -1255,7 +1328,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#73"
   },
   {
     "description": "Invalid Unicode character U+7FFFE",
@@ -1272,7 +1346,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#74"
   },
   {
     "description": "Invalid Unicode character U+7FFFF",
@@ -1289,7 +1364,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#75"
   },
   {
     "description": "Invalid Unicode character U+8FFFE",
@@ -1306,7 +1382,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#76"
   },
   {
     "description": "Invalid Unicode character U+8FFFF",
@@ -1323,7 +1400,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#77"
   },
   {
     "description": "Invalid Unicode character U+9FFFE",
@@ -1340,7 +1418,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#78"
   },
   {
     "description": "Invalid Unicode character U+9FFFF",
@@ -1357,7 +1436,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#79"
   },
   {
     "description": "Invalid Unicode character U+AFFFE",
@@ -1374,7 +1454,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#80"
   },
   {
     "description": "Invalid Unicode character U+AFFFF",
@@ -1391,7 +1472,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#81"
   },
   {
     "description": "Invalid Unicode character U+BFFFE",
@@ -1408,7 +1490,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#82"
   },
   {
     "description": "Invalid Unicode character U+BFFFF",
@@ -1425,7 +1508,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#83"
   },
   {
     "description": "Invalid Unicode character U+CFFFE",
@@ -1442,7 +1526,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#84"
   },
   {
     "description": "Invalid Unicode character U+CFFFF",
@@ -1459,7 +1544,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#85"
   },
   {
     "description": "Invalid Unicode character U+DFFFE",
@@ -1476,7 +1562,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#86"
   },
   {
     "description": "Invalid Unicode character U+DFFFF",
@@ -1493,7 +1580,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#87"
   },
   {
     "description": "Invalid Unicode character U+EFFFE",
@@ -1510,7 +1598,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#88"
   },
   {
     "description": "Invalid Unicode character U+EFFFF",
@@ -1527,7 +1616,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#89"
   },
   {
     "description": "Invalid Unicode character U+FFFFE",
@@ -1544,7 +1634,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#90"
   },
   {
     "description": "Invalid Unicode character U+FFFFF",
@@ -1561,7 +1652,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#91"
   },
   {
     "description": "Invalid Unicode character U+10FFFE",
@@ -1578,7 +1670,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#92"
   },
   {
     "description": "Invalid Unicode character U+10FFFF",
@@ -1595,7 +1688,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#93"
   },
   {
     "description": "Valid Unicode character U+0009",
@@ -1605,7 +1699,8 @@
         "token-type": "character",
         "data": "\t"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#94"
   },
   {
     "description": "Valid Unicode character U+000A",
@@ -1615,7 +1710,8 @@
         "token-type": "character",
         "data": "\n"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#95"
   },
   {
     "description": "Valid Unicode character U+0020",
@@ -1625,7 +1721,8 @@
         "token-type": "character",
         "data": " "
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#96"
   },
   {
     "description": "Valid Unicode character U+0021",
@@ -1635,7 +1732,8 @@
         "token-type": "character",
         "data": "!"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#97"
   },
   {
     "description": "Valid Unicode character U+0022",
@@ -1645,7 +1743,8 @@
         "token-type": "character",
         "data": "\""
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#98"
   },
   {
     "description": "Valid Unicode character U+0023",
@@ -1655,7 +1754,8 @@
         "token-type": "character",
         "data": "#"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#99"
   },
   {
     "description": "Valid Unicode character U+0024",
@@ -1665,7 +1765,8 @@
         "token-type": "character",
         "data": "$"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#100"
   },
   {
     "description": "Valid Unicode character U+0025",
@@ -1675,7 +1776,8 @@
         "token-type": "character",
         "data": "%"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#101"
   },
   {
     "description": "Valid Unicode character U+0026",
@@ -1685,7 +1787,8 @@
         "token-type": "character",
         "data": "&"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#102"
   },
   {
     "description": "Valid Unicode character U+0027",
@@ -1695,7 +1798,8 @@
         "token-type": "character",
         "data": "'"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#103"
   },
   {
     "description": "Valid Unicode character U+0028",
@@ -1705,7 +1809,8 @@
         "token-type": "character",
         "data": "("
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#104"
   },
   {
     "description": "Valid Unicode character U+0029",
@@ -1715,7 +1820,8 @@
         "token-type": "character",
         "data": ")"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#105"
   },
   {
     "description": "Valid Unicode character U+002A",
@@ -1725,7 +1831,8 @@
         "token-type": "character",
         "data": "*"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#106"
   },
   {
     "description": "Valid Unicode character U+002B",
@@ -1735,7 +1842,8 @@
         "token-type": "character",
         "data": "+"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#107"
   },
   {
     "description": "Valid Unicode character U+002C",
@@ -1745,7 +1853,8 @@
         "token-type": "character",
         "data": ","
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#108"
   },
   {
     "description": "Valid Unicode character U+002D",
@@ -1755,7 +1864,8 @@
         "token-type": "character",
         "data": "-"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#109"
   },
   {
     "description": "Valid Unicode character U+002E",
@@ -1765,7 +1875,8 @@
         "token-type": "character",
         "data": "."
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#110"
   },
   {
     "description": "Valid Unicode character U+002F",
@@ -1775,7 +1886,8 @@
         "token-type": "character",
         "data": "/"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#111"
   },
   {
     "description": "Valid Unicode character U+0030",
@@ -1785,7 +1897,8 @@
         "token-type": "character",
         "data": "0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#112"
   },
   {
     "description": "Valid Unicode character U+0031",
@@ -1795,7 +1908,8 @@
         "token-type": "character",
         "data": "1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#113"
   },
   {
     "description": "Valid Unicode character U+0032",
@@ -1805,7 +1919,8 @@
         "token-type": "character",
         "data": "2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#114"
   },
   {
     "description": "Valid Unicode character U+0033",
@@ -1815,7 +1930,8 @@
         "token-type": "character",
         "data": "3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#115"
   },
   {
     "description": "Valid Unicode character U+0034",
@@ -1825,7 +1941,8 @@
         "token-type": "character",
         "data": "4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#116"
   },
   {
     "description": "Valid Unicode character U+0035",
@@ -1835,7 +1952,8 @@
         "token-type": "character",
         "data": "5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#117"
   },
   {
     "description": "Valid Unicode character U+0036",
@@ -1845,7 +1963,8 @@
         "token-type": "character",
         "data": "6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#118"
   },
   {
     "description": "Valid Unicode character U+0037",
@@ -1855,7 +1974,8 @@
         "token-type": "character",
         "data": "7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#119"
   },
   {
     "description": "Valid Unicode character U+0038",
@@ -1865,7 +1985,8 @@
         "token-type": "character",
         "data": "8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#120"
   },
   {
     "description": "Valid Unicode character U+0039",
@@ -1875,7 +1996,8 @@
         "token-type": "character",
         "data": "9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#121"
   },
   {
     "description": "Valid Unicode character U+003A",
@@ -1885,7 +2007,8 @@
         "token-type": "character",
         "data": ":"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#122"
   },
   {
     "description": "Valid Unicode character U+003B",
@@ -1895,7 +2018,8 @@
         "token-type": "character",
         "data": ";"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#123"
   },
   {
     "description": "Valid Unicode character U+003D",
@@ -1905,7 +2029,8 @@
         "token-type": "character",
         "data": "="
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#124"
   },
   {
     "description": "Valid Unicode character U+003E",
@@ -1915,7 +2040,8 @@
         "token-type": "character",
         "data": ">"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#125"
   },
   {
     "description": "Valid Unicode character U+003F",
@@ -1925,7 +2051,8 @@
         "token-type": "character",
         "data": "?"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#126"
   },
   {
     "description": "Valid Unicode character U+0040",
@@ -1935,7 +2062,8 @@
         "token-type": "character",
         "data": "@"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#127"
   },
   {
     "description": "Valid Unicode character U+0041",
@@ -1945,7 +2073,8 @@
         "token-type": "character",
         "data": "A"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#128"
   },
   {
     "description": "Valid Unicode character U+0042",
@@ -1955,7 +2084,8 @@
         "token-type": "character",
         "data": "B"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#129"
   },
   {
     "description": "Valid Unicode character U+0043",
@@ -1965,7 +2095,8 @@
         "token-type": "character",
         "data": "C"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#130"
   },
   {
     "description": "Valid Unicode character U+0044",
@@ -1975,7 +2106,8 @@
         "token-type": "character",
         "data": "D"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#131"
   },
   {
     "description": "Valid Unicode character U+0045",
@@ -1985,7 +2117,8 @@
         "token-type": "character",
         "data": "E"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#132"
   },
   {
     "description": "Valid Unicode character U+0046",
@@ -1995,7 +2128,8 @@
         "token-type": "character",
         "data": "F"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#133"
   },
   {
     "description": "Valid Unicode character U+0047",
@@ -2005,7 +2139,8 @@
         "token-type": "character",
         "data": "G"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#134"
   },
   {
     "description": "Valid Unicode character U+0048",
@@ -2015,7 +2150,8 @@
         "token-type": "character",
         "data": "H"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#135"
   },
   {
     "description": "Valid Unicode character U+0049",
@@ -2025,7 +2161,8 @@
         "token-type": "character",
         "data": "I"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#136"
   },
   {
     "description": "Valid Unicode character U+004A",
@@ -2035,7 +2172,8 @@
         "token-type": "character",
         "data": "J"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#137"
   },
   {
     "description": "Valid Unicode character U+004B",
@@ -2045,7 +2183,8 @@
         "token-type": "character",
         "data": "K"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#138"
   },
   {
     "description": "Valid Unicode character U+004C",
@@ -2055,7 +2194,8 @@
         "token-type": "character",
         "data": "L"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#139"
   },
   {
     "description": "Valid Unicode character U+004D",
@@ -2065,7 +2205,8 @@
         "token-type": "character",
         "data": "M"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#140"
   },
   {
     "description": "Valid Unicode character U+004E",
@@ -2075,7 +2216,8 @@
         "token-type": "character",
         "data": "N"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#141"
   },
   {
     "description": "Valid Unicode character U+004F",
@@ -2085,7 +2227,8 @@
         "token-type": "character",
         "data": "O"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#142"
   },
   {
     "description": "Valid Unicode character U+0050",
@@ -2095,7 +2238,8 @@
         "token-type": "character",
         "data": "P"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#143"
   },
   {
     "description": "Valid Unicode character U+0051",
@@ -2105,7 +2249,8 @@
         "token-type": "character",
         "data": "Q"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#144"
   },
   {
     "description": "Valid Unicode character U+0052",
@@ -2115,7 +2260,8 @@
         "token-type": "character",
         "data": "R"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#145"
   },
   {
     "description": "Valid Unicode character U+0053",
@@ -2125,7 +2271,8 @@
         "token-type": "character",
         "data": "S"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#146"
   },
   {
     "description": "Valid Unicode character U+0054",
@@ -2135,7 +2282,8 @@
         "token-type": "character",
         "data": "T"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#147"
   },
   {
     "description": "Valid Unicode character U+0055",
@@ -2145,7 +2293,8 @@
         "token-type": "character",
         "data": "U"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#148"
   },
   {
     "description": "Valid Unicode character U+0056",
@@ -2155,7 +2304,8 @@
         "token-type": "character",
         "data": "V"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#149"
   },
   {
     "description": "Valid Unicode character U+0057",
@@ -2165,7 +2315,8 @@
         "token-type": "character",
         "data": "W"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#150"
   },
   {
     "description": "Valid Unicode character U+0058",
@@ -2175,7 +2326,8 @@
         "token-type": "character",
         "data": "X"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#151"
   },
   {
     "description": "Valid Unicode character U+0059",
@@ -2185,7 +2337,8 @@
         "token-type": "character",
         "data": "Y"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#152"
   },
   {
     "description": "Valid Unicode character U+005A",
@@ -2195,7 +2348,8 @@
         "token-type": "character",
         "data": "Z"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#153"
   },
   {
     "description": "Valid Unicode character U+005B",
@@ -2205,7 +2359,8 @@
         "token-type": "character",
         "data": "["
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#154"
   },
   {
     "description": "Valid Unicode character U+005C",
@@ -2215,7 +2370,8 @@
         "token-type": "character",
         "data": "\\"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#155"
   },
   {
     "description": "Valid Unicode character U+005D",
@@ -2225,7 +2381,8 @@
         "token-type": "character",
         "data": "]"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#156"
   },
   {
     "description": "Valid Unicode character U+005E",
@@ -2235,7 +2392,8 @@
         "token-type": "character",
         "data": "^"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#157"
   },
   {
     "description": "Valid Unicode character U+005F",
@@ -2245,7 +2403,8 @@
         "token-type": "character",
         "data": "_"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#158"
   },
   {
     "description": "Valid Unicode character U+0060",
@@ -2255,7 +2414,8 @@
         "token-type": "character",
         "data": "`"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#159"
   },
   {
     "description": "Valid Unicode character U+0061",
@@ -2265,7 +2425,8 @@
         "token-type": "character",
         "data": "a"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#160"
   },
   {
     "description": "Valid Unicode character U+0062",
@@ -2275,7 +2436,8 @@
         "token-type": "character",
         "data": "b"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#161"
   },
   {
     "description": "Valid Unicode character U+0063",
@@ -2285,7 +2447,8 @@
         "token-type": "character",
         "data": "c"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#162"
   },
   {
     "description": "Valid Unicode character U+0064",
@@ -2295,7 +2458,8 @@
         "token-type": "character",
         "data": "d"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#163"
   },
   {
     "description": "Valid Unicode character U+0065",
@@ -2305,7 +2469,8 @@
         "token-type": "character",
         "data": "e"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#164"
   },
   {
     "description": "Valid Unicode character U+0066",
@@ -2315,7 +2480,8 @@
         "token-type": "character",
         "data": "f"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#165"
   },
   {
     "description": "Valid Unicode character U+0067",
@@ -2325,7 +2491,8 @@
         "token-type": "character",
         "data": "g"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#166"
   },
   {
     "description": "Valid Unicode character U+0068",
@@ -2335,7 +2502,8 @@
         "token-type": "character",
         "data": "h"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#167"
   },
   {
     "description": "Valid Unicode character U+0069",
@@ -2345,7 +2513,8 @@
         "token-type": "character",
         "data": "i"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#168"
   },
   {
     "description": "Valid Unicode character U+006A",
@@ -2355,7 +2524,8 @@
         "token-type": "character",
         "data": "j"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#169"
   },
   {
     "description": "Valid Unicode character U+006B",
@@ -2365,7 +2535,8 @@
         "token-type": "character",
         "data": "k"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#170"
   },
   {
     "description": "Valid Unicode character U+006C",
@@ -2375,7 +2546,8 @@
         "token-type": "character",
         "data": "l"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#171"
   },
   {
     "description": "Valid Unicode character U+006D",
@@ -2385,7 +2557,8 @@
         "token-type": "character",
         "data": "m"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#172"
   },
   {
     "description": "Valid Unicode character U+006E",
@@ -2395,7 +2568,8 @@
         "token-type": "character",
         "data": "n"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#173"
   },
   {
     "description": "Valid Unicode character U+006F",
@@ -2405,7 +2579,8 @@
         "token-type": "character",
         "data": "o"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#174"
   },
   {
     "description": "Valid Unicode character U+0070",
@@ -2415,7 +2590,8 @@
         "token-type": "character",
         "data": "p"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#175"
   },
   {
     "description": "Valid Unicode character U+0071",
@@ -2425,7 +2601,8 @@
         "token-type": "character",
         "data": "q"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#176"
   },
   {
     "description": "Valid Unicode character U+0072",
@@ -2435,7 +2612,8 @@
         "token-type": "character",
         "data": "r"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#177"
   },
   {
     "description": "Valid Unicode character U+0073",
@@ -2445,7 +2623,8 @@
         "token-type": "character",
         "data": "s"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#178"
   },
   {
     "description": "Valid Unicode character U+0074",
@@ -2455,7 +2634,8 @@
         "token-type": "character",
         "data": "t"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#179"
   },
   {
     "description": "Valid Unicode character U+0075",
@@ -2465,7 +2645,8 @@
         "token-type": "character",
         "data": "u"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#180"
   },
   {
     "description": "Valid Unicode character U+0076",
@@ -2475,7 +2656,8 @@
         "token-type": "character",
         "data": "v"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#181"
   },
   {
     "description": "Valid Unicode character U+0077",
@@ -2485,7 +2667,8 @@
         "token-type": "character",
         "data": "w"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#182"
   },
   {
     "description": "Valid Unicode character U+0078",
@@ -2495,7 +2678,8 @@
         "token-type": "character",
         "data": "x"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#183"
   },
   {
     "description": "Valid Unicode character U+0079",
@@ -2505,7 +2689,8 @@
         "token-type": "character",
         "data": "y"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#184"
   },
   {
     "description": "Valid Unicode character U+007A",
@@ -2515,7 +2700,8 @@
         "token-type": "character",
         "data": "z"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#185"
   },
   {
     "description": "Valid Unicode character U+007B",
@@ -2525,7 +2711,8 @@
         "token-type": "character",
         "data": "{"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#186"
   },
   {
     "description": "Valid Unicode character U+007C",
@@ -2535,7 +2722,8 @@
         "token-type": "character",
         "data": "|"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#187"
   },
   {
     "description": "Valid Unicode character U+007D",
@@ -2545,7 +2733,8 @@
         "token-type": "character",
         "data": "}"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#188"
   },
   {
     "description": "Valid Unicode character U+007E",
@@ -2555,7 +2744,8 @@
         "token-type": "character",
         "data": "~"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#189"
   },
   {
     "description": "Valid Unicode character U+00A0",
@@ -2565,7 +2755,8 @@
         "token-type": "character",
         "data": "\u00a0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#190"
   },
   {
     "description": "Valid Unicode character U+00A1",
@@ -2575,7 +2766,8 @@
         "token-type": "character",
         "data": "\u00a1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#191"
   },
   {
     "description": "Valid Unicode character U+00A2",
@@ -2585,7 +2777,8 @@
         "token-type": "character",
         "data": "\u00a2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#192"
   },
   {
     "description": "Valid Unicode character U+00A3",
@@ -2595,7 +2788,8 @@
         "token-type": "character",
         "data": "\u00a3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#193"
   },
   {
     "description": "Valid Unicode character U+00A4",
@@ -2605,7 +2799,8 @@
         "token-type": "character",
         "data": "\u00a4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#194"
   },
   {
     "description": "Valid Unicode character U+00A5",
@@ -2615,7 +2810,8 @@
         "token-type": "character",
         "data": "\u00a5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#195"
   },
   {
     "description": "Valid Unicode character U+00A6",
@@ -2625,7 +2821,8 @@
         "token-type": "character",
         "data": "\u00a6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#196"
   },
   {
     "description": "Valid Unicode character U+00A7",
@@ -2635,7 +2832,8 @@
         "token-type": "character",
         "data": "\u00a7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#197"
   },
   {
     "description": "Valid Unicode character U+00A8",
@@ -2645,7 +2843,8 @@
         "token-type": "character",
         "data": "\u00a8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#198"
   },
   {
     "description": "Valid Unicode character U+00A9",
@@ -2655,7 +2854,8 @@
         "token-type": "character",
         "data": "\u00a9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#199"
   },
   {
     "description": "Valid Unicode character U+00AA",
@@ -2665,7 +2865,8 @@
         "token-type": "character",
         "data": "\u00aa"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#200"
   },
   {
     "description": "Valid Unicode character U+00AB",
@@ -2675,7 +2876,8 @@
         "token-type": "character",
         "data": "\u00ab"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#201"
   },
   {
     "description": "Valid Unicode character U+00AC",
@@ -2685,7 +2887,8 @@
         "token-type": "character",
         "data": "\u00ac"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#202"
   },
   {
     "description": "Valid Unicode character U+00AD",
@@ -2695,7 +2898,8 @@
         "token-type": "character",
         "data": "\u00ad"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#203"
   },
   {
     "description": "Valid Unicode character U+00AE",
@@ -2705,7 +2909,8 @@
         "token-type": "character",
         "data": "\u00ae"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#204"
   },
   {
     "description": "Valid Unicode character U+00AF",
@@ -2715,7 +2920,8 @@
         "token-type": "character",
         "data": "\u00af"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#205"
   },
   {
     "description": "Valid Unicode character U+00B0",
@@ -2725,7 +2931,8 @@
         "token-type": "character",
         "data": "\u00b0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#206"
   },
   {
     "description": "Valid Unicode character U+00B1",
@@ -2735,7 +2942,8 @@
         "token-type": "character",
         "data": "\u00b1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#207"
   },
   {
     "description": "Valid Unicode character U+00B2",
@@ -2745,7 +2953,8 @@
         "token-type": "character",
         "data": "\u00b2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#208"
   },
   {
     "description": "Valid Unicode character U+00B3",
@@ -2755,7 +2964,8 @@
         "token-type": "character",
         "data": "\u00b3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#209"
   },
   {
     "description": "Valid Unicode character U+00B4",
@@ -2765,7 +2975,8 @@
         "token-type": "character",
         "data": "\u00b4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#210"
   },
   {
     "description": "Valid Unicode character U+00B5",
@@ -2775,7 +2986,8 @@
         "token-type": "character",
         "data": "\u00b5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#211"
   },
   {
     "description": "Valid Unicode character U+00B6",
@@ -2785,7 +2997,8 @@
         "token-type": "character",
         "data": "\u00b6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#212"
   },
   {
     "description": "Valid Unicode character U+00B7",
@@ -2795,7 +3008,8 @@
         "token-type": "character",
         "data": "\u00b7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#213"
   },
   {
     "description": "Valid Unicode character U+00B8",
@@ -2805,7 +3019,8 @@
         "token-type": "character",
         "data": "\u00b8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#214"
   },
   {
     "description": "Valid Unicode character U+00B9",
@@ -2815,7 +3030,8 @@
         "token-type": "character",
         "data": "\u00b9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#215"
   },
   {
     "description": "Valid Unicode character U+00BA",
@@ -2825,7 +3041,8 @@
         "token-type": "character",
         "data": "\u00ba"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#216"
   },
   {
     "description": "Valid Unicode character U+00BB",
@@ -2835,7 +3052,8 @@
         "token-type": "character",
         "data": "\u00bb"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#217"
   },
   {
     "description": "Valid Unicode character U+00BC",
@@ -2845,7 +3063,8 @@
         "token-type": "character",
         "data": "\u00bc"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#218"
   },
   {
     "description": "Valid Unicode character U+00BD",
@@ -2855,7 +3074,8 @@
         "token-type": "character",
         "data": "\u00bd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#219"
   },
   {
     "description": "Valid Unicode character U+00BE",
@@ -2865,7 +3085,8 @@
         "token-type": "character",
         "data": "\u00be"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#220"
   },
   {
     "description": "Valid Unicode character U+00BF",
@@ -2875,7 +3096,8 @@
         "token-type": "character",
         "data": "\u00bf"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#221"
   },
   {
     "description": "Valid Unicode character U+00C0",
@@ -2885,7 +3107,8 @@
         "token-type": "character",
         "data": "\u00c0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#222"
   },
   {
     "description": "Valid Unicode character U+00C1",
@@ -2895,7 +3118,8 @@
         "token-type": "character",
         "data": "\u00c1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#223"
   },
   {
     "description": "Valid Unicode character U+00C2",
@@ -2905,7 +3129,8 @@
         "token-type": "character",
         "data": "\u00c2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#224"
   },
   {
     "description": "Valid Unicode character U+00C3",
@@ -2915,7 +3140,8 @@
         "token-type": "character",
         "data": "\u00c3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#225"
   },
   {
     "description": "Valid Unicode character U+00C4",
@@ -2925,7 +3151,8 @@
         "token-type": "character",
         "data": "\u00c4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#226"
   },
   {
     "description": "Valid Unicode character U+00C5",
@@ -2935,7 +3162,8 @@
         "token-type": "character",
         "data": "\u00c5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#227"
   },
   {
     "description": "Valid Unicode character U+00C6",
@@ -2945,7 +3173,8 @@
         "token-type": "character",
         "data": "\u00c6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#228"
   },
   {
     "description": "Valid Unicode character U+00C7",
@@ -2955,7 +3184,8 @@
         "token-type": "character",
         "data": "\u00c7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#229"
   },
   {
     "description": "Valid Unicode character U+00C8",
@@ -2965,7 +3195,8 @@
         "token-type": "character",
         "data": "\u00c8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#230"
   },
   {
     "description": "Valid Unicode character U+00C9",
@@ -2975,7 +3206,8 @@
         "token-type": "character",
         "data": "\u00c9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#231"
   },
   {
     "description": "Valid Unicode character U+00CA",
@@ -2985,7 +3217,8 @@
         "token-type": "character",
         "data": "\u00ca"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#232"
   },
   {
     "description": "Valid Unicode character U+00CB",
@@ -2995,7 +3228,8 @@
         "token-type": "character",
         "data": "\u00cb"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#233"
   },
   {
     "description": "Valid Unicode character U+00CC",
@@ -3005,7 +3239,8 @@
         "token-type": "character",
         "data": "\u00cc"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#234"
   },
   {
     "description": "Valid Unicode character U+00CD",
@@ -3015,7 +3250,8 @@
         "token-type": "character",
         "data": "\u00cd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#235"
   },
   {
     "description": "Valid Unicode character U+00CE",
@@ -3025,7 +3261,8 @@
         "token-type": "character",
         "data": "\u00ce"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#236"
   },
   {
     "description": "Valid Unicode character U+00CF",
@@ -3035,7 +3272,8 @@
         "token-type": "character",
         "data": "\u00cf"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#237"
   },
   {
     "description": "Valid Unicode character U+00D0",
@@ -3045,7 +3283,8 @@
         "token-type": "character",
         "data": "\u00d0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#238"
   },
   {
     "description": "Valid Unicode character U+00D1",
@@ -3055,7 +3294,8 @@
         "token-type": "character",
         "data": "\u00d1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#239"
   },
   {
     "description": "Valid Unicode character U+00D2",
@@ -3065,7 +3305,8 @@
         "token-type": "character",
         "data": "\u00d2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#240"
   },
   {
     "description": "Valid Unicode character U+00D3",
@@ -3075,7 +3316,8 @@
         "token-type": "character",
         "data": "\u00d3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#241"
   },
   {
     "description": "Valid Unicode character U+00D4",
@@ -3085,7 +3327,8 @@
         "token-type": "character",
         "data": "\u00d4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#242"
   },
   {
     "description": "Valid Unicode character U+00D5",
@@ -3095,7 +3338,8 @@
         "token-type": "character",
         "data": "\u00d5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#243"
   },
   {
     "description": "Valid Unicode character U+00D6",
@@ -3105,7 +3349,8 @@
         "token-type": "character",
         "data": "\u00d6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#244"
   },
   {
     "description": "Valid Unicode character U+00D7",
@@ -3115,7 +3360,8 @@
         "token-type": "character",
         "data": "\u00d7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#245"
   },
   {
     "description": "Valid Unicode character U+00D8",
@@ -3125,7 +3371,8 @@
         "token-type": "character",
         "data": "\u00d8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#246"
   },
   {
     "description": "Valid Unicode character U+00D9",
@@ -3135,7 +3382,8 @@
         "token-type": "character",
         "data": "\u00d9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#247"
   },
   {
     "description": "Valid Unicode character U+00DA",
@@ -3145,7 +3393,8 @@
         "token-type": "character",
         "data": "\u00da"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#248"
   },
   {
     "description": "Valid Unicode character U+00DB",
@@ -3155,7 +3404,8 @@
         "token-type": "character",
         "data": "\u00db"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#249"
   },
   {
     "description": "Valid Unicode character U+00DC",
@@ -3165,7 +3415,8 @@
         "token-type": "character",
         "data": "\u00dc"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#250"
   },
   {
     "description": "Valid Unicode character U+00DD",
@@ -3175,7 +3426,8 @@
         "token-type": "character",
         "data": "\u00dd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#251"
   },
   {
     "description": "Valid Unicode character U+00DE",
@@ -3185,7 +3437,8 @@
         "token-type": "character",
         "data": "\u00de"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#252"
   },
   {
     "description": "Valid Unicode character U+00DF",
@@ -3195,7 +3448,8 @@
         "token-type": "character",
         "data": "\u00df"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#253"
   },
   {
     "description": "Valid Unicode character U+00E0",
@@ -3205,7 +3459,8 @@
         "token-type": "character",
         "data": "\u00e0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#254"
   },
   {
     "description": "Valid Unicode character U+00E1",
@@ -3215,7 +3470,8 @@
         "token-type": "character",
         "data": "\u00e1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#255"
   },
   {
     "description": "Valid Unicode character U+00E2",
@@ -3225,7 +3481,8 @@
         "token-type": "character",
         "data": "\u00e2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#256"
   },
   {
     "description": "Valid Unicode character U+00E3",
@@ -3235,7 +3492,8 @@
         "token-type": "character",
         "data": "\u00e3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#257"
   },
   {
     "description": "Valid Unicode character U+00E4",
@@ -3245,7 +3503,8 @@
         "token-type": "character",
         "data": "\u00e4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#258"
   },
   {
     "description": "Valid Unicode character U+00E5",
@@ -3255,7 +3514,8 @@
         "token-type": "character",
         "data": "\u00e5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#259"
   },
   {
     "description": "Valid Unicode character U+00E6",
@@ -3265,7 +3525,8 @@
         "token-type": "character",
         "data": "\u00e6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#260"
   },
   {
     "description": "Valid Unicode character U+00E7",
@@ -3275,7 +3536,8 @@
         "token-type": "character",
         "data": "\u00e7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#261"
   },
   {
     "description": "Valid Unicode character U+00E8",
@@ -3285,7 +3547,8 @@
         "token-type": "character",
         "data": "\u00e8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#262"
   },
   {
     "description": "Valid Unicode character U+00E9",
@@ -3295,7 +3558,8 @@
         "token-type": "character",
         "data": "\u00e9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#263"
   },
   {
     "description": "Valid Unicode character U+00EA",
@@ -3305,7 +3569,8 @@
         "token-type": "character",
         "data": "\u00ea"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#264"
   },
   {
     "description": "Valid Unicode character U+00EB",
@@ -3315,7 +3580,8 @@
         "token-type": "character",
         "data": "\u00eb"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#265"
   },
   {
     "description": "Valid Unicode character U+00EC",
@@ -3325,7 +3591,8 @@
         "token-type": "character",
         "data": "\u00ec"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#266"
   },
   {
     "description": "Valid Unicode character U+00ED",
@@ -3335,7 +3602,8 @@
         "token-type": "character",
         "data": "\u00ed"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#267"
   },
   {
     "description": "Valid Unicode character U+00EE",
@@ -3345,7 +3613,8 @@
         "token-type": "character",
         "data": "\u00ee"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#268"
   },
   {
     "description": "Valid Unicode character U+00EF",
@@ -3355,7 +3624,8 @@
         "token-type": "character",
         "data": "\u00ef"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#269"
   },
   {
     "description": "Valid Unicode character U+00F0",
@@ -3365,7 +3635,8 @@
         "token-type": "character",
         "data": "\u00f0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#270"
   },
   {
     "description": "Valid Unicode character U+00F1",
@@ -3375,7 +3646,8 @@
         "token-type": "character",
         "data": "\u00f1"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#271"
   },
   {
     "description": "Valid Unicode character U+00F2",
@@ -3385,7 +3657,8 @@
         "token-type": "character",
         "data": "\u00f2"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#272"
   },
   {
     "description": "Valid Unicode character U+00F3",
@@ -3395,7 +3668,8 @@
         "token-type": "character",
         "data": "\u00f3"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#273"
   },
   {
     "description": "Valid Unicode character U+00F4",
@@ -3405,7 +3679,8 @@
         "token-type": "character",
         "data": "\u00f4"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#274"
   },
   {
     "description": "Valid Unicode character U+00F5",
@@ -3415,7 +3690,8 @@
         "token-type": "character",
         "data": "\u00f5"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#275"
   },
   {
     "description": "Valid Unicode character U+00F6",
@@ -3425,7 +3701,8 @@
         "token-type": "character",
         "data": "\u00f6"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#276"
   },
   {
     "description": "Valid Unicode character U+00F7",
@@ -3435,7 +3712,8 @@
         "token-type": "character",
         "data": "\u00f7"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#277"
   },
   {
     "description": "Valid Unicode character U+00F8",
@@ -3445,7 +3723,8 @@
         "token-type": "character",
         "data": "\u00f8"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#278"
   },
   {
     "description": "Valid Unicode character U+00F9",
@@ -3455,7 +3734,8 @@
         "token-type": "character",
         "data": "\u00f9"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#279"
   },
   {
     "description": "Valid Unicode character U+00FA",
@@ -3465,7 +3745,8 @@
         "token-type": "character",
         "data": "\u00fa"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#280"
   },
   {
     "description": "Valid Unicode character U+00FB",
@@ -3475,7 +3756,8 @@
         "token-type": "character",
         "data": "\u00fb"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#281"
   },
   {
     "description": "Valid Unicode character U+00FC",
@@ -3485,7 +3767,8 @@
         "token-type": "character",
         "data": "\u00fc"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#282"
   },
   {
     "description": "Valid Unicode character U+00FD",
@@ -3495,7 +3778,8 @@
         "token-type": "character",
         "data": "\u00fd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#283"
   },
   {
     "description": "Valid Unicode character U+00FE",
@@ -3505,7 +3789,8 @@
         "token-type": "character",
         "data": "\u00fe"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#284"
   },
   {
     "description": "Valid Unicode character U+00FF",
@@ -3515,7 +3800,8 @@
         "token-type": "character",
         "data": "\u00ff"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#285"
   },
   {
     "description": "Valid Unicode character U+D7FF",
@@ -3525,7 +3811,8 @@
         "token-type": "character",
         "data": "\ud7ff"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#286"
   },
   {
     "description": "Valid Unicode character U+E000",
@@ -3535,7 +3822,8 @@
         "token-type": "character",
         "data": "\ue000"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#287"
   },
   {
     "description": "Valid Unicode character U+FDCF",
@@ -3545,7 +3833,8 @@
         "token-type": "character",
         "data": "\ufdcf"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#288"
   },
   {
     "description": "Valid Unicode character U+FDF0",
@@ -3555,7 +3844,8 @@
         "token-type": "character",
         "data": "\ufdf0"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#289"
   },
   {
     "description": "Valid Unicode character U+FFFD",
@@ -3565,7 +3855,8 @@
         "token-type": "character",
         "data": "\ufffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#290"
   },
   {
     "description": "Valid Unicode character U+10000",
@@ -3575,7 +3866,8 @@
         "token-type": "character",
         "data": "\ud800\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#291"
   },
   {
     "description": "Valid Unicode character U+1FFFD",
@@ -3585,7 +3877,8 @@
         "token-type": "character",
         "data": "\ud83f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#292"
   },
   {
     "description": "Valid Unicode character U+20000",
@@ -3595,7 +3888,8 @@
         "token-type": "character",
         "data": "\ud840\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#293"
   },
   {
     "description": "Valid Unicode character U+2FFFD",
@@ -3605,7 +3899,8 @@
         "token-type": "character",
         "data": "\ud87f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#294"
   },
   {
     "description": "Valid Unicode character U+30000",
@@ -3615,7 +3910,8 @@
         "token-type": "character",
         "data": "\ud880\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#295"
   },
   {
     "description": "Valid Unicode character U+3FFFD",
@@ -3625,7 +3921,8 @@
         "token-type": "character",
         "data": "\ud8bf\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#296"
   },
   {
     "description": "Valid Unicode character U+40000",
@@ -3635,7 +3932,8 @@
         "token-type": "character",
         "data": "\ud8c0\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#297"
   },
   {
     "description": "Valid Unicode character U+4FFFD",
@@ -3645,7 +3943,8 @@
         "token-type": "character",
         "data": "\ud8ff\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#298"
   },
   {
     "description": "Valid Unicode character U+50000",
@@ -3655,7 +3954,8 @@
         "token-type": "character",
         "data": "\ud900\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#299"
   },
   {
     "description": "Valid Unicode character U+5FFFD",
@@ -3665,7 +3965,8 @@
         "token-type": "character",
         "data": "\ud93f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#300"
   },
   {
     "description": "Valid Unicode character U+60000",
@@ -3675,7 +3976,8 @@
         "token-type": "character",
         "data": "\ud940\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#301"
   },
   {
     "description": "Valid Unicode character U+6FFFD",
@@ -3685,7 +3987,8 @@
         "token-type": "character",
         "data": "\ud97f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#302"
   },
   {
     "description": "Valid Unicode character U+70000",
@@ -3695,7 +3998,8 @@
         "token-type": "character",
         "data": "\ud980\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#303"
   },
   {
     "description": "Valid Unicode character U+7FFFD",
@@ -3705,7 +4009,8 @@
         "token-type": "character",
         "data": "\ud9bf\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#304"
   },
   {
     "description": "Valid Unicode character U+80000",
@@ -3715,7 +4020,8 @@
         "token-type": "character",
         "data": "\ud9c0\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#305"
   },
   {
     "description": "Valid Unicode character U+8FFFD",
@@ -3725,7 +4031,8 @@
         "token-type": "character",
         "data": "\ud9ff\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#306"
   },
   {
     "description": "Valid Unicode character U+90000",
@@ -3735,7 +4042,8 @@
         "token-type": "character",
         "data": "\uda00\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#307"
   },
   {
     "description": "Valid Unicode character U+9FFFD",
@@ -3745,7 +4053,8 @@
         "token-type": "character",
         "data": "\uda3f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#308"
   },
   {
     "description": "Valid Unicode character U+A0000",
@@ -3755,7 +4064,8 @@
         "token-type": "character",
         "data": "\uda40\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#309"
   },
   {
     "description": "Valid Unicode character U+AFFFD",
@@ -3765,7 +4075,8 @@
         "token-type": "character",
         "data": "\uda7f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#310"
   },
   {
     "description": "Valid Unicode character U+B0000",
@@ -3775,7 +4086,8 @@
         "token-type": "character",
         "data": "\uda80\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#311"
   },
   {
     "description": "Valid Unicode character U+BFFFD",
@@ -3785,7 +4097,8 @@
         "token-type": "character",
         "data": "\udabf\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#312"
   },
   {
     "description": "Valid Unicode character U+C0000",
@@ -3795,7 +4108,8 @@
         "token-type": "character",
         "data": "\udac0\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#313"
   },
   {
     "description": "Valid Unicode character U+CFFFD",
@@ -3805,7 +4119,8 @@
         "token-type": "character",
         "data": "\udaff\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#314"
   },
   {
     "description": "Valid Unicode character U+D0000",
@@ -3815,7 +4130,8 @@
         "token-type": "character",
         "data": "\udb00\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#315"
   },
   {
     "description": "Valid Unicode character U+DFFFD",
@@ -3825,7 +4141,8 @@
         "token-type": "character",
         "data": "\udb3f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#316"
   },
   {
     "description": "Valid Unicode character U+E0000",
@@ -3835,7 +4152,8 @@
         "token-type": "character",
         "data": "\udb40\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#317"
   },
   {
     "description": "Valid Unicode character U+EFFFD",
@@ -3845,7 +4163,8 @@
         "token-type": "character",
         "data": "\udb7f\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#318"
   },
   {
     "description": "Valid Unicode character U+F0000",
@@ -3855,7 +4174,8 @@
         "token-type": "character",
         "data": "\udb80\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#319"
   },
   {
     "description": "Valid Unicode character U+FFFFD",
@@ -3865,7 +4185,8 @@
         "token-type": "character",
         "data": "\udbbf\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#320"
   },
   {
     "description": "Valid Unicode character U+100000",
@@ -3875,7 +4196,8 @@
         "token-type": "character",
         "data": "\udbc0\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#321"
   },
   {
     "description": "Valid Unicode character U+10FFFD",
@@ -3885,6 +4207,7 @@
         "token-type": "character",
         "data": "\udbff\udffd"
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeChars#322"
   }
 ]

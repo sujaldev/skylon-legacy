@@ -30,7 +30,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#0"
   },
   {
     "description": "< in unquoted attribute value",
@@ -54,7 +55,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#1"
   },
   {
     "description": "= in unquoted attribute value",
@@ -78,7 +80,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#2"
   },
   {
     "description": "= attribute",
@@ -102,7 +105,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test4#3"
   },
   {
     "description": "== attribute",
@@ -131,7 +135,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#4"
   },
   {
     "description": "=== attribute",
@@ -160,7 +165,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#5"
   },
   {
     "description": "==== attribute",
@@ -194,7 +200,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#6"
   },
   {
     "description": "\" after ampersand in double-quoted attribute value",
@@ -211,7 +218,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#7"
   },
   {
     "description": "' after ampersand in double-quoted attribute value",
@@ -228,7 +236,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#8"
   },
   {
     "description": "' after ampersand in single-quoted attribute value",
@@ -245,7 +254,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#9"
   },
   {
     "description": "\" after ampersand in single-quoted attribute value",
@@ -262,7 +272,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#10"
   },
   {
     "description": "Text after bogus character reference",
@@ -289,7 +300,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#11"
   },
   {
     "description": "Text after hex character reference",
@@ -316,7 +328,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#12"
   },
   {
     "description": "Attribute name starting with \"",
@@ -340,7 +353,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#13"
   },
   {
     "description": "Attribute name starting with '",
@@ -364,7 +378,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#14"
   },
   {
     "description": "Attribute name containing \"",
@@ -388,7 +403,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#15"
   },
   {
     "description": "Attribute name containing '",
@@ -412,7 +428,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#16"
   },
   {
     "description": "Unquoted attribute value containing '",
@@ -436,7 +453,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test4#17"
   },
   {
     "description": "Unquoted attribute value containing \"",
@@ -460,7 +478,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test4#18"
   },
   {
     "description": "Double-quoted attribute value not followed by whitespace",
@@ -488,7 +507,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test4#19"
   },
   {
     "description": "Single-quoted attribute value not followed by whitespace",
@@ -516,7 +536,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test4#20"
   },
   {
     "description": "Quoted attribute followed by permitted /",
@@ -533,7 +554,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#21"
   },
   {
     "description": "Quoted attribute followed by non-permitted /",
@@ -550,7 +572,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#22"
   },
   {
     "description": "CR EOF after doctype name",
@@ -570,7 +593,8 @@
         "line": 2,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test4#23"
   },
   {
     "description": "CR EOF in tag name",
@@ -582,7 +606,8 @@
         "line": 2,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@test4#24"
   },
   {
     "description": "Slash EOF in tag name",
@@ -594,7 +619,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test4#25"
   },
   {
     "description": "Zero hex numeric entity",
@@ -616,7 +642,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@test4#26"
   },
   {
     "description": "Zero decimal numeric entity",
@@ -638,7 +665,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test4#27"
   },
   {
     "description": "Zero-prefixed hex numeric entity",
@@ -648,7 +676,8 @@
         "token-type": "character",
         "data": "A"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#28"
   },
   {
     "description": "Zero-prefixed decimal numeric entity",
@@ -658,7 +687,8 @@
         "token-type": "character",
         "data": "A"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#29"
   },
   {
     "description": "Empty hex numeric entities",
@@ -680,7 +710,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@test4#30"
   },
   {
     "description": "Invalid digit in hex numeric entity",
@@ -697,7 +728,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test4#31"
   },
   {
     "description": "Empty decimal numeric entities",
@@ -719,7 +751,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#32"
   },
   {
     "description": "Invalid digit in decimal numeric entity",
@@ -736,7 +769,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test4#33"
   },
   {
     "description": "Non-BMP numeric entity",
@@ -746,7 +780,8 @@
         "token-type": "character",
         "data": "\ud800\udc00"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#34"
   },
   {
     "description": "Maximum non-BMP numeric entity",
@@ -763,7 +798,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test4#35"
   },
   {
     "description": "Above maximum numeric entity",
@@ -780,7 +816,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@test4#36"
   },
   {
     "description": "32-bit hex numeric entity",
@@ -797,7 +834,8 @@
         "line": 1,
         "col": 13
       }
-    ]
+    ],
+    "id": "tokenizer@test4#37"
   },
   {
     "description": "33-bit hex numeric entity",
@@ -814,7 +852,8 @@
         "line": 1,
         "col": 14
       }
-    ]
+    ],
+    "id": "tokenizer@test4#38"
   },
   {
     "description": "33-bit decimal numeric entity",
@@ -831,7 +870,8 @@
         "line": 1,
         "col": 14
       }
-    ]
+    ],
+    "id": "tokenizer@test4#39"
   },
   {
     "description": "65-bit hex numeric entity",
@@ -848,7 +888,8 @@
         "line": 1,
         "col": 22
       }
-    ]
+    ],
+    "id": "tokenizer@test4#40"
   },
   {
     "description": "65-bit decimal numeric entity",
@@ -865,7 +906,8 @@
         "line": 1,
         "col": 24
       }
-    ]
+    ],
+    "id": "tokenizer@test4#41"
   },
   {
     "description": "Surrogate code point edge cases",
@@ -897,7 +939,8 @@
         "line": 1,
         "col": 41
       }
-    ]
+    ],
+    "id": "tokenizer@test4#42"
   },
   {
     "description": "Uppercase start tag name",
@@ -909,7 +952,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#43"
   },
   {
     "description": "Uppercase end tag name",
@@ -921,7 +965,8 @@
         "self-closing-flag": "unset",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#44"
   },
   {
     "description": "Uppercase attribute name",
@@ -938,7 +983,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#45"
   },
   {
     "description": "Tag/attribute name case edge values",
@@ -955,7 +1001,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@test4#46"
   },
   {
     "description": "Duplicate different-case attributes",
@@ -984,7 +1031,8 @@
         "line": 1,
         "col": 13
       }
-    ]
+    ],
+    "id": "tokenizer@test4#47"
   },
   {
     "description": "Uppercase close tag attributes",
@@ -1003,7 +1051,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#48"
   },
   {
     "description": "Duplicate close tag attributes",
@@ -1027,7 +1076,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@test4#49"
   },
   {
     "description": "Permitted slash",
@@ -1039,7 +1089,8 @@
         "self-closing-flag": "set",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#50"
   },
   {
     "description": "Non-permitted slash",
@@ -1051,7 +1102,8 @@
         "self-closing-flag": "set",
         "attributes": []
       }
-    ]
+    ],
+    "id": "tokenizer@test4#51"
   },
   {
     "description": "Permitted slash but in close tag",
@@ -1070,7 +1122,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#52"
   },
   {
     "description": "Doctype public case-sensitivity (1)",
@@ -1083,7 +1136,8 @@
         "system-identifier": "XyZ",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test4#53"
   },
   {
     "description": "Doctype public case-sensitivity (2)",
@@ -1096,7 +1150,8 @@
         "system-identifier": "xYz",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test4#54"
   },
   {
     "description": "Doctype system case-sensitivity (1)",
@@ -1109,7 +1164,8 @@
         "system-identifier": "XyZ",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test4#55"
   },
   {
     "description": "Doctype system case-sensitivity (2)",
@@ -1122,7 +1178,8 @@
         "system-identifier": "xYz",
         "force-quirks": true
       }
-    ]
+    ],
+    "id": "tokenizer@test4#56"
   },
   {
     "description": "U+0000 in lookahead region after non-matching character",
@@ -1148,7 +1205,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#57"
   },
   {
     "description": "U+0000 in lookahead region",
@@ -1170,7 +1228,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#58"
   },
   {
     "description": "U+0080 in lookahead region",
@@ -1192,7 +1251,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#59"
   },
   {
     "description": "U+FDD1 in lookahead region",
@@ -1214,7 +1274,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#60"
   },
   {
     "description": "U+1FFFF in lookahead region",
@@ -1236,7 +1297,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#61"
   },
   {
     "description": "CR followed by non-LF",
@@ -1246,7 +1308,8 @@
         "token-type": "character",
         "data": "\n?"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#62"
   },
   {
     "description": "CR at EOF",
@@ -1256,7 +1319,8 @@
         "token-type": "character",
         "data": "\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#63"
   },
   {
     "description": "LF at EOF",
@@ -1266,7 +1330,8 @@
         "token-type": "character",
         "data": "\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#64"
   },
   {
     "description": "CR LF",
@@ -1276,7 +1341,8 @@
         "token-type": "character",
         "data": "\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#65"
   },
   {
     "description": "CR CR",
@@ -1286,7 +1352,8 @@
         "token-type": "character",
         "data": "\n\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#66"
   },
   {
     "description": "LF LF",
@@ -1296,7 +1363,8 @@
         "token-type": "character",
         "data": "\n\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#67"
   },
   {
     "description": "LF CR",
@@ -1306,7 +1374,8 @@
         "token-type": "character",
         "data": "\n\n"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#68"
   },
   {
     "description": "text CR CR CR text",
@@ -1316,7 +1385,8 @@
         "token-type": "character",
         "data": "text\n\n\ntext"
       }
-    ]
+    ],
+    "id": "tokenizer@test4#69"
   },
   {
     "description": "Doctype publik",
@@ -1336,7 +1406,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test4#70"
   },
   {
     "description": "Doctype publi",
@@ -1356,7 +1427,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test4#71"
   },
   {
     "description": "Doctype sistem",
@@ -1376,7 +1448,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test4#72"
   },
   {
     "description": "Doctype sys",
@@ -1396,7 +1469,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test4#73"
   },
   {
     "description": "Doctype html x>text",
@@ -1420,7 +1494,8 @@
         "line": 1,
         "col": 16
       }
-    ]
+    ],
+    "id": "tokenizer@test4#74"
   },
   {
     "description": "Grave accent in unquoted attribute",
@@ -1444,7 +1519,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@test4#75"
   },
   {
     "description": "EOF in tag name state ",
@@ -1456,7 +1532,8 @@
         "line": 1,
         "col": 3
       }
-    ]
+    ],
+    "id": "tokenizer@test4#76"
   },
   {
     "description": "EOF in before attribute name state",
@@ -1468,7 +1545,8 @@
         "line": 1,
         "col": 4
       }
-    ]
+    ],
+    "id": "tokenizer@test4#77"
   },
   {
     "description": "EOF in attribute name state",
@@ -1480,7 +1558,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@test4#78"
   },
   {
     "description": "EOF in after attribute name state",
@@ -1492,7 +1571,8 @@
         "line": 1,
         "col": 6
       }
-    ]
+    ],
+    "id": "tokenizer@test4#79"
   },
   {
     "description": "EOF in before attribute value state",
@@ -1504,7 +1584,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@test4#80"
   },
   {
     "description": "EOF in attribute value (double quoted) state",
@@ -1516,7 +1597,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test4#81"
   },
   {
     "description": "EOF in attribute value (single quoted) state",
@@ -1528,7 +1610,8 @@
         "line": 1,
         "col": 9
       }
-    ]
+    ],
+    "id": "tokenizer@test4#82"
   },
   {
     "description": "EOF in attribute value (unquoted) state",
@@ -1540,7 +1623,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@test4#83"
   },
   {
     "description": "EOF in after attribute value state",
@@ -1552,6 +1636,7 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@test4#84"
   }
 ]

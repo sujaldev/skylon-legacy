@@ -14,7 +14,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#0"
   },
   {
     "description": "Entity name requiring semicolon instead followed by the equals sign in a double-quoted attribute value.",
@@ -31,7 +32,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#1"
   },
   {
     "description": "Valid entity name followed by the equals sign in a double-quoted attribute value.",
@@ -48,7 +50,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#2"
   },
   {
     "description": "Undefined named entity in a single-quoted attribute value ending in semicolon and whose name starts with a known entity name.",
@@ -65,7 +68,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#3"
   },
   {
     "description": "Entity name requiring semicolon instead followed by the equals sign in a single-quoted attribute value.",
@@ -82,7 +86,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#4"
   },
   {
     "description": "Valid entity name followed by the equals sign in a single-quoted attribute value.",
@@ -99,7 +104,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#5"
   },
   {
     "description": "Undefined named entity in an unquoted attribute value ending in semicolon and whose name starts with a known entity name.",
@@ -116,7 +122,8 @@
           ]
         ]
       }
-    ]
+    ],
+    "id": "tokenizer@entities#6"
   },
   {
     "description": "Entity name requiring semicolon instead followed by the equals sign in an unquoted attribute value.",
@@ -140,7 +147,8 @@
         "line": 1,
         "col": 11
       }
-    ]
+    ],
+    "id": "tokenizer@entities#7"
   },
   {
     "description": "Valid entity name followed by the equals sign in an unquoted attribute value.",
@@ -164,7 +172,8 @@
         "line": 1,
         "col": 10
       }
-    ]
+    ],
+    "id": "tokenizer@entities#8"
   },
   {
     "description": "Ambiguous ampersand.",
@@ -181,7 +190,8 @@
         "line": 1,
         "col": 14
       }
-    ]
+    ],
+    "id": "tokenizer@entities#9"
   },
   {
     "description": "Semicolonless named entity 'not' followed by 'i;' in body",
@@ -198,7 +208,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@entities#10"
   },
   {
     "description": "Very long undefined named entity in body",
@@ -215,7 +226,8 @@
         "line": 1,
         "col": 950
       }
-    ]
+    ],
+    "id": "tokenizer@entities#11"
   },
   {
     "description": "CR as numeric entity",
@@ -232,7 +244,8 @@
         "line": 1,
         "col": 7
       }
-    ]
+    ],
+    "id": "tokenizer@entities#12"
   },
   {
     "description": "CR as hexadecimal numeric entity",
@@ -249,7 +262,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#13"
   },
   {
     "description": "Windows-1252 EURO SIGN numeric entity.",
@@ -266,7 +280,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#14"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR numeric entity.",
@@ -283,7 +298,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#15"
   },
   {
     "description": "Windows-1252 SINGLE LOW-9 QUOTATION MARK numeric entity.",
@@ -300,7 +316,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#16"
   },
   {
     "description": "Windows-1252 LATIN SMALL LETTER F WITH HOOK numeric entity.",
@@ -317,7 +334,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#17"
   },
   {
     "description": "Windows-1252 DOUBLE LOW-9 QUOTATION MARK numeric entity.",
@@ -334,7 +352,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#18"
   },
   {
     "description": "Windows-1252 HORIZONTAL ELLIPSIS numeric entity.",
@@ -351,7 +370,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#19"
   },
   {
     "description": "Windows-1252 DAGGER numeric entity.",
@@ -368,7 +388,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#20"
   },
   {
     "description": "Windows-1252 DOUBLE DAGGER numeric entity.",
@@ -385,7 +406,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#21"
   },
   {
     "description": "Windows-1252 MODIFIER LETTER CIRCUMFLEX ACCENT numeric entity.",
@@ -402,7 +424,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#22"
   },
   {
     "description": "Windows-1252 PER MILLE SIGN numeric entity.",
@@ -419,7 +442,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#23"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LETTER S WITH CARON numeric entity.",
@@ -436,7 +460,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#24"
   },
   {
     "description": "Windows-1252 SINGLE LEFT-POINTING ANGLE QUOTATION MARK numeric entity.",
@@ -453,7 +478,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#25"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LIGATURE OE numeric entity.",
@@ -470,7 +496,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#26"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR numeric entity.",
@@ -487,7 +514,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#27"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LETTER Z WITH CARON numeric entity.",
@@ -504,7 +532,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#28"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR numeric entity.",
@@ -521,7 +550,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#29"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR numeric entity.",
@@ -538,7 +568,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#30"
   },
   {
     "description": "Windows-1252 LEFT SINGLE QUOTATION MARK numeric entity.",
@@ -555,7 +586,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#31"
   },
   {
     "description": "Windows-1252 RIGHT SINGLE QUOTATION MARK numeric entity.",
@@ -572,7 +604,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#32"
   },
   {
     "description": "Windows-1252 LEFT DOUBLE QUOTATION MARK numeric entity.",
@@ -589,7 +622,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#33"
   },
   {
     "description": "Windows-1252 RIGHT DOUBLE QUOTATION MARK numeric entity.",
@@ -606,7 +640,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#34"
   },
   {
     "description": "Windows-1252 BULLET numeric entity.",
@@ -623,7 +658,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#35"
   },
   {
     "description": "Windows-1252 EN DASH numeric entity.",
@@ -640,7 +676,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#36"
   },
   {
     "description": "Windows-1252 EM DASH numeric entity.",
@@ -657,7 +694,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#37"
   },
   {
     "description": "Windows-1252 SMALL TILDE numeric entity.",
@@ -674,7 +712,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#38"
   },
   {
     "description": "Windows-1252 TRADE MARK SIGN numeric entity.",
@@ -691,7 +730,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#39"
   },
   {
     "description": "Windows-1252 LATIN SMALL LETTER S WITH CARON numeric entity.",
@@ -708,7 +748,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#40"
   },
   {
     "description": "Windows-1252 SINGLE RIGHT-POINTING ANGLE QUOTATION MARK numeric entity.",
@@ -725,7 +766,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#41"
   },
   {
     "description": "Windows-1252 LATIN SMALL LIGATURE OE numeric entity.",
@@ -742,7 +784,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#42"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR numeric entity.",
@@ -759,7 +802,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#43"
   },
   {
     "description": "Windows-1252 EURO SIGN hexadecimal numeric entity.",
@@ -776,7 +820,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#44"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR hexadecimal numeric entity.",
@@ -793,7 +838,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#45"
   },
   {
     "description": "Windows-1252 SINGLE LOW-9 QUOTATION MARK hexadecimal numeric entity.",
@@ -810,7 +856,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#46"
   },
   {
     "description": "Windows-1252 LATIN SMALL LETTER F WITH HOOK hexadecimal numeric entity.",
@@ -827,7 +874,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#47"
   },
   {
     "description": "Windows-1252 DOUBLE LOW-9 QUOTATION MARK hexadecimal numeric entity.",
@@ -844,7 +892,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#48"
   },
   {
     "description": "Windows-1252 HORIZONTAL ELLIPSIS hexadecimal numeric entity.",
@@ -861,7 +910,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#49"
   },
   {
     "description": "Windows-1252 DAGGER hexadecimal numeric entity.",
@@ -878,7 +928,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#50"
   },
   {
     "description": "Windows-1252 DOUBLE DAGGER hexadecimal numeric entity.",
@@ -895,7 +946,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#51"
   },
   {
     "description": "Windows-1252 MODIFIER LETTER CIRCUMFLEX ACCENT hexadecimal numeric entity.",
@@ -912,7 +964,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#52"
   },
   {
     "description": "Windows-1252 PER MILLE SIGN hexadecimal numeric entity.",
@@ -929,7 +982,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#53"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LETTER S WITH CARON hexadecimal numeric entity.",
@@ -946,7 +1000,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#54"
   },
   {
     "description": "Windows-1252 SINGLE LEFT-POINTING ANGLE QUOTATION MARK hexadecimal numeric entity.",
@@ -963,7 +1018,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#55"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LIGATURE OE hexadecimal numeric entity.",
@@ -980,7 +1036,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#56"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR hexadecimal numeric entity.",
@@ -997,7 +1054,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#57"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LETTER Z WITH CARON hexadecimal numeric entity.",
@@ -1014,7 +1072,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#58"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR hexadecimal numeric entity.",
@@ -1031,7 +1090,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#59"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR hexadecimal numeric entity.",
@@ -1048,7 +1108,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#60"
   },
   {
     "description": "Windows-1252 LEFT SINGLE QUOTATION MARK hexadecimal numeric entity.",
@@ -1065,7 +1126,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#61"
   },
   {
     "description": "Windows-1252 RIGHT SINGLE QUOTATION MARK hexadecimal numeric entity.",
@@ -1082,7 +1144,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#62"
   },
   {
     "description": "Windows-1252 LEFT DOUBLE QUOTATION MARK hexadecimal numeric entity.",
@@ -1099,7 +1162,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#63"
   },
   {
     "description": "Windows-1252 RIGHT DOUBLE QUOTATION MARK hexadecimal numeric entity.",
@@ -1116,7 +1180,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#64"
   },
   {
     "description": "Windows-1252 BULLET hexadecimal numeric entity.",
@@ -1133,7 +1198,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#65"
   },
   {
     "description": "Windows-1252 EN DASH hexadecimal numeric entity.",
@@ -1150,7 +1216,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#66"
   },
   {
     "description": "Windows-1252 EM DASH hexadecimal numeric entity.",
@@ -1167,7 +1234,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#67"
   },
   {
     "description": "Windows-1252 SMALL TILDE hexadecimal numeric entity.",
@@ -1184,7 +1252,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#68"
   },
   {
     "description": "Windows-1252 TRADE MARK SIGN hexadecimal numeric entity.",
@@ -1201,7 +1270,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#69"
   },
   {
     "description": "Windows-1252 LATIN SMALL LETTER S WITH CARON hexadecimal numeric entity.",
@@ -1218,7 +1288,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#70"
   },
   {
     "description": "Windows-1252 SINGLE RIGHT-POINTING ANGLE QUOTATION MARK hexadecimal numeric entity.",
@@ -1235,7 +1306,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#71"
   },
   {
     "description": "Windows-1252 LATIN SMALL LIGATURE OE hexadecimal numeric entity.",
@@ -1252,7 +1324,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#72"
   },
   {
     "description": "Windows-1252 REPLACEMENT CHAR hexadecimal numeric entity.",
@@ -1269,7 +1342,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#73"
   },
   {
     "description": "Windows-1252 LATIN SMALL LETTER Z WITH CARON hexadecimal numeric entity.",
@@ -1286,7 +1360,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#74"
   },
   {
     "description": "Windows-1252 LATIN CAPITAL LETTER Y WITH DIAERESIS hexadecimal numeric entity.",
@@ -1303,7 +1378,8 @@
         "line": 1,
         "col": 8
       }
-    ]
+    ],
+    "id": "tokenizer@entities#75"
   },
   {
     "description": "Decimal numeric entity followed by hex character a.",
@@ -1320,7 +1396,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@entities#76"
   },
   {
     "description": "Decimal numeric entity followed by hex character A.",
@@ -1337,7 +1414,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@entities#77"
   },
   {
     "description": "Decimal numeric entity followed by hex character f.",
@@ -1354,7 +1432,8 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@entities#78"
   },
   {
     "description": "Decimal numeric entity followed by hex character A.",
@@ -1371,6 +1450,7 @@
         "line": 1,
         "col": 5
       }
-    ]
+    ],
+    "id": "tokenizer@entities#79"
   }
 ]

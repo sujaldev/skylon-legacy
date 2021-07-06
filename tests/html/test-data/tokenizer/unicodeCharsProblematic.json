@@ -15,7 +15,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeCharsProblematic#0"
   },
   {
     "description": "Invalid Unicode character U+D800",
@@ -33,7 +34,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeCharsProblematic#1"
   },
   {
     "description": "Invalid Unicode character U+DFFF with valid preceding character",
@@ -51,7 +53,8 @@
         "line": 1,
         "col": 2
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeCharsProblematic#2"
   },
   {
     "description": "Invalid Unicode character U+D800 with valid following character",
@@ -69,7 +72,8 @@
         "line": 1,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeCharsProblematic#3"
   },
   {
     "description": "CR followed by U+0000",
@@ -86,6 +90,7 @@
         "line": 2,
         "col": 1
       }
-    ]
+    ],
+    "id": "tokenizer@unicodeCharsProblematic#4"
   }
 ]
