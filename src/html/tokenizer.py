@@ -27,7 +27,7 @@ class Tokenizer:
         ampersand_table = json.load(table)
 
     ###############################################################################################
-    def __init__(self, stream, debug_lvl=0):
+    def __init__(self, stream, debug_lvl=0, save_debug=False):
         """
         The Tokenizer class tries to mimic a state machine which takes in a stream of characters
         and emits html tokens. It begins in the data state with its read head at index 0.
@@ -60,7 +60,8 @@ class Tokenizer:
 
         # DEBUGGER
         self.debug_lvl = debug_lvl
-        self.debugger = Debugger(self.debug_lvl)
+        self.save_debug = save_debug
+        self.debugger = Debugger(self.debug_lvl, self.save_debug)
         self.dprint = self.debugger.print
 
         # INITIATE TOKENIZING PROCESS
@@ -191,7 +192,7 @@ class Tokenizer:
     """
     def tag_open_state(self):
         current_char, next_char = self.consume()
-        # POSSIBLE <!DOCTYPE type> declaration
+        # POSSIBLE <!DOCTYPE type> declaration or POSSIBLE COMMENT <!-- COMMENT -->
         if next_char == "!":
             self.state = self.markup_declaration_open_state
             return
@@ -250,7 +251,6 @@ class Tokenizer:
     """
     ################ TAG NAME STATE ################
     STATUS: COMPLETE
-    CASES: 10
     """
     def tag_name_state(self):
         current_char, next_char = self.consume()
@@ -1576,7 +1576,7 @@ class Tokenizer:
     def after_attr_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char == ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\r", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == "/":
             self.state = self.self_closing_start_tag_state
@@ -1655,20 +1655,27 @@ class Tokenizer:
     ###############################################################################################
     # MAIN RUNTIME #
     def tokenize(self):
-        while self.index < len(self.stream):
-            # DEBUGGING #
-            state_name = self.state.__name__.upper().replace('_', ' ')
-            self.dprint(f"[{state_name}]: ", color="magenta", end="")
-            # DEBUGGING OVER #
-            self.state()
+        try:
+            while self.index < len(self.stream):
+                # DEBUGGING #
+                state_name = self.state.__name__.upper().replace('_', ' ')
+                self.dprint(f"[{state_name}]: ", color="magenta", end="")
+                # DEBUGGING OVER #
+                self.state()
 
-        # IF EOF REACHED AND TOKEN BUFFER IS STILL NOT EMPTY EMIT TOKEN BUFFER TO OUTPUT
-        if self.token_buffer:
-            self.emit(self.token_buffer)
+            # IF EOF REACHED AND TOKEN BUFFER IS STILL NOT EMPTY EMIT TOKEN BUFFER TO OUTPUT
+            if self.token_buffer:
+                self.emit(self.token_buffer)
 
-        # FINAL OUTPUT
-        output = str(self.output).encode("utf8").decode("utf8").replace("},", "},\n ")
-        self.dprint(f"[FINAL OUTPUT]: {output}", color="bright-green")
+            # FINAL OUTPUT
+            output = str(self.output).encode("utf8").decode("utf8").replace("},", "},\n ")
+            self.dprint(f"[FINAL OUTPUT]: {output}", color="bright-green")
 
-        # PARSE ERRORS
-        self.dprint(f"[PARSE ERRORS]: {self.parse_errors}", color="bright-yellow")
+            # PARSE ERRORS
+            self.dprint(f"[PARSE ERRORS]: {self.parse_errors}", color="bright-yellow")
+
+            # SAVE DEBUGGER OUTPUT
+            self.debugger.close()
+        except KeyboardInterrupt:
+            self.debugger.close()
+            return
