@@ -16,13 +16,31 @@ class Debugger:
         "end": "\033[0m"
     }
 
-    def __init__(self, debugging_mode=1):
+    """
+    TRIMS FILE TO THE FIRST n lines.
+    USEFUL WHEN STUCK IN ENDLESS LOOPS CAUSING DEBUG FILE TO HAVE REPEATED INFO OVER AND OVER,
+    CONSEQUENTLY HAVING ENORMOUS SIZE (WHICH CAN CAUSE MY IDE TO CRASH).
+    """
+    file_trimming_enabled = True
+    line_count = 1000
+
+    def __init__(self, debugging_mode=1, save_debugging_mode=1, save_log=False):
+        # PRINT DEBUG OUTPUT
         self.debugging_mode = debugging_mode
 
+        # WRITE DEBUG OUTPUT TO FILE
+        self.save_debugging_mode = save_debugging_mode
+        self.save_log = save_log
+        if self.save_log:
+            self.log_file = open("./debug.log", "w+")
+
     def print(self, *args, **kwargs):
+        # DEFAULT ARGUMENTS
         color = "white"
         debugging_mode = 1
 
+        # IF ARGUMENTS PASSED IN PRINT FUNCTION KWARGS REMOVE FROM THERE
+        # AND UPDATE ABOVE VARIABLES WITH PASSED VALUES
         if "color" in kwargs.keys():
             color = kwargs["color"]
             del kwargs["color"]
@@ -30,7 +48,18 @@ class Debugger:
             debugging_mode = kwargs["debugging_mode"]
             del kwargs["debugging_mode"]
 
+        # PRINT DEBUG
         if 0 < debugging_mode <= self.debugging_mode:
             print(self.colors[color], end="")
             print(*args, **kwargs)
             print(self.colors["end"], end="")
+
+        # STORE DEBUG TO LOG
+        if 0 < self.save_debugging_mode <= self.save_debugging_mode and self.save_log:
+            print(self.colors[color], end="", file=self.log_file)
+            print(*args, **kwargs, file=self.log_file)
+            print(self.colors["end"], end="", file=self.log_file)
+
+    def close_log(self):
+        if self.save_log:
+            self.log_file.close()
