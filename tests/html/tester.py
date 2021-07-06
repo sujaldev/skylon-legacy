@@ -46,8 +46,7 @@ class TestTokenizer:
                         pass_count += 1
                     else:
                         # CALCULATE GRADE
-                        grade = f"{self.sm[True] if result.output == test_case['output'] else self.sm[False]}" \
-                                f"{self.sm[False] if result.parse_errors == errors else self.sm[False]}"
+                        grade = self.sm[result.output == test_case['output']] + self.sm[result.parse_errors == errors]
 
                         failed_tests.append(f"{test_case['id']}{grade}")
                 except Exception as e:
