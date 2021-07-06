@@ -2,7 +2,7 @@
 name: Tokenizer Error
 about: Failed tests in tokenizer
 title: "[TOKENIZER BUG]"
-labels: ''
+labels: Tokenizer
 assignees: ''
 
 ---
