@@ -8,6 +8,7 @@ WHERE EACH CHARACTER CAN BE THOUGHT OF AS AN EVENT WHICH CAN CAUSE A TRANSITION 
 ANOTHER STATE WHERE EACH STATE CAN HAVE EFFECTS LIKE TRANSITIONING TO ANOTHER STATE,
 EMITTING AN HTML TOKEN, ETC.
 """
+from src.html.preprocessor import PreProcessor
 from lib.debugger import Debugger
 import json
 
@@ -37,6 +38,8 @@ class Tokenizer:
 
         # INPUT
         self.stream = stream
+        self.preprocessor = PreProcessor(self.stream)
+        self.stream = self.preprocessor.process()  # PREPROCESSING
 
         # OUTPUTS
         self.output = []
@@ -49,9 +52,13 @@ class Tokenizer:
         self.reconsuming = False
 
         # READ HEAD
-        self.index = 0
-        self.next_char = self.stream[0]  # The first character in the stream to have not yet been consumed
-        self.current_char = ""  # Defined as the last character to have been consumed
+        try:
+            self.index = 0
+            self.next_char = self.stream[0]  # The first character in the stream to have not yet been consumed
+            self.current_char = ""  # Defined as the last character to have been consumed
+            self.empty_stream = False
+        except IndexError:
+            self.empty_stream = True
 
         # BUFFERS
         self.temp_buffer = ""
@@ -95,19 +102,21 @@ class Tokenizer:
 
     def emit(self, token_dict):
         # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER AND REMOVE IF IT EXISTS
-        if token_dict["token-type"] in ["start-tag", "end-tag"]:
-            attr_list = token_dict["attributes"]
-            duplicate_attrs = []
-            for i in range(len(attr_list)):
-                attr_name = attr_list[i][0]
-                if attr_name not in duplicate_attrs:
-                    duplicate_attrs.append(attr_name)
-                else:
-                    # GENERATE duplicate-attribute parse-error
-                    self.generate_parse_error("DUPLICATE ATTRIBUTE")
-                    del token_dict["attributes"][i]
-        elif token_dict["token-type"] == "eof":
-            print(self.token_buffer, self.temp_buffer)
+        try:
+            if token_dict["token-type"] in ["start-tag", "end-tag"]:
+                unique_attr_names_list, unique_attrs_list = [], []
+                for attr in token_dict["attributes"]:
+                    attr_name = attr[0]
+                    if attr_name not in unique_attr_names_list:
+                        unique_attr_names_list.append(attr[0])
+                        unique_attrs_list.append(attr)
+                    else:
+                        # GENERATE duplicate-attribute parse-error
+                        self.generate_parse_error("DUPLICATE ATTRIBUTE")
+                token_dict["attributes"] = unique_attrs_list
+        except KeyError:
+            pass
+
         self.output.append(token_dict)
 
         # EMPTY TOKEN BUFFER
@@ -117,13 +126,12 @@ class Tokenizer:
         if self.consumed_as_part_of_an_attr():
             # i.e. if buffer has valid named character then replace with its value in ampersand table
             if self.temp_buffer in self.ampersand_table.keys():
-                pass
-                # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                # self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
             elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
                 valid_ligature = self.temp_buffer[:-1] + ";"
-                # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                # self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
+                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
 
             # append current temporary buffer to current attribute's value
             self.token_buffer["attributes"][-1][1] += self.temp_buffer
@@ -256,7 +264,7 @@ class Tokenizer:
     def tag_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.before_attr_name_state
             return
         # SELF CLOSING TAG <br/>
@@ -289,7 +297,7 @@ class Tokenizer:
     def before_attr_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # ignore
         elif next_char in ["/", ">", ""]:
             self.reconsuming = True
@@ -314,7 +322,7 @@ class Tokenizer:
     def attr_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " ", "/", ">", ""]:
+        if next_char in ["\t", "\n", "\f", " ", "/", ">", ""]:
             self.reconsuming = True
             self.state = self.after_attr_name_state
             return
@@ -353,7 +361,7 @@ class Tokenizer:
     def before_attr_val_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore these characters
         elif next_char == '"':
             self.state = self.attr_val_double_quote_state
@@ -650,7 +658,7 @@ class Tokenizer:
     def doctype_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.before_doctype_name_state
             return
         elif next_char == ">":
@@ -686,7 +694,7 @@ class Tokenizer:
     def before_doctype_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore these characters
         elif next_char in self.ascii_upper_alpha:
             self.token_buffer = {
@@ -757,7 +765,7 @@ class Tokenizer:
     def doctype_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.after_doctype_name_state
             return
         elif next_char == ">":
@@ -794,7 +802,7 @@ class Tokenizer:
         i = self.index
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore these characters
         elif next_char == ">":
             self.emit(self.token_buffer)
@@ -826,7 +834,7 @@ class Tokenizer:
                 return
             else:
                 # GENERATE invalid-character-sequence-after-doctype-name parse-error
-                self.generate_parse_error("INVALID CHARACTER SEQUENCE AFTER DOCTYPE NAME]")
+                self.generate_parse_error("INVALID CHARACTER SEQUENCE AFTER DOCTYPE NAME")
                 self.token_buffer["force-quirks"] = True
                 self.reconsuming = True
                 self.state = self.bogus_doctype_state
@@ -839,7 +847,7 @@ class Tokenizer:
     def after_doctype_public_keyword_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.before_doctype_public_identifier_state
             return
         elif next_char == '"':
@@ -890,7 +898,7 @@ class Tokenizer:
     def before_doctype_public_identifier_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == '"':
             self.token_buffer["public-identifier"] = ""
@@ -1002,7 +1010,7 @@ class Tokenizer:
     def after_doctype_public_identifier_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.between_doctype_public_and_system_identifiers_state
             return
         elif next_char == '>':
@@ -1045,7 +1053,7 @@ class Tokenizer:
     def between_doctype_public_and_system_identifiers_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == ">":
             self.emit(self.token_buffer)
@@ -1083,7 +1091,7 @@ class Tokenizer:
     def after_doctype_system_keyword_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == ">":
             self.emit(self.token_buffer)
@@ -1132,7 +1140,7 @@ class Tokenizer:
     def before_doctype_system_identifier_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == '"':
             self.token_buffer["system-identifier"] = ""
@@ -1243,7 +1251,7 @@ class Tokenizer:
     def after_doctype_system_identifier_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == ">":
             self.emit(self.token_buffer)
@@ -1400,9 +1408,13 @@ class Tokenizer:
                 # GENERATE missing-semicolon-after-character-reference parse-error
                 self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE]")
 
-            self.temp_buffer = self.temp_buffer[:-1] + ";"
-            # TODO: TEMPORARILY DISABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-            # self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+            if self.temp_buffer in self.ampersand_table.keys():
+                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+            elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
+                valid_ligature = self.temp_buffer[:-1] + ";"
+                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
+                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
             self.flush_code_pt_consumed_as_char_ref()
             self.reconsuming = True
             self.state = self.return_state
@@ -1510,7 +1522,7 @@ class Tokenizer:
         current_char, next_char = self.consume()
 
         # Empty attribute value <element attr= > or New attribute <element attr=value new_attr=new_val> on whitespace
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.before_attr_name_state
             return
         elif next_char == "&":
@@ -1549,7 +1561,7 @@ class Tokenizer:
     def after_attr_val_quoted_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             self.state = self.before_attr_name_state
             return
         elif next_char == "/":
@@ -1577,7 +1589,7 @@ class Tokenizer:
     def after_attr_name_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in ["\t", "\r", "\n", "\f", " "]:
+        if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore the character
         elif next_char == "/":
             self.state = self.self_closing_start_tag_state
@@ -1656,15 +1668,18 @@ class Tokenizer:
     ###############################################################################################
     # MAIN RUNTIME #
     def tokenize(self):
-        while self.index < len(self.stream):
-            # DEBUGGING #
-            state_name = self.state.__name__.upper().replace('_', ' ')
-            self.dprint(f"[{state_name}]: ", color="magenta", end="")
-            # DEBUGGING OVER #
-            self.state()
+        if not self.empty_stream:
+            while self.index < len(self.stream):
+                # DEBUGGING #
+                state_name = self.state.__name__.upper().replace('_', ' ')
+                self.dprint(f"[{state_name}]: ", color="magenta", end="")
+                # DEBUGGING OVER #
+                self.state()
 
-        # IF EOF REACHED AND TOKEN BUFFER IS STILL NOT EMPTY EMIT TOKEN BUFFER TO OUTPUT
-        if self.token_buffer:
+        # TOKENIZING OVER DEBUG PRINT
+        self.dprint("###### TOKENIZER DONE TOKENIZING ######")
+        # check for tokens that were not emitted and are still in the token_buffer
+        if self.token_buffer != {}:
             self.emit(self.token_buffer)
 
         # FINAL OUTPUT

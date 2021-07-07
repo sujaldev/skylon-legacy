@@ -21,7 +21,7 @@ class SingleTokenizerTest:
         self.base_path = base_path
 
         self.path_from_id = path_from_id(self.test_id)
-        self.path = f"{self.base_path}/{self.path_from_id[0]}"
+        self.path = f"{self.base_path}{self.path_from_id[0]}"
         self.test_index = self.path_from_id[1]
 
         self.test_case = self.get_test_case()
@@ -34,7 +34,7 @@ class SingleTokenizerTest:
     def generate_report(self):
         # ERRORS KEYWORD
         if "errors" in self.test_case.keys():
-            errors = self.test_case["errors"]
+            errors = [err["code"] for err in self.test_case["errors"]]
         else:
             errors = []
 
@@ -49,11 +49,11 @@ class SingleTokenizerTest:
 
 [GRADE]: [{grade}]
 
-[EXPECTED OUTPUT]: {self.test_case["output"]}
-[ACTUAL   OUTPUT]: {result.output}
+\033[32m[EXPECTED OUTPUT]: {self.test_case["output"]}\033[0m
+\033[34m[ACTUAL   OUTPUT]: {result.output}\033[0m
 
-[EXPECTED ERRORS]: {errors}
-[ACTUAL   ERRORS]: {result.parse_errors}"""
+\033[32m[EXPECTED ERRORS]: {errors}\033[0m
+\033[34m[ACTUAL   ERRORS]: {result.parse_errors}\033[0m"""
         return result
 
     def __str__(self):
@@ -61,6 +61,3 @@ class SingleTokenizerTest:
 
     def __repr__(self):
         return self.generate_report()
-
-
-print(SingleTokenizerTest("tokenizer@test1#1"))

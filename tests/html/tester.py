@@ -31,27 +31,30 @@ class TestTokenizer:
 
             # TEST LIST CONTAINS TEST CASES (TYPE: DICT) IN A SINGLE FILE
             for test_case in test_list:
-                try:
-                    # ERRORS KEYWORD
-                    if "errors" in test_case.keys():
-                        errors = test_case["errors"]
-                    else:
-                        errors = []
+                # CURRENTLY SKIPPING SOME TESTS
+                supported_test_keys = ["description", "input", "output", "errors", "id"]
+                if all(key in supported_test_keys for key in test_case.keys()):
+                    try:
+                        # ERRORS KEYWORD
+                        if "errors" in test_case.keys():
+                            errors = [err["code"] for err in test_case["errors"]]
+                        else:
+                            errors = []
 
-                    # ACTUAL RESULT
-                    result = Tokenizer(test_case["input"], debug_lvl=0)
+                        # ACTUAL RESULT
+                        result = Tokenizer(test_case["input"], debug_lvl=0)
 
-                    # UPDATE PASS COUNT OR FAILED TEST BASED ON ACTUAL RESULT
-                    if result.output == test_case["output"] and result.parse_errors == errors:
-                        pass_count += 1
-                    else:
-                        # CALCULATE GRADE
-                        grade = self.sm[result.output == test_case['output']] + self.sm[result.parse_errors == errors]
+                        # UPDATE PASS COUNT OR FAILED TEST BASED ON ACTUAL RESULT
+                        if result.output == test_case["output"] and result.parse_errors == errors:
+                            pass_count += 1
+                        else:
+                            # CALCULATE GRADE
+                            grade = self.sm[result.output == test_case['output']] + self.sm[result.parse_errors == errors]
 
-                        failed_tests.append(f"{test_case['id']}{grade}")
-                except Exception as e:
-                    print(f"\033[31m[RUNTIME ERROR]: [ {test_case['id']} ]:\n",
-                          e, "\033[0m\n", sep="")
+                            failed_tests.append(f"{test_case['id']}{grade} | {result.parse_errors} {errors}")
+                    except Exception as e:
+                        print(f"\033[31m[RUNTIME ERROR]: [ {test_case['id']} ]:\n",
+                              e, "\033[0m\n", sep="")
 
         # HOW MANY TESTS PASSED
         print(f"\033[32;1m{pass_count} TESTS PASSED {self.sm[True]}")
