@@ -5182,7 +5182,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5265,7 +5265,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5286,7 +5286,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5338,7 +5338,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5359,7 +5359,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5411,7 +5411,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5484,7 +5484,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5505,7 +5505,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5552,7 +5552,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5573,7 +5573,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5620,7 +5620,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -5872,7 +5872,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
@@ -15771,7 +15771,7 @@
     "output": [
       {
         "token-type": "DOCTYPE",
-        "name": null,
+        "name": "missing",
         "public-identifier": "missing",
         "system-identifier": "missing",
         "force-quirks": false
