@@ -41,11 +41,17 @@ class SingleTokenizerTest:
         # ACTUAL OUTPUT
         result = Tokenizer(self.test_case["input"], debug_lvl=0)
 
+        # CONVERT FORCE-QUIRKS FLAG TO CORRECTNESS FLAG BY FLIPPING
+        for i in range(len(result.output)):
+            token = result.output[i]
+            if token["token-type"] == "DOCTYPE":
+                result.output[i]["force-quirks"] = not result.output[i]["force-quirks"]
+
         # SET GRADE
         grade = self.sm[result.output == self.test_case['output']] + self.sm[result.parse_errors == errors]
 
         result = f"""[DESCRIPTION]: [{self.test_case["description"]}]
-[INPUT]: {self.test_case["input"]}
+[INPUT]: '{self.test_case["input"]}'
 
 [GRADE]: [{grade}]
 

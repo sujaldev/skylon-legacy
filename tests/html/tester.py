@@ -44,14 +44,22 @@ class TestTokenizer:
                         # ACTUAL RESULT
                         result = Tokenizer(test_case["input"], debug_lvl=0)
 
+                        # CONVERT FORCE-QUIRKS FLAG TO CORRECTNESS FLAG BY FLIPPING
+                        for i in range(len(result.output)):
+                            token = result.output[i]
+                            if token["token-type"] == "DOCTYPE":
+                                result.output[i]["force-quirks"] = not result.output[i]["force-quirks"]
+
                         # UPDATE PASS COUNT OR FAILED TEST BASED ON ACTUAL RESULT
                         if result.output == test_case["output"] and result.parse_errors == errors:
                             pass_count += 1
                         else:
                             # CALCULATE GRADE
-                            grade = self.sm[result.output == test_case['output']] + self.sm[result.parse_errors == errors]
+                            grade = self.sm[result.output == test_case['output']] + \
+                                    self.sm[result.parse_errors == errors]
 
-                            failed_tests.append(f"{test_case['id']}{grade} | {result.parse_errors} {errors}")
+                            failed_tests.append(f"{test_case['id']}{grade} | \033[45m{test_case['input']}\033[0m"
+                                                f" |--> \033[32m{result.parse_errors}\033[0m \033[34m{errors}\033[0m")
                     except Exception as e:
                         print(f"\033[31m[RUNTIME ERROR]: [ {test_case['id']} ]:\n",
                               e, "\033[0m\n", sep="")

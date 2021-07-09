@@ -15,6 +15,13 @@ import json
 AMPERSAND_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/ampersand-entities.json"
 
 
+# HELPER FUNCTIONS
+def inside(iterable, char):
+    if char in iterable and char != "":
+        return True
+    return False
+
+
 class Tokenizer:
     # CONSTANTS DEFINED IN THE SPECIFICATIONS
     ascii_digit = "0123456789"
@@ -50,6 +57,7 @@ class Tokenizer:
 
         # STATE MACHINE FLAGS
         self.reconsuming = False
+        self.out_of_index = False
 
         # READ HEAD
         try:
@@ -78,8 +86,10 @@ class Tokenizer:
     ###############################################################################################
     # OPERATIONS #
     def consume(self):
+        # DEBUGGING
         mode = '[\033[34mRECONSUMING\033[0m] -> ' if self.reconsuming else '[CONSUMING]   -> '
         self.dprint(f"\n|=>{mode}", end="")
+
         if self.index < len(self.stream):
             if not self.reconsuming:
                 self.next_char = self.stream[self.index]
@@ -88,22 +98,31 @@ class Tokenizer:
                 else:
                     self.current_char = self.stream[self.index - 1]
                 self.index += 1
+                # DEBUGGING
                 self.dprint(f"[Current Character: '{self.current_char}'] AND [Next Character: '{self.next_char}']\n")
                 return self.current_char, self.next_char
             else:
                 self.reconsuming = False
+                # DEBUGGING
                 self.dprint(f"[Current Character: '{self.current_char}'] AND [Next Character: '{self.next_char}']\n")
                 return self.current_char, self.next_char
+        elif self.reconsuming:
+            self.reconsuming = False
+            return self.current_char, self.next_char
         else:
+            # DEBUGGING
             self.dprint(f"Current Character: '{self.stream[-1]}' | Next Character: ''")
             self.dprint("|=>[OUT OF INDEX]-->", color="bright-green", end="")
             self.dprint("[❌]", color="bright-red")
+
+            self.out_of_index = True
             return self.stream[-1], ""
 
     def emit(self, token_dict):
         # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER AND REMOVE IF IT EXISTS
-        try:
-            if token_dict["token-type"] in ["start-tag", "end-tag"]:
+        # START TAG
+        if token_dict["token-type"] == "start-tag":
+            try:
                 unique_attr_names_list, unique_attrs_list = [], []
                 for attr in token_dict["attributes"]:
                     attr_name = attr[0]
@@ -114,25 +133,43 @@ class Tokenizer:
                         # GENERATE duplicate-attribute parse-error
                         self.generate_parse_error("DUPLICATE ATTRIBUTE")
                 token_dict["attributes"] = unique_attrs_list
-        except KeyError:
-            pass
+                self.output.append(token_dict)
+            except KeyError:
+                pass
+        # REMOVE ATTRIBUTES FROM END TAG TOKEN
+        elif token_dict["token-type"] == "end-tag":
+            if token_dict["attributes"]:
+                self.generate_parse_error("END TAG WITH ATTRIBUTES")
+                token_dict["attributes"] = []
 
-        self.output.append(token_dict)
+            if token_dict["self-closing-flag"] == "set":
+                self.generate_parse_error("END TAG WITH TRAILING SOLIDUS")
+
+            self.output.append(token_dict)
+        # GROUPING CONSECUTIVE CHARACTER TOKENS
+        # CHARACTER
+        elif token_dict["token-type"] == "character":
+            try:
+                if self.output[-1]["token-type"] == "character":
+                    self.output[-1]["data"] += token_dict["data"]
+                else:
+                    self.output.append(token_dict)
+            except IndexError:
+                self.output.append(token_dict)
+        # TODO: TEMPORARILY BLOCKING EOF TYPE TOKEN
+        # EOF
+        elif token_dict["token-type"] == "eof":
+            pass  # i.e ignore
+        # ANYTHING ELSE
+        # COMMENT | DOCTYPE
+        else:
+            self.output.append(token_dict)
 
         # EMPTY TOKEN BUFFER
         self.token_buffer = {}
 
     def flush_code_pt_consumed_as_char_ref(self):
         if self.consumed_as_part_of_an_attr():
-            # i.e. if buffer has valid named character then replace with its value in ampersand table
-            if self.temp_buffer in self.ampersand_table.keys():
-                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
-            elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
-                valid_ligature = self.temp_buffer[:-1] + ";"
-                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
-
             # append current temporary buffer to current attribute's value
             self.token_buffer["attributes"][-1][1] += self.temp_buffer
             return
@@ -210,7 +247,7 @@ class Tokenizer:
             self.state = self.end_tag_open_state
             return
         # POSSIBLE BEGINNING OF TAG <tag-name>
-        elif next_char in self.ascii_alpha:
+        elif inside(self.ascii_alpha, next_char):
             self.token_buffer = {
                 "token-type": "start-tag",
 
@@ -248,7 +285,7 @@ class Tokenizer:
             return
         else:
             # GENERATE invalid-first-character-of-tag-name parse-error
-            self.generate_parse_error("INVALID FIRSTS CHARACTER OF TAG NAME")
+            self.generate_parse_error("INVALID FIRST CHARACTER OF TAG NAME")
             self.emit({
                 "token-type": "character",
                 "data": "<"
@@ -272,22 +309,26 @@ class Tokenizer:
             self.state = self.self_closing_start_tag_state
             return
         elif next_char == ">":
-            self.state = self.data_state
             self.emit(self.token_buffer)
-        elif next_char in self.ascii_upper_alpha:
+            self.state = self.data_state
+            return
+        elif inside(self.ascii_upper_alpha, next_char):
             self.token_buffer["tag-name"] += next_char.lower()
         elif next_char == "\0":
             # GENERATE unexpected-null-character parse-error
             self.generate_parse_error("UNEXPECTED NULL CHARACTER")
             self.token_buffer["tag-name"] += "\uFFFD"
+            return
         elif next_char == "":
             # GENERATE eof-in-tag parse-error
             self.generate_parse_error("EOF IN TAG")
             self.emit({
                 "token-type": "eof"
             })
+            return
         else:
             self.token_buffer["tag-name"] += next_char
+            return
 
     """
     ################ BEFORE ATTRIBUTE NAME STATE ################
@@ -300,8 +341,11 @@ class Tokenizer:
         if next_char in ["\t", "\n", "\f", " "]:
             return  # ignore
         elif next_char in ["/", ">", ""]:
+            if self.out_of_index:
+                self.out_of_index = False
             self.reconsuming = True
             self.state = self.after_attr_name_state
+            return
         elif next_char == "=":
             # GENERATE unexpected-equals-sign-before-attribute-name parse-error
             self.generate_parse_error("UNEXPECTED EQUALS SIGN BEFORE ATTRIBUTE NAME")
@@ -317,7 +361,6 @@ class Tokenizer:
     """
     ################ ATTRIBUTE NAME STATE ################
     STATUS: COMPLETE
-    CASES: 6
     """
     def attr_name_state(self):
         current_char, next_char = self.consume()
@@ -329,7 +372,7 @@ class Tokenizer:
         elif next_char == "=":
             self.state = self.before_attr_val_state
             return
-        elif next_char in self.ascii_upper_alpha:
+        elif inside(self.ascii_upper_alpha, next_char):
             self.token_buffer["attributes"][-1][0] += next_char.lower()
             return
         elif next_char in "\0":
@@ -385,7 +428,7 @@ class Tokenizer:
     """
     def markup_declaration_open_state(self):
         i = self.index
-        self.consume()
+        current_char, next_char = self.consume()
 
         # COMMENT BEGINNING <!--
         if self.stream[i:i+2] == "--":
@@ -409,11 +452,11 @@ class Tokenizer:
             return
         else:
             # GENERATE incorrectly-opened-comment parse-error
-            self.generate_parse_error("INCORRECTLY OPENED COMMENT]")
+            self.generate_parse_error("INCORRECTLY OPENED COMMENT")
 
             self.token_buffer = {
                 "token-type": "comment",
-                "data": ""
+                "data": next_char
             }
 
             self.state = self.bogus_comment_state
@@ -431,7 +474,7 @@ class Tokenizer:
             return
         elif next_char == ">":
             # GENERATE abrupt-closing-of-empty-comment parse-error
-            self.generate_parse_error("ABRUPT CLOSING OF EMPTY COMMENT]")
+            self.generate_parse_error("ABRUPT CLOSING OF EMPTY COMMENT")
             self.emit(self.token_buffer)
             self.state = self.data_state
             return
@@ -454,7 +497,7 @@ class Tokenizer:
         # <!-- COMMENT ->
         elif next_char == ">":
             # GENERATE abrupt-closing-of-empty-comment parse-error
-            self.generate_parse_error("ABRUPT CLOSING OF EMPTY COMMENT]")
+            self.generate_parse_error("ABRUPT CLOSING OF EMPTY COMMENT")
             self.emit(self.token_buffer)
             self.state = self.data_state
             return
@@ -494,6 +537,12 @@ class Tokenizer:
 
             self.token_buffer["data"] += "\uFFFD"  # REPLACEMENT CHARACTER
             return
+        elif next_char == "":
+            self.generate_parse_error("EOF IN COMMENT")
+            self.emit(self.token_buffer)
+            self.emit({
+                "token-type": "eof"
+            })
         else:
             self.token_buffer["data"] += next_char
             return
@@ -696,7 +745,7 @@ class Tokenizer:
 
         if next_char in ["\t", "\n", "\f", " "]:
             return  # i.e. ignore these characters
-        elif next_char in self.ascii_upper_alpha:
+        elif inside(self.ascii_upper_alpha, next_char):
             self.token_buffer = {
                 "token-type": "DOCTYPE",
                 "name": next_char.lower(),
@@ -752,7 +801,7 @@ class Tokenizer:
                 "name": next_char,
                 "public-identifier": "missing",
                 "system-identifier": "missing",
-                "force-quirks": True
+                "force-quirks": False
             }
 
             self.state = self.doctype_name_state
@@ -772,19 +821,13 @@ class Tokenizer:
             self.emit(self.token_buffer)
             self.state = self.data_state
             return
-        elif next_char in self.ascii_upper_alpha:
+        elif inside(self.ascii_upper_alpha, next_char):
             self.token_buffer["name"] += next_char.lower()
             return
         elif next_char == "":
             # GENERATE eof-in-doctype parse-error
             self.generate_parse_error("EOF IN DOCTYPE")
-            self.token_buffer = {
-                "token-type": "DOCTYPE",
-                "name": "missing",
-                "public-identifier": "missing",
-                "system-identifier": "missing",
-                "force-quirks": True
-            }
+            self.token_buffer["force-quirks"] = True
             self.emit(self.token_buffer)
             self.emit({
                 "token-type": "eof"
@@ -811,13 +854,7 @@ class Tokenizer:
         elif next_char == "":
             # GENERATE eof-in-doctype parse-error
             self.generate_parse_error("EOF IN DOCTYPE")
-            self.token_buffer = {
-                "token-type": "DOCTYPE",
-                "name": "missing",
-                "public-identifier": "missing",
-                "system-identifier": "missing",
-                "force-quirks": True
-            }
+            self.token_buffer["force-quirks"] = True
             self.emit(self.token_buffer)
             self.emit({
                 "token-type": "eof"
@@ -1291,7 +1328,7 @@ class Tokenizer:
         elif next_char == "":
             self.emit(self.token_buffer)
             self.emit({
-                "token-type": ""
+                "token-type": "eof"
             })
             return
         else:
@@ -1304,7 +1341,7 @@ class Tokenizer:
     def end_tag_open_state(self):
         current_char, next_char = self.consume()
 
-        if next_char in self.ascii_alpha:
+        if inside(self.ascii_alpha, next_char):
             self.token_buffer = {
                 "token-type": "end-tag",
                 "tag-name": "",
@@ -1355,7 +1392,7 @@ class Tokenizer:
         current_char, next_char = self.consume()
         self.temp_buffer = ""  # empty the buffer in-case characters left from previous operations
         self.temp_buffer = "&"
-        if next_char in self.ascii_alphanumeric:
+        if inside(self.ascii_alphanumeric, next_char):
             self.state = self.named_char_ref_state
             self.reconsuming = True
 
@@ -1365,66 +1402,172 @@ class Tokenizer:
     """
     def named_char_ref_state(self):
         name_table_str = "\n".join(self.ampersand_table.keys())  # name section of ampersand table
-        back_track_pos = None  # If at last invalid identifier is found revert back to the last successful match index
-        back_track_buffer_pos = None  # Back track position/index for the Temporary buffer
+        stream_backtrack = None  # index to backtrack to if necessary
+        buffer_backtrack = None  # buffer's index to backtrack to
+
+        semicolon_error = False  # flag to to keep track of whether to generate missing semicolon parse error or not
+
         while self.index < len(self.stream):
             current_char, next_char = self.consume()
+            self.temp_buffer += next_char
 
-            # Possibly successful incomplete match in named reference table
-            if next_char in self.ascii_alphanumeric and self.index != len(self.stream):
-                self.temp_buffer += next_char
-                # Update back_track positions only if successful match
+            if inside(self.ascii_alphanumeric, next_char):
+                # LAST VALID MATCH
                 if self.temp_buffer + "\n" in name_table_str:
-                    back_track_pos = self.index - 1
-                    back_track_buffer_pos = len(self.temp_buffer)
-            # Revert to last successful match if possible and required or break when at last the identifier is invalid
-            else:
-                if next_char != ";":
-                    self.reconsuming = True
+                    stream_backtrack = self.index
+                    buffer_backtrack = len(self.temp_buffer)
 
-                self.temp_buffer += next_char
-                # Invalid identifier revert required
+            # FIRST NON ALPHANUMERIC ENCOUNTERED [STOP CONSUMING NOW]
+            else:
+                # INVALID END, TO BE CONSUMED IN THE RETURN STATE
+                if next_char != ";":
+                    self.dprint(f"here reconsuming {next_char}")
+                    self.reconsuming = True
+                    self.dprint(f"=>[INVALID ENDING OF LIGATURE]: [{self.temp_buffer}]", debugging_mode=3,
+                                color="green")
+
                 if self.temp_buffer[:-1] + ";\n" not in name_table_str:
-                    # Revert Possible
-                    if back_track_pos is not None:
-                        self.index = back_track_pos
-                        self.temp_buffer = self.temp_buffer[:back_track_buffer_pos]
-                        break
-                    # Revert Not Possible
-                    break
-                # Valid identifier not reverting
-                else:
-                    break
-        # VALID MATCH FOUND
-        if self.temp_buffer[:-1] + ";\n" in name_table_str or self.temp_buffer in name_table_str:
-            self.dprint(f"|=>[VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]", debugging_mode=3, color="green")
+                    if not self.consumed_as_part_of_an_attr():
+                        # REVERT POSSIBLE AND REQUIRED
+                        if stream_backtrack is not None and buffer_backtrack is not None:
+                            self.index = stream_backtrack
+                            self.temp_buffer = self.temp_buffer[:buffer_backtrack]
+                            self.dprint(f"=>[REVERTING BACK TO]: [{self.temp_buffer}]", debugging_mode=3,
+                                        color="green")
+                            semicolon_error = True
+                            break
+                        # REVERT REQUIRED BUT NOT POSSIBLE
+                        self.dprint(f"=>[REVERTING REQUIRED BUT NOT POSSIBLE]: [{self.temp_buffer}]", debugging_mode=3,
+                                    color="green")
+                break
+
+        ############################################
+        # CHECK IF THE FINAL MATCH IS VALID OR NOT #
+        valid = False  # invalid by default
+
+        # LAST CHARACTER IS NOT ; OR ANY OTHER SYMBOL
+        if self.temp_buffer[-1] in self.ascii_alphanumeric:
+
+            # NOT MENTIONED BUT I THINK ONE REVERT IS NOT REQUIRED WHEN IN CONSUMED AS PART OF AN ATTRIBUTE
+            if not self.consumed_as_part_of_an_attr():
+                # REVERT POSSIBLE AND REQUIRED
+                if stream_backtrack is not None and buffer_backtrack is not None:
+                    self.index = stream_backtrack
+                    self.temp_buffer = self.temp_buffer[:buffer_backtrack]
+                    self.dprint(f"=>[REVERTING BACK TO]: [{self.temp_buffer}]", debugging_mode=3,
+                                color="green")
+                    semicolon_error = True
+                # REVERT REQUIRED BUT NOT POSSIBLE
+                self.dprint(f"=>[REVERTING REQUIRED BUT NOT POSSIBLE]: [{self.temp_buffer}]", debugging_mode=3,
+                            color="green")
+            # CHECK VALIDITY NOW
+            if self.temp_buffer in self.ampersand_table.keys():
+                valid = True
+                semicolon_error = True
+        # LAST CHARACTER IS EITHER ; OR ANY OTHER SYMBOL
+        else:
+            # CHECK VALIDITY
+            if self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
+                valid = True
+
+        #####################
+        # VALID MATCH FOUND #
+        if valid:
+            self.dprint(f"=>[VALID LIGATURE FOUND]: [{self.temp_buffer}]", debugging_mode=3, color="green")
             current_char, next_char = self.consume()
+            self.dprint(f"here reconsuming 2 valid {next_char}")
+            self.reconsuming = True
+
             if self.consumed_as_part_of_an_attr() and self.temp_buffer[-1] != ";"\
-                    and next_char in self.ascii_alphanumeric + "=":
+                    and inside(self.ascii_alphanumeric + "=", next_char):
+                # REMOVE UNEXPECTED ENDING
+                if self.temp_buffer[-1] not in self.ascii_alphanumeric and self.temp_buffer != ";":
+                    self.temp_buffer = self.temp_buffer[:-1]
                 self.flush_code_pt_consumed_as_char_ref()
                 self.state = self.return_state
                 return
-            if self.temp_buffer[-1] != ";":
-                # GENERATE missing-semicolon-after-character-reference parse-error
-                self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE]")
+            else:
+                try:
+                    self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+                except KeyError:
+                    self.temp_buffer = self.ampersand_table[self.temp_buffer[:-1] + ";"]["characters"]
+                    semicolon_error = True
 
-            if self.temp_buffer in self.ampersand_table.keys():
-                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
-            elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
-                valid_ligature = self.temp_buffer[:-1] + ";"
-                # TODO: TEMPORARILY ENABLED CONVERSION TO ACTUAL NAMED CHARACTER FOR TESTING PURPOSES
-                self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
-            self.flush_code_pt_consumed_as_char_ref()
-            self.reconsuming = True
-            self.state = self.return_state
-            return
-        # NO VALID MATCH EXISTS
+                if semicolon_error:
+                    self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE")
+                self.flush_code_pt_consumed_as_char_ref()
+                self.state = self.return_state
+                return
+        #######################
+        # INVALID MATCH FOUND #
         else:
-            self.dprint(f"|=>[NO VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]", debugging_mode=3, color="red")
+            if semicolon_error:
+                self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE")
+            self.dprint(f"=>[NO VALID LIGATURE FOUND]: [{self.temp_buffer}]", debugging_mode=3, color="red")
             self.flush_code_pt_consumed_as_char_ref()
             self.state = self.ambiguous_ampersand_state
             return
+
+    # def named_char_ref_state(self):
+    #     name_table_str = "\n".join(self.ampersand_table.keys())  # name section of ampersand table
+    #     back_track_pos = None  # If at last invalid identifier is found revert back to the last successful match index
+    #     back_track_buffer_pos = None  # Back track position/index for the Temporary buffer
+    #     while self.index < len(self.stream):
+    #         current_char, next_char = self.consume()
+    #
+    #         # Possibly successful incomplete match in named reference table
+    #         if inside(self.ascii_alphanumeric, next_char):
+    #             self.temp_buffer += next_char
+    #             # Update back_track positions only if successful match
+    #             if self.temp_buffer + "\n" in name_table_str:
+    #                 back_track_pos = self.index - 1
+    #                 back_track_buffer_pos = len(self.temp_buffer)
+    #         # Revert to last successful match if possible and required or break when at last the identifier is invalid
+    #         else:
+    #             if next_char != ";":
+    #                 self.reconsuming = True
+    #
+    #             self.temp_buffer += next_char
+    #             # Invalid identifier revert required
+    #             if self.temp_buffer[:-1] + ";\n" not in name_table_str:
+    #                 # Revert Possible
+    #                 if back_track_pos is not None:
+    #                     self.index = back_track_pos
+    #                     self.temp_buffer = self.temp_buffer[:back_track_buffer_pos]
+    #                     break
+    #                 # Revert Not Possible
+    #                 break
+    #             # Valid identifier not reverting
+    #             else:
+    #                 break
+    #     # VALID MATCH FOUND
+    #     if self.temp_buffer[:-1] + ";\n" in name_table_str or self.temp_buffer in name_table_str:
+    #         self.dprint(f"|=>[VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]", debugging_mode=3, color="green")
+    #         current_char, next_char = self.consume()
+    #         if self.consumed_as_part_of_an_attr() and self.temp_buffer[-1] != ";"\
+    #                 and inside(self.ascii_alphanumeric, next_char) + "=":
+    #             self.flush_code_pt_consumed_as_char_ref()
+    #             self.state = self.return_state
+    #             return
+    #         # if self.temp_buffer[-1] != ";":
+    #         #     # GENERATE missing-semicolon-after-character-reference parse-error
+    #         #     self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE")
+    #
+    #         if self.temp_buffer in self.ampersand_table.keys():
+    #             self.temp_buffer = self.ampersand_table[self.temp_buffer]["characters"]
+    #         elif self.temp_buffer[:-1] + ";" in self.ampersand_table.keys():
+    #             valid_ligature = self.temp_buffer[:-1] + ";"
+    #             self.temp_buffer = self.ampersand_table[valid_ligature]["characters"] + self.temp_buffer[-1]
+    #         self.flush_code_pt_consumed_as_char_ref()
+    #         # self.reconsuming = True
+    #         self.state = self.return_state
+    #         return
+    #     # NO VALID MATCH EXISTS
+    #     else:
+    #         self.dprint(f"|=>[NO VALID NAMED CHARACTER FOUND] -> [{self.temp_buffer}]", debugging_mode=3, color="red")
+    #         self.flush_code_pt_consumed_as_char_ref()
+    #         self.state = self.ambiguous_ampersand_state
+    #         return
 
     """
     ################ AMBIGUOUS AMPERSAND STATE ################
@@ -1432,8 +1575,7 @@ class Tokenizer:
     """
     def ambiguous_ampersand_state(self):
         current_char, next_char = self.consume()
-
-        if next_char in self.ascii_alphanumeric:
+        if inside(self.ascii_alphanumeric, next_char):
             if self.consumed_as_part_of_an_attr():
                 pass  # append current_char to current attribute's value
             else:
@@ -1441,9 +1583,12 @@ class Tokenizer:
                     "token-type": "character",
                     "data": next_char
                 })
-        elif next_char == ";":
-            # GENERATE unknown-named-character-reference parse-error
-            self.generate_parse_error("UNKNOWN NAMED CHARACTER REFERENCE")
+        # SPECS SAY TO CHECK NEXT_CHAR AGAINST ";" BUT HERE SEEMS MORE APPROPRIATE TO CHECK AGAINST TEMP BUFFER
+        # SINCE THE SEMICOLON IS ALREADY CONSUMED IN THE NAMED CHARACTER REFERENCE STATE
+        elif self.temp_buffer[-1] == ";":
+            if not self.consumed_as_part_of_an_attr():
+                # GENERATE unknown-named-character-reference parse-error
+                self.generate_parse_error("UNKNOWN NAMED CHARACTER REFERENCE")
             self.reconsuming = True
             self.state = self.return_state
         else:
@@ -1669,7 +1814,7 @@ class Tokenizer:
     # MAIN RUNTIME #
     def tokenize(self):
         if not self.empty_stream:
-            while self.index < len(self.stream):
+            while not self.out_of_index and not self.empty_stream:
                 # DEBUGGING #
                 state_name = self.state.__name__.upper().replace('_', ' ')
                 self.dprint(f"[{state_name}]: ", color="magenta", end="")
