@@ -120,8 +120,7 @@ class Tokenizer:
             return self.stream[-1], ""
 
     def emit(self, token_dict):
-        # CHECKING FOR DUPLICATE ATTRIBUTES IN TOKEN BUFFER AND REMOVE IF IT EXISTS
-        # START TAG
+        # CHECKING FOR DUPLICATE ATTRIBUTES IN START TAG AND REMOVE FROM TOKEN BUFFER IF IT EXISTS
         if token_dict["token-type"] == "start-tag":
             try:
                 unique_attr_names_list, unique_attrs_list = [], []
@@ -137,13 +136,25 @@ class Tokenizer:
                 self.output.append(token_dict)
             except KeyError:
                 pass
-        # REMOVE ATTRIBUTES FROM END TAG TOKEN
+        # END TAG
         elif token_dict["token-type"] == "end-tag":
+            # DUPLICATE ATTRIBUTES PARSE ERROR
+            unique_attr_names = []
+            for attr in token_dict["attributes"]:
+                if attr not in unique_attr_names:
+                    unique_attr_names.append(attr)
+                else:
+                    self.generate_parse_error("DUPLICATE ATTRIBUTE")
+                    break
+
+            # REMOVE ATTRIBUTES FROM END TAG TOKEN
             if token_dict["attributes"]:
                 self.generate_parse_error("END TAG WITH ATTRIBUTES")
                 token_dict["attributes"] = []
 
+            # SELF CLOSING END TAG, UNSET IT
             if token_dict["self-closing-flag"] == "set":
+                token_dict["self-closing-flag"] = "unset"
                 self.generate_parse_error("END TAG WITH TRAILING SOLIDUS")
 
             self.output.append(token_dict)
@@ -341,8 +352,6 @@ class Tokenizer:
         if next_char in ["\t", "\n", "\f", " "]:
             return  # ignore
         elif next_char in ["/", ">", ""]:
-            if self.out_of_index:
-                self.out_of_index = False
             self.reconsuming = True
             self.state = self.after_attr_name_state
             return
@@ -413,6 +422,7 @@ class Tokenizer:
             self.state = self.attr_val_single_quote_state
             return
         elif next_char == ">":
+            self.generate_parse_error("MISSING ATTRIBUTE VALUE")
             self.state = self.data_state
             self.emit(self.token_buffer)
             return
@@ -441,7 +451,7 @@ class Tokenizer:
             self.state = self.comment_start_state
             return
         # DOCTYPE DECLARATION <!DOCTYPE
-        elif self.stream[i:i+7] == "DOCTYPE":
+        elif self.stream[i:i+7].upper() == "DOCTYPE":
             # COMPENSATE INDEX FOR THE DOCTYPE
             self.index += 6
             self.state = self.doctype_state
@@ -564,9 +574,6 @@ class Tokenizer:
             return
         else:
             self.reconsuming = True
-            if self.out_of_index:
-                self.out_of_index = False
-                self.reconsuming = False
             self.state = self.comment_state
             return
 
@@ -582,9 +589,6 @@ class Tokenizer:
             return
         else:
             self.reconsuming = True
-            if self.out_of_index:
-                self.out_of_index = False
-                self.reconsuming = False
             self.state = self.comment_state
             return
 
@@ -875,11 +879,11 @@ class Tokenizer:
             })
             return
         else:
-            if self.stream[i:i+6] == "PUBLIC":
+            if self.stream[i:i+6].upper() == "PUBLIC":
                 self.index += 5  # compensating for skipping PUBLIC consumption char by char
                 self.state = self.after_doctype_public_keyword_state
                 return
-            elif self.stream[i:i+6] == "SYSTEM":
+            elif self.stream[i:i+6].upper() == "SYSTEM":
                 self.index += 5  # compensating for skipping SYSTEM consumption char by char
                 self.state = self.after_doctype_system_keyword_state
                 return
@@ -1629,6 +1633,10 @@ class Tokenizer:
             self.state = self.data_state
             self.emit(self.token_buffer)
             return
+        elif next_char == "\0":
+            self.generate_parse_error("UNEXPECTED NULL CHARACTER")
+            self.token_buffer["attributes"][-1][1] += "\uFFFD"
+            return
         elif next_char == "":
             # GENERATE eof-in-tag parse-error
             self.generate_parse_error("EOF IN TAG")
@@ -1670,6 +1678,10 @@ class Tokenizer:
         elif next_char == "":
             # GENERATE eof-in-tag parse-error
             self.generate_parse_error("EOF IN TAG")
+            self.token_buffer = {
+                "token-type": "eof"
+            }
+            self.emit(self.token_buffer)
         else:
             # GENERATE missing-whitespace-between-attributes parse-error
             self.generate_parse_error("MISSING WHITESPACE BETWEEN ATTRIBUTES")
@@ -1771,6 +1783,9 @@ class Tokenizer:
                 self.dprint(f"[{state_name}]: ", color="magenta", end="")
                 # DEBUGGING OVER #
                 self.state()
+                if self.reconsuming and self.out_of_index:
+                    self.reconsuming = False
+                    self.out_of_index = False
 
         # TOKENIZING OVER DEBUG PRINT
         self.dprint("###### TOKENIZER DONE TOKENIZING ######")
