@@ -1,9 +1,9 @@
 ---
 name: Tokenizer Error
 about: Failed tests in tokenizer
-title: "[TOKENIZER BUG]"
+title: Tokenizer issue
 labels: Tokenizer
-assignees: ''
+assignees: sujaldev
 
 ---
 
