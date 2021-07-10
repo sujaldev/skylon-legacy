@@ -51,6 +51,7 @@ class Tokenizer:
         # OUTPUTS
         self.output = []
         self.parse_errors = []
+        self.parse_errors += self.preprocessor.parse_errors
 
         # STATE MACHINE'S CURRENT STATE
         self.state = self.data_state

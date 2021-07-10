@@ -51,12 +51,13 @@ class TestTokenizer:
                                 result.output[i]["force-quirks"] = not result.output[i]["force-quirks"]
 
                         # UPDATE PASS COUNT OR FAILED TEST BASED ON ACTUAL RESULT
-                        if result.output == test_case["output"] and result.parse_errors == errors:
+                        output_match = result.output == test_case["output"]
+                        errors_match = set(result.parse_errors) == set(errors)
+                        if output_match and errors_match:
                             pass_count += 1
                         else:
                             # CALCULATE GRADE
-                            grade = self.sm[result.output == test_case['output']] + \
-                                    self.sm[result.parse_errors == errors]
+                            grade = self.sm[output_match] + self.sm[errors_match]
 
                             failed_tests.append(f"{test_case['id']}{grade} | \033[45m{test_case['input']}\033[0m"
                                                 f" |--> \033[32m{result.parse_errors}\033[0m \033[34m{errors}\033[0m")

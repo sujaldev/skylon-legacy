@@ -48,9 +48,12 @@ class SingleTokenizerTest:
                 result.output[i]["force-quirks"] = not result.output[i]["force-quirks"]
 
         # SET GRADE
-        grade = self.sm[result.output == self.test_case['output']] + self.sm[result.parse_errors == errors]
+        output_match = result.output == self.test_case["output"]
+        errors_match = set(result.parse_errors) == set(errors)
+        grade = self.sm[output_match] + self.sm[errors_match]
 
         result = f"""[DESCRIPTION]: [{self.test_case["description"]}]
+[TEST ID]: [{self.test_id}]
 [INPUT]: '{self.test_case["input"]}'
 
 [GRADE]: [{grade}]
