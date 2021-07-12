@@ -113,7 +113,7 @@ class Tokenizer:
             return self.current_char, self.next_char
         else:
             # DEBUGGING
-            self.dprint(f"Current Character: '{self.stream[-1]}' | Next Character: ''")
+            self.dprint(f"[Current Character: '{self.stream[-1]}' | Next Character: '']")
             self.dprint("|=>[OUT OF INDEX]-->", color="bright-green", end="")
             self.dprint("[❌]", color="bright-red")
 
@@ -1492,7 +1492,6 @@ class Tokenizer:
         if valid:
             self.dprint(f"=>[VALID LIGATURE FOUND]: [{self.temp_buffer}]", debugging_mode=3, color="green")
             current_char, next_char = self.consume()
-            self.dprint(f"here reconsuming 2 valid {next_char}")
             self.reconsuming = True
 
             if self.consumed_as_part_of_an_attr() and self.temp_buffer[-1] != ";"\
