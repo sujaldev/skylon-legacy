@@ -13,6 +13,7 @@ from lib.debugger import Debugger
 import json
 
 AMPERSAND_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/ampersand-entities.json"
+SPECIAL_NUMERIC_ENTITIES_PATH = f"{'/'.join(__file__.split('/')[:-1])}/special-numeric-entities.json"
 
 
 # HELPER FUNCTIONS
@@ -25,14 +26,44 @@ def inside(iterable, char):
 class Tokenizer:
     # CONSTANTS DEFINED IN THE SPECIFICATIONS
     ascii_digit = "0123456789"
+    ascii_upper_hex_digit = ascii_digit + "ABCDEF"
+    ascii_lower_hex_digit = ascii_digit + "abcdef"
+    ascii_hex_digit = ascii_upper_hex_digit + ascii_lower_hex_digit
     ascii_upper_alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     ascii_lower_alpha = "abcdefghijklmnopqrstuvwxyz"
     ascii_alpha = ascii_lower_alpha + ascii_upper_alpha
     ascii_alphanumeric = ascii_alpha + ascii_digit
 
+    ###############################################################################################
+    # INFRA STANDARD ##############################################################################
+    tab = "0x0009"
+    newline = "0x000A"
+    form_feed = "0x000C"
+    carriage_return = "0x000D"
+    space = "0x0020"
+
+    whitespace = (tab, newline, form_feed, carriage_return, space)
+
+    # C0 CONTROL [ALL CHARACTERS IN THE RANGE U+0000 AND U+001F (31 IN BASE 10), INCLUSIVE]
+    c0_control = [chr(i) for i in range(1, 32)]
+
+    # CONTROL CHARACTERS [ALL CHARACTERS IN THE RANGE U+007F (127 IN BASE 10) AND U+009F (159 IN BASE 10), INCLUSIVE]
+    # PLUS C0 CONTROL CHARACTERS
+    control_characters = c0_control + [chr(i) for i in range(127, 160)]
+
+    non_characters = [chr(i) for i in range(64976, 65008)]
+    for i in range(65534, 1114111, 65536):
+        non_characters.append(chr(i))
+        non_characters.append(chr(i + 1))
+    ###############################################################################################
+
     # NAMED CHARACTER REFERENCE TABLE
     with open(AMPERSAND_ENTITIES_PATH, "r") as table:
         ampersand_table = json.load(table)
+
+    # SPECIAL NUMERIC ENTITIES REFERENCE TABLE
+    with open(SPECIAL_NUMERIC_ENTITIES_PATH, "r") as table:
+        special_numeric_entities_table = json.load(table)
 
     ###############################################################################################
     def __init__(self, stream, debug_lvl=0, save_debugging_lvl=0, save_debug=False):
@@ -73,6 +104,7 @@ class Tokenizer:
         self.temp_buffer = ""
         self.return_state = None  # Used by char_ref_state as a buffer to return to the state it was invoked from
         self.token_buffer = {}  # Used as a temporary buffer while creating tokens
+        self.char_ref_code_buffer: int = 0
 
         # DEBUGGER
         self.debug_lvl = debug_lvl
@@ -439,7 +471,7 @@ class Tokenizer:
     """
     def markup_declaration_open_state(self):
         i = self.index
-        current_char, next_char = self.consume()
+        self.consume()
 
         # COMMENT BEGINNING <!--
         if self.stream[i:i+2] == "--":
@@ -1406,12 +1438,138 @@ class Tokenizer:
             self.state = self.named_char_ref_state
             self.reconsuming = True
         elif next_char == "#":
-            pass
+            self.temp_buffer += "#"
+            self.state = self.numeric_char_ref_state
+            return
         else:
             self.flush_code_pt_consumed_as_char_ref()
             self.reconsuming = True
             self.state = self.return_state
             return
+
+    """
+    ################ NUMERIC CHARACTER REFERENCE STATE ################
+    STATUS: COMPLETE
+    """
+    def numeric_char_ref_state(self):
+        self.temp_buffer = "0"
+        self.char_ref_code_buffer = 0
+        current_char, next_char = self.consume()
+
+        if next_char.lower() == "x":
+            self.temp_buffer += next_char
+            self.state = self.hexadecimal_char_ref_start_state
+            return
+        else:
+            self.reconsuming = True
+            self.state = self.decimal_char_ref_start_state
+            return
+
+    """
+    ################ HEXADECIMAL CHARACTER REFERENCE START STATE ################
+    STATUS: COMPLETE
+    """
+    def hexadecimal_char_ref_start_state(self):
+        current_char, next_char = self.consume()
+
+        if inside(self.ascii_hex_digit, next_char):
+            self.reconsuming = True
+            self.state = self.hexadecimal_char_ref_state
+            return
+        else:
+            self.generate_parse_error("ABSENCE OF DIGITS IN NUMERIC CHARACTER REFERENCE STATE")
+            self.flush_code_pt_consumed_as_char_ref()
+            self.state = self.return_state
+            return
+
+    """
+    ################ DECIMAL CHARACTER REFERENCE START STATE ################
+    STATUS: COMPLETE
+    """
+    def decimal_char_ref_start_state(self):
+        current_char, next_char = self.consume()
+
+        if inside(self.ascii_digit, next_char):
+            self.reconsuming = True
+            self.state = self.decimal_char_ref_state
+            return
+        else:
+            self.generate_parse_error("ABSENCE OF DIGITS IN NUMERIC CHARACTER REFERENCE STATE")
+            self.flush_code_pt_consumed_as_char_ref()
+            self.state = self.return_state
+            return
+
+    """
+    ################ HEXADECIMAL CHARACTER REFERENCE STATE ################
+    STATUS: COMPLETE
+    """
+    def hexadecimal_char_ref_state(self):
+        current_char, next_char = self.consume()
+
+        if inside(self.ascii_digit, next_char):
+            self.char_ref_code_buffer *= 16
+            self.char_ref_code_buffer += int(next_char)
+            return
+        elif inside(self.ascii_hex_digit, next_char):
+            self.char_ref_code_buffer *= 16
+            self.char_ref_code_buffer += int(next_char, base=16)
+            return
+        elif next_char == ";":
+            self.state = self.numeric_char_ref_end_state
+            return
+        else:
+            self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE")
+            self.reconsuming = True
+            self.state = self.numeric_char_ref_end_state
+            return
+
+    """
+    ################ DECIMAL CHARACTER REFERENCE STATE ################
+    STATUS: COMPLETE
+    """
+    def decimal_char_ref_state(self):
+        current_char, next_char = self.consume()
+
+        if inside(self.ascii_digit, next_char):
+            self.char_ref_code_buffer *= 10
+            self.char_ref_code_buffer += int(next_char)
+            return
+        elif next_char == ";":
+            self.state = self.numeric_char_ref_end_state
+            return
+        else:
+            self.generate_parse_error("MISSING SEMICOLON AFTER CHARACTER REFERENCE")
+            self.reconsuming = True
+            self.state = self.numeric_char_ref_end_state
+            return
+
+    """
+    ################ NUMERIC CHARACTER REFERENCE END STATE ################
+    STATUS: COMPLETE
+    """
+    def numeric_char_ref_end_state(self):
+        # noinspection PyTypeChecker
+        self.char_ref_code_buffer = hex(self.char_ref_code_buffer)
+        if self.char_ref_code_buffer == "0x0":
+            self.generate_parse_error("NULL CHARACTER REFERENCE")
+            self.char_ref_code_buffer = "0xFFFD"
+        elif int(self.char_ref_code_buffer, base=16) > 1114111:
+            self.generate_parse_error("CHARACTER REFERENCE OUTSIDE UNICODE RANGE")
+            self.char_ref_code_buffer = "0xFFFD"
+        # TODO: IMPLEMENT SURROGATE CASE IN NUMERIC CHAR REF END STATE
+        elif inside(self.non_characters, self.char_ref_code_buffer):
+            self.generate_parse_error("NONCHARACTER CHARACTER REFERENCE")
+        elif inside(self.control_characters, self.char_ref_code_buffer) \
+                and self.char_ref_code_buffer not in self.whitespace:
+            self.generate_parse_error("CONTROL CHARACTER REFERENCE")
+        elif inside(self.special_numeric_entities_table, self.char_ref_code_buffer):
+            self.char_ref_code_buffer = self.special_numeric_entities_table[self.char_ref_code_buffer]
+
+        self.temp_buffer = str(chr(int(self.char_ref_code_buffer, base=16)))
+        self.flush_code_pt_consumed_as_char_ref()
+        self.state = self.return_state
+        return
+
 
     """
     ################ NAMED CHARACTER REFERENCE STATE ################
