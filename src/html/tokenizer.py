@@ -1560,7 +1560,8 @@ class Tokenizer:
         elif inside(self.non_characters, self.char_ref_code_buffer):
             self.generate_parse_error("NONCHARACTER CHARACTER REFERENCE")
         elif inside(self.control_characters, self.char_ref_code_buffer) \
-                and self.char_ref_code_buffer not in self.whitespace:
+                and self.char_ref_code_buffer not in self.whitespace \
+                or self.char_ref_code_buffer == "0x0D":
             self.generate_parse_error("CONTROL CHARACTER REFERENCE")
         elif inside(self.special_numeric_entities_table, self.char_ref_code_buffer):
             self.char_ref_code_buffer = self.special_numeric_entities_table[self.char_ref_code_buffer]
