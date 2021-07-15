@@ -5,7 +5,7 @@ OF CSS SPECIFICATION.
 
 
 # noinspection PyMethodMayBeStatic
-class PreProcessor:
+class CSSPreProcessor:
     """
     NULL                     -> U+0000 -> "\0"
     LINE FEED/NEWLINE        -> U+000A -> "\n

@@ -8,7 +8,7 @@ WHERE EACH CHARACTER CAN BE THOUGHT OF AS AN EVENT WHICH CAN CAUSE A TRANSITION 
 ANOTHER STATE WHERE EACH STATE CAN HAVE EFFECTS LIKE TRANSITIONING TO ANOTHER STATE,
 EMITTING AN HTML TOKEN, ETC.
 """
-from src.html.preprocessor import PreProcessor
+from src.html.preprocessor import HTMLPreProcessor
 from lib.debugger import Debugger
 import json
 
@@ -23,7 +23,7 @@ def inside(iterable, char):
     return False
 
 
-class Tokenizer:
+class HTMLTokenizer:
     # CONSTANTS DEFINED IN THE SPECIFICATIONS
     ascii_digit = "0123456789"
     ascii_upper_hex_digit = ascii_digit + "ABCDEF"
@@ -76,7 +76,7 @@ class Tokenizer:
 
         # INPUT
         self.stream = stream
-        self.preprocessor = PreProcessor(self.stream)
+        self.preprocessor = HTMLPreProcessor(self.stream)
         self.stream = self.preprocessor.process()  # PREPROCESSING
 
         # OUTPUTS
@@ -1570,7 +1570,6 @@ class Tokenizer:
         self.flush_code_pt_consumed_as_char_ref()
         self.state = self.return_state
         return
-
 
     """
     ################ NAMED CHARACTER REFERENCE STATE ################

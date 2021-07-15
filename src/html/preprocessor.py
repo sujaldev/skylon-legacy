@@ -6,7 +6,7 @@ from lib.debugger import Debugger
 
 
 # noinspection PyMethodMayBeStatic
-class PreProcessor:
+class HTMLPreProcessor:
     """
     NULL                     -> U+0000 -> "\0"
     TAB                      -> U+0009 -> "\t"
