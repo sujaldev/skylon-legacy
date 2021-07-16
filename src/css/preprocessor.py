@@ -36,5 +36,5 @@ class CSSPreProcessor:
 
     def process(self):
         stream = self.filter_stream(self.stream)
-        stream = stream.replace("\0", "\uFFFD")
+        stream = stream.replace("\0", "\uFFFD")  # REPLACING NULL CHAR WITH REPLACEMENT CHAR
         return stream
