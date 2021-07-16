@@ -12,6 +12,12 @@ def inside(iterable, char):
 
 
 class CSSTokenizer:
+    # TERMS DEFINED IN SPECIFICATION
+    newline = "\u000A"
+    tab = "\u0009"
+    space = "\u0020"
+    whitespace = (newline, tab, space)
+
     def __init__(self, stream):
         self.stream = stream
 
@@ -72,11 +78,13 @@ class CSSTokenizer:
         return
 
     def tokenize(self):
+        self.consume_comments()
         while self.index <= len(self.stream):
-            print(self.index, self.consume())
-            if self.index == 2:
-                self.reconsuming = True
-                print(self.index, self.consume())
+            current_char, next_char = self.consume()
+
+            if inside(self.whitespace, next_char):
+                while inside(self.whitespace, next_char):
+                    current_char, next_char = self.consume()
 
 
 sample = CSSTokenizer("123456789")
