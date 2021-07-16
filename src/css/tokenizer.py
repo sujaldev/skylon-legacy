@@ -25,12 +25,26 @@ class CSSTokenizer:
         self.preprocessor = CSSPreProcessor(stream)
         self.stream = self.preprocessor.process()
 
+        # READ HEAD
         self.current_char = ""
         self.next_char = ""
         self.index = 0
 
         # STATE VARIABLES
         self.reconsuming = False
+
+        # BUFFERS
+        self.token_buffer = {}
+
+        # OUTPUT
+        self.output = []
+
+    def generate_new_token(self, token_name):
+        # GENERATES A NEW TOKEN AND PLACES IT IN TOKEN BUFFER
+
+        self.token_buffer = {
+            "token-type": token_name
+        }
 
     def consume(self, step=1):
         # UPDATE CHARACTERS
@@ -84,6 +98,8 @@ class CSSTokenizer:
         if inside(self.whitespace, next_char):
             while inside(self.whitespace, next_char):
                 current_char, next_char = self.consume()
+            self.generate_new_token("whitespace-token")
+            return self.token_buffer
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
