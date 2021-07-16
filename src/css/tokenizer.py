@@ -26,7 +26,7 @@ class CSSTokenizer:
         # STATE VARIABLES
         self.reconsuming = False
 
-    def consume(self):
+    def consume(self, step=1):
         # UPDATE CHARACTERS
         if self.index < len(self.stream):
             if not self.reconsuming:
@@ -34,7 +34,7 @@ class CSSTokenizer:
                 self.current_char = self.next_char
                 self.next_char = self.stream[self.index]
                 # ONCE DONE UPDATING CHARACTERS MOVE AHEAD BY ONE
-                self.index += 1
+                self.index += step
             # RECONSUMING
             else:
                 # SET RECONSUMING TO FALSE FOR NEXT CONSUMPTION
@@ -43,7 +43,7 @@ class CSSTokenizer:
             if not self.reconsuming:
                 self.current_char = self.next_char
                 self.next_char = ""
-                self.index += 1
+                self.index += step
             # RECONSUMING
             else:
                 # SET RECONSUMPTION TO FALSE FOR NEXT CONSUMPTION
@@ -52,7 +52,24 @@ class CSSTokenizer:
         return self.current_char, self.next_char
 
     def consume_comments(self):
-        pass
+        """
+        ALGORITHM TO SKIP COMMENTS, RETURNS NONE.
+
+        :return: None
+        """
+        if self.stream[self.index:self.index+2] == "/*":
+            stream = self.stream[self.index+2:]
+            skip_index = (self.index + 2) + stream.find("*/")
+            # END COMMENT PATTERN MATCH FOUND
+            if skip_index != -1:
+                self.index = skip_index + 2  # ADD 2 TO COMPENSATE FOR LENGTH OF */
+                self.consume_comments()
+            # MATCH NOT FOUND (I.E. NO MATCH TILL EOF)
+            else:
+                # GENERATE PARSE ERROR
+                pass
+
+        return
 
     def tokenize(self):
         while self.index <= len(self.stream):
