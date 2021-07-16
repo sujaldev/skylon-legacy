@@ -77,14 +77,17 @@ class CSSTokenizer:
 
         return
 
-    def tokenize(self):
+    def consume_a_token(self):
         self.consume_comments()
-        while self.index <= len(self.stream):
-            current_char, next_char = self.consume()
+        current_char, next_char = self.consume()
 
-            if inside(self.whitespace, next_char):
-                while inside(self.whitespace, next_char):
-                    current_char, next_char = self.consume()
+        if inside(self.whitespace, next_char):
+            while inside(self.whitespace, next_char):
+                current_char, next_char = self.consume()
+
+    def tokenize(self):
+        while self.index <= len(self.stream) or self.reconsuming:
+            self.consume_a_token()
 
 
 sample = CSSTokenizer("123456789")
