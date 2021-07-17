@@ -200,7 +200,7 @@ class CSSTokenizer:
                 elif self.starts_with_valid_escape():
                     self.token_buffer["value"] += self.consume_escaped_code_point()
             else:
-                self.token_buffer += current_char
+                self.token_buffer["value"] += current_char
 
     def consume_a_token(self):
         self.consume_comments()
@@ -209,6 +209,7 @@ class CSSTokenizer:
         if inside(self.whitespace, current_char):
             while inside(self.whitespace, current_char):
                 current_char, next_char = self.consume()
+                print(current_char, next_char)
             self.generate_new_token("whitespace-token")
             return self.token_buffer
         elif current_char == '"':
@@ -217,4 +218,13 @@ class CSSTokenizer:
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
+            # REPEATEDLY CONSUME A TOKEN
             self.consume_a_token()
+
+            # APPEND TO OUTPUT ONLY IF BUFFER IS NOT EMPTY
+            if self.token_buffer != {}:
+                self.output.append(self.token_buffer)
+
+            # EMTPY BUFFERS
+            self.token_buffer = {}
+            self.temp_buffer = ""
