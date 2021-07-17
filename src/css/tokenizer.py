@@ -109,7 +109,7 @@ class CSSTokenizer:
         else:
             if not self.reconsuming:
                 self.current_char = self.next_char
-                self.next_char = ""
+                self.next_char = "eof"
                 self.index += step
             # RECONSUMING
             else:
@@ -118,6 +118,8 @@ class CSSTokenizer:
 
         return self.current_char, self.next_char
 
+    ####################################################################################
+    # SPECIAL CONSUMES #################################################################
     def consume_comments(self):
         """
         ALGORITHM TO SKIP COMMENTS, RETURNS NONE.
@@ -129,7 +131,7 @@ class CSSTokenizer:
             skip_index = (self.index + 2) + stream.find("*/")
             # END COMMENT PATTERN MATCH FOUND
             if skip_index != -1:
-                self.index = skip_index + 2  # ADD 2 TO COMPENSATE FOR LENGTH OF */
+                self.index = skip_index + 2 + 1  # ADD 2 TO COMPENSATE FOR LENGTH OF */ AND 1 FOR NEXT_CHAR
                 self.consume_comments()
             # MATCH NOT FOUND (I.E. NO MATCH TILL EOF)
             else:
@@ -138,20 +140,52 @@ class CSSTokenizer:
 
         return
 
+    def consume_a_string_token(self, ending_code_point=None):
+        """
+        ALGORITHM TO CONSUME A STRING.
+        IT WILL EITHER RETURN A <STRING-TOKEN> OR A <BAD-STRING-TOKEN>
+        """
+        if ending_code_point is None:
+            ending_code_point = self.current_char
+
+        self.generate_new_token("string-token")
+
+        while True:
+            current_char, next_char = self.consume()
+
+            if current_char == ending_code_point:
+                return
+            elif next_char == "eof":
+                self.token_buffer["value"] += current_char
+                # GENERATE PARSE ERROR FOR EOF IN STRING
+                return
+            elif current_char == "\n":
+                # GENERATE PARSE ERROR FOR BAD STRING
+                self.generate_new_token("bad-string")
+                self.reconsuming = True
+                return
+            elif current_char == "\\":
+                if next_char == "eof":
+                    pass
+                elif next_char == "\n":
+                    current_char, next_char = self.consume()
+                elif self.starts_with_valid_escape():
+                    self.token_buffer["value"] += self.consumed_escaped_code_point()
+            else:
+                self.token_buffer += current_char
+
     def consume_a_token(self):
         self.consume_comments()
         current_char, next_char = self.consume()
 
-        if inside(self.whitespace, next_char):
-            while inside(self.whitespace, next_char):
+        if inside(self.whitespace, current_char):
+            while inside(self.whitespace, current_char):
                 current_char, next_char = self.consume()
             self.generate_new_token("whitespace-token")
             return self.token_buffer
+        elif current_char == '"':
+            self.consume_a_string_token()
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
             self.consume_a_token()
-
-
-sample = CSSTokenizer("123456789")
-sample.tokenize()
