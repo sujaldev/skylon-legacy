@@ -39,6 +39,21 @@ class CSSTokenizer:
         # OUTPUT
         self.output = []
 
+    ####################################################################################
+    # CHECKS ###########################################################################
+    def starts_with_valid_escape(self, current_char=None, next_char=None):
+        if current_char is None:
+            current_char = self.current_char
+        if next_char is None:
+            next_char = self.next_char
+
+        if current_char != "\\":
+            return False
+        elif next_char == "\n":
+            return False
+        else:
+            return True
+
     def generate_new_token(self, token_name):
         # GENERATES A NEW TOKEN AND PLACES IT IN TOKEN BUFFER
 
