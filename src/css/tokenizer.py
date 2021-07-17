@@ -18,6 +18,9 @@ class CSSTokenizer:
     space = "\u0020"
     whitespace = (newline, tab, space)
 
+    digit = "01234567890"
+    hex_digit = digit + "abcdef" + "ABCDEF"
+
     def __init__(self, stream):
         self.stream = stream
 
@@ -34,6 +37,7 @@ class CSSTokenizer:
         self.reconsuming = False
 
         # BUFFERS
+        self.temp_buffer = ""
         self.token_buffer = {}
 
         # OUTPUT
@@ -126,8 +130,8 @@ class CSSTokenizer:
 
         :return: None
         """
-        if self.stream[self.index:self.index+2] == "/*":
-            stream = self.stream[self.index+2:]
+        if self.stream[self.index:self.index + 2] == "/*":
+            stream = self.stream[self.index + 2:]
             skip_index = (self.index + 2) + stream.find("*/")
             # END COMMENT PATTERN MATCH FOUND
             if skip_index != -1:
@@ -139,6 +143,30 @@ class CSSTokenizer:
                 pass
 
         return
+
+    def consume_escaped_code_point(self):
+        current_char, next_char = self.consume()
+
+        if inside(self.hex_digit, current_char):
+            self.temp_buffer += current_char
+            # CONSUME THE REST 5 DIGITS IF POSSIBLE
+            for i in range(5):
+                if inside(self.hex_digit, next_char):
+                    self.temp_buffer += next_char
+                else:
+                    break
+                current_char, next_char = self.consume()
+            # CONSUMING WHITESPACE
+            if inside(self.whitespace, next_char):
+                while inside(self.whitespace, next_char):
+                    current_char, next_char = self.consume()
+
+            hex_repr = int(self.temp_buffer, base=16)
+            # IF HEX_REPR IS NULL OR GREATER THAN THE MAXIMUM ALLOWED CODE POINT VALUE
+            if hex_repr == 0 or hex_repr > 1114111:
+                return "\uFFFD"  # RETURNING REPLACEMENT CHARACTER
+            else:
+                return chr(hex_repr)  # CONVERT HEX NUMBER TO ACTUAL CHARACTER
 
     def consume_a_string_token(self, ending_code_point=None):
         """
@@ -168,9 +196,9 @@ class CSSTokenizer:
                 if next_char == "eof":
                     pass
                 elif next_char == "\n":
-                    current_char, next_char = self.consume()
+                    self.consume()
                 elif self.starts_with_valid_escape():
-                    self.token_buffer["value"] += self.consumed_escaped_code_point()
+                    self.token_buffer["value"] += self.consume_escaped_code_point()
             else:
                 self.token_buffer += current_char
 
@@ -185,6 +213,7 @@ class CSSTokenizer:
             return self.token_buffer
         elif current_char == '"':
             self.consume_a_string_token()
+            return self.token_buffer
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
