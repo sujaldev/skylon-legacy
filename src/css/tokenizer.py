@@ -22,7 +22,7 @@ class CSSTokenizer:
     digit = "01234567890"
     hex_digit = digit + "abcdef" + "ABCDEF"
 
-    debug_table_width = (40, 100)
+    debug_table_width = (60, 100)
 
     def __init__(self, stream, debug_lvl=0, save_debugging_lvl=0, save_debug=False):
         self.stream = stream
@@ -138,6 +138,8 @@ class CSSTokenizer:
             self.token_buffer["type-flag"] = "integer"  # DEFAULT IS INTEGER AND OTHER IS NUMBER
             self.token_buffer["unit"] = ""  # CONTAINS ONE OR MORE CHARACTERS
 
+        self.debug_append("GENERATE_NEW_TOKEN()", self.token_buffer, color="green")
+
     def consume(self, step=1):
         # UPDATE CHARACTERS
         if self.index < len(self.stream):
@@ -150,6 +152,7 @@ class CSSTokenizer:
             # RECONSUMING
             else:
                 # SET RECONSUMING TO FALSE FOR NEXT CONSUMPTION
+                self.debug_append("RECONSUMING", "", color="yellow")
                 self.reconsuming = False
         else:
             if not self.reconsuming:
@@ -159,6 +162,7 @@ class CSSTokenizer:
             # RECONSUMING
             else:
                 # SET RECONSUMPTION TO FALSE FOR NEXT CONSUMPTION
+                self.debug_append("RECONSUMING", "", color="yellow")
                 self.reconsuming = False
 
         self.debug_append("CONSUME()", color="yellow")
@@ -172,6 +176,10 @@ class CSSTokenizer:
 
         :return: None
         """
+
+        # DEBUGGING
+        self.debug_append("CONSUME_COMMENTS()")
+
         if self.stream[self.index:self.index + 2] == "/*":
             stream = self.stream[self.index + 2:]
             skip_index = (self.index + 2) + stream.find("*/")
@@ -218,6 +226,9 @@ class CSSTokenizer:
         if ending_code_point is None:
             ending_code_point = self.current_char
 
+        # DEBUGGING
+        self.debug_append("CONSUME_A_STRING_TOKEN()")
+
         self.generate_new_token("string-token")
 
         while True:
@@ -250,32 +261,53 @@ class CSSTokenizer:
 
         self.consume_comments()
 
-        # R = RETURNING TO FUNCTION
-        self.debug_append("R -> [CONSUME_A_TOKEN()]")
+        # RETURN DEBUGGING
+        self.debug_append("[CONSUME_COMMENTS] -> [CONSUME_A_TOKEN()]")
         current_char, next_char = self.consume()
 
+        # CONSUMING WHITESPACE
         if inside(self.whitespace, current_char):
+            self.debug_append("CONSUMING WHITESPACE", color="red")
+
             while inside(self.whitespace, current_char):
                 current_char, next_char = self.consume()
-                print(current_char, next_char)
+                self.reconsuming = True
             self.generate_new_token("whitespace-token")
+
+            self.debug_append("FINISHED CONSUMING WHITESPACE", color="red")
             return self.token_buffer
+
+        # CONSUMING STRING
         elif current_char == '"':
+            self.debug_append("CONSUMING STRING", color="red")
+
             self.consume_a_string_token()
             return self.token_buffer
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
             # DEBUGGING
-            self.debug_append("TOKENIZE()")
+            self.debug_append("TOKENIZE()", color="magenta")
 
             # REPEATEDLY CONSUME A TOKEN
             self.consume_a_token()
 
+            # RETURN DEBUGGING
+            self.debug_append("CONSUMED A TOKEN", color="magenta")
+
             # APPEND TO OUTPUT ONLY IF BUFFER IS NOT EMPTY
             if self.token_buffer != {}:
+                # DEBUGGING
+                self.debug_append("APPENDING NON EMPTY TOKEN BUFFER", self.token_buffer)
+
                 self.output.append(self.token_buffer)
 
             # EMTPY BUFFERS
+            self.debug_append("FLUSHING BUFFERS", "", color="magenta")
             self.token_buffer = {}
             self.temp_buffer = ""
+
+        # DEBUGGING
+        self.dprint(f"INPUT: {[self.stream]}", color="green")
+        self.dprint(f"OUTPUT: {self.output}\n", color="green")
+        self.display_debug_stack()
