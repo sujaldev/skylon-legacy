@@ -2,6 +2,7 @@
 THE CSS TOKENIZER IS SUPPOSED TO CONVERT A STREAM OF CSS INTO A LIST OF CSS TOKENS.
 """
 from src.css.preprocessor import CSSPreProcessor
+from lib.debugger import Debugger
 
 
 # HELPER FUNCTIONS
@@ -21,8 +22,18 @@ class CSSTokenizer:
     digit = "01234567890"
     hex_digit = digit + "abcdef" + "ABCDEF"
 
-    def __init__(self, stream):
+    debug_table_width = (40, 100)
+
+    def __init__(self, stream, debug_lvl=0, save_debugging_lvl=0, save_debug=False):
         self.stream = stream
+
+        # DEBUGGER
+        self.debug_lvl = debug_lvl
+        self.save_debugging_lvl = save_debugging_lvl
+        self.save_debug = save_debug
+        self.debugger = Debugger(self.debug_lvl, self.save_debugging_lvl, self.save_debug)
+        self.dprint = self.debugger.print
+        self.debug_stack = []
 
         # PREPROCESSING STAGE
         self.preprocessor = CSSPreProcessor(stream)
@@ -42,6 +53,36 @@ class CSSTokenizer:
 
         # OUTPUT
         self.output = []
+
+    ####################################################################################
+    # DEBUGGING FUNCS ##################################################################
+    def debug_append(self, function_name, char_tuple=None, color=""):
+        if char_tuple is None:
+            char_tuple = (self.current_char, self.next_char)
+
+        if color == "":
+            color = "blue"
+
+        self.debug_stack.append((function_name, char_tuple, color))
+
+    def display_debug_stack(self):
+        func_width = self.debug_table_width[0]
+        char_width = self.debug_table_width[1]
+
+        report = f"┏{'━'*func_width}┳{'━'*char_width}┓\n"
+        for call in self.debug_stack:
+            func_display = " " * (func_width // 2 - len(call[0]) // 2) + call[0]
+            func_display += " " * (func_width - len(func_display))
+
+            char_display = f"{str(call[1])}"
+            char_display += " " * (char_width - len(char_display))
+
+            color = Debugger.colors[call[2]]
+            report += f"┃{color}{func_display}\033[34m┃{char_display}┃\n" \
+                      f"┃{'┈' * (func_width // 2 - 3)}  ↓  {'┈' * (func_width // 2 - 2)}┃{'┈' * char_width}┃\n"
+
+        report += "┗" + "━" * func_width + "┻" + "━" * char_width + "┛"
+        self.dprint(report, color="blue")
 
     ####################################################################################
     # CHECKS ###########################################################################
