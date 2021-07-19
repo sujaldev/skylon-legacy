@@ -161,6 +161,7 @@ class CSSTokenizer:
                 # SET RECONSUMPTION TO FALSE FOR NEXT CONSUMPTION
                 self.reconsuming = False
 
+        self.debug_append("CONSUME()", color="yellow")
         return self.current_char, self.next_char
 
     ####################################################################################
@@ -244,7 +245,13 @@ class CSSTokenizer:
                 self.token_buffer["value"] += current_char
 
     def consume_a_token(self):
+        # DEBUGGING
+        self.debug_append("CONSUME_A_TOKEN()")
+
         self.consume_comments()
+
+        # R = RETURNING TO FUNCTION
+        self.debug_append("R -> [CONSUME_A_TOKEN()]")
         current_char, next_char = self.consume()
 
         if inside(self.whitespace, current_char):
@@ -259,6 +266,9 @@ class CSSTokenizer:
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
+            # DEBUGGING
+            self.debug_append("TOKENIZE()")
+
             # REPEATEDLY CONSUME A TOKEN
             self.consume_a_token()
 
