@@ -12,6 +12,7 @@ def inside(iterable, char):
     return False
 
 
+# noinspection PyMethodMayBeStatic
 class CSSTokenizer:
     # TERMS DEFINED IN SPECIFICATION
     newline = "\u000A"
@@ -69,7 +70,7 @@ class CSSTokenizer:
         func_width = self.debug_table_width[0]
         char_width = self.debug_table_width[1]
 
-        report = f"┏{'━'*func_width}┳{'━'*char_width}┓\n"
+        report = f"┏{'━' * func_width}┳{'━' * char_width}┓\n"
         for call in self.debug_stack:
             func_display = " " * (func_width // 2 - len(call[0]) // 2) + call[0]
             func_display += " " * (func_width - len(func_display))
@@ -98,6 +99,36 @@ class CSSTokenizer:
             return False
         else:
             return True
+
+    def is_non_ascii_code_point(self, char):
+        return ord(char) >= 128
+
+    def is_identifier_start(self, char):
+        return char.isalpha() or self.is_non_ascii_code_point(char) or char == "_"
+
+    def is_identifier(self, char):
+        return self.is_identifier_start(char) or char.isdigit() or char == "-"
+
+    def three_code_points_start_identifier(self, first_char=None, second_char=None, third_char=None):
+        if first_char is None:
+            first_char = self.current_char
+        if second_char is None:
+            second_char = self.next_char
+        if third_char is None:
+            try:
+                third_char = self.stream[self.index]
+            except IndexError:
+                third_char = "eof"
+
+        if first_char == "-":
+            return self.is_identifier_start(second_char) or second_char == "-" or \
+                   self.starts_with_valid_escape(second_char, third_char)
+        elif self.is_identifier_start(first_char):
+            return True
+        elif first_char == "\\":
+            return self.starts_with_valid_escape(first_char, second_char)
+        else:
+            return False
 
     def generate_new_token(self, token_name):
         # GENERATES A NEW TOKEN AND PLACES IT IN TOKEN BUFFER
