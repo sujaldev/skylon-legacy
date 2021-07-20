@@ -201,6 +201,12 @@ class CSSTokenizer:
 
     ####################################################################################
     # SPECIAL CONSUMES #################################################################
+    def nth_next_char(self, n=1):
+        try:
+            return self.stream[self.index + (n-1)]
+        except IndexError:
+            return "eof"
+
     def consume_comments(self):
         """
         ALGORITHM TO SKIP COMMENTS, RETURNS NONE.
