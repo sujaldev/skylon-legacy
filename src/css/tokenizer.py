@@ -306,14 +306,19 @@ class CSSTokenizer:
             self.generate_new_token("whitespace-token")
 
             self.debug_append("FINISHED CONSUMING WHITESPACE", color="red")
-            return self.token_buffer
-
         # CONSUMING STRING
         elif current_char == '"':
             self.debug_append("CONSUMING STRING", color="red")
-
             self.consume_a_string_token()
-            return self.token_buffer
+        # CONSUMING ID OR HEX DIGITS
+        elif current_char == "#":
+            try:
+                next_next_char = self.stream[self.index]
+            except IndexError:
+                next_next_char = "eof"
+
+            if self.is_identifier(next_char) or self.starts_with_valid_escape(next_char, next_next_char):
+                self.generate_new_token("hash-token")
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
@@ -322,16 +327,10 @@ class CSSTokenizer:
 
             # REPEATEDLY CONSUME A TOKEN
             self.consume_a_token()
+            self.output.append(self.token_buffer)
 
             # RETURN DEBUGGING
             self.debug_append("CONSUMED A TOKEN", color="magenta")
-
-            # APPEND TO OUTPUT ONLY IF BUFFER IS NOT EMPTY
-            if self.token_buffer != {}:
-                # DEBUGGING
-                self.debug_append("APPENDING NON EMPTY TOKEN BUFFER", self.token_buffer)
-
-                self.output.append(self.token_buffer)
 
             # EMTPY BUFFERS
             self.debug_append("FLUSHING BUFFERS", "", color="magenta")
