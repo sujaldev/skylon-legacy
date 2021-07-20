@@ -286,6 +286,18 @@ class CSSTokenizer:
             else:
                 self.token_buffer["value"] += current_char
 
+    def consume_an_identifier(self):
+        result = ""
+        current_char, next_char = self.current_char, self.next_char
+        while True:
+            if self.is_identifier(current_char):
+                result += current_char
+            elif self.starts_with_valid_escape():
+                result += self.consume_escaped_code_point()
+            else:
+                self.reconsuming = True
+                return result
+
     def consume_a_token(self):
         # DEBUGGING
         self.debug_append("CONSUME_A_TOKEN()")
@@ -319,6 +331,13 @@ class CSSTokenizer:
 
             if self.is_identifier(next_char) or self.starts_with_valid_escape(next_char, next_next_char):
                 self.generate_new_token("hash-token")
+
+                if self.three_code_points_start_identifier():
+                    self.token_buffer["type-flag"] = "id"
+                self.token_buffer["value"] = self.consume_an_identifier()
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
