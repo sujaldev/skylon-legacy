@@ -330,10 +330,7 @@ class CSSTokenizer:
             self.consume_a_string_token()
         # CONSUMING ID OR HEX DIGITS
         elif current_char == "#":
-            try:
-                next_next_char = self.stream[self.index]
-            except IndexError:
-                next_next_char = "eof"
+            next_next_char = self.nth_next_char()
 
             if self.is_identifier(next_char) or self.starts_with_valid_escape(next_char, next_next_char):
                 self.generate_new_token("hash-token")
@@ -344,6 +341,86 @@ class CSSTokenizer:
             else:
                 self.generate_new_token("delim-token")
                 self.token_buffer["value"] = current_char
+        elif current_char == "'":
+            self.consume_a_string_token()
+        elif current_char == "(":
+            self.generate_new_token("(-token")
+        elif current_char == ")":
+            self.generate_new_token(")-token")
+        elif current_char == "+":
+            if self.three_code_points_start_number():
+                self.reconsuming = True
+                self.consume_numeric_token()
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == ",":
+            self.generate_new_token("comma-token")
+        elif current_char == "-":
+            if self.three_code_points_start_number():
+                self.reconsuming = True
+                self.consume_numeric_token()
+            elif next_char + self.nth_next_char() == "->":
+                self.consume(2)
+                self.generate_new_token("CDC-token")
+            elif self.three_code_points_start_identifier():
+                self.reconsuming = True
+                self.consume_indent_like_token()
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == ".":
+            if self.three_code_points_start_number():
+                self.reconsuming = True
+                self.consume_numeric_token()
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == ":":
+            self.generate_new_token("colon-token")
+        elif current_char == ";":
+            self.generate_new_token("semicolon-token")
+        elif current_char == "<":
+            if next_char + self.nth_next_char() + self.nth_next_char(2) == "!--":
+                self.consume(3)
+                self.generate_new_token("CDO-token")
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == "@":
+            if self.three_code_points_start_identifier(next_char, self.nth_next_char(), self.nth_next_char(2)):
+                self.generate_new_token("at-keyword-token")
+                self.token_buffer["value"] = self.consume_an_identifier()
+            else:
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == "[":
+            self.generate_new_token("[-token")
+        elif current_char == "\\":
+            if self.starts_with_valid_escape():
+                self.reconsuming = True
+                self.consume_indent_like_token()
+            else:
+                # GENERATE PARSE ERROR
+                self.generate_new_token("delim-token")
+                self.token_buffer["value"] = current_char
+        elif current_char == "]":
+            self.generate_new_token("]-token")
+        elif current_char == "{":
+            self.generate_new_token("{-token")
+        elif current_char == "}":
+            self.generate_new_token("}-token")
+        elif current_char.isdigit():
+            self.reconsuming = True
+            self.consume_numeric_token()
+        elif self.is_identifier_start(current_char):
+            self.reconsuming = True
+            self.consume_indent_like_token()
+        elif current_char == "eof":
+            self.generate_new_token("EOF-token")
+        else:
+            self.generate_new_token("delim-token")
+            self.token_buffer["value"] = current_char
 
     def tokenize(self):
         while self.index <= len(self.stream) or self.reconsuming:
