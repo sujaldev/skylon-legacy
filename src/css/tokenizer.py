@@ -203,7 +203,7 @@ class CSSTokenizer:
     # SPECIAL CONSUMES #################################################################
     def nth_next_char(self, n=1):
         try:
-            return self.stream[self.index + (n-1)]
+            return self.stream[self.index + (n - 1)]
         except IndexError:
             return "eof"
 
@@ -292,6 +292,94 @@ class CSSTokenizer:
             else:
                 self.token_buffer["value"] += current_char
 
+    def consume_number(self):
+        # STEP 1
+        num_type = "integer"  # DEFAULT
+        num_repr = ""
+
+        # STEP 2
+        if inside(["+", "-"], self.next_char):
+            num_repr += self.next_char
+            self.consume()
+
+        # STEP 3
+        while self.next_char.isdigit():
+            self.consume()
+            num_repr += self.current_char
+
+        # STEP 4
+        if self.next_char == "." and self.nth_next_char().isdigit():
+            num_repr += self.next_char + self.nth_next_char()
+            self.consume(2)
+            num_type = "number"
+            while self.next_char.isdigit():
+                num_repr += self.next_char
+                self.consume()
+
+        # STEP 5
+        if inside(["E", "e"], self.next_char):
+            if inside(["+", "-"], self.nth_next_char()) and self.nth_next_char(2).isdigit():
+                num_repr += self.next_char + self.nth_next_char() + self.nth_next_char(2)
+                self.consume(3)
+                num_type = "number"
+                while self.next_char.isdigit():
+                    num_repr += self.next_char
+                    self.consume()
+            elif self.nth_next_char().isdigit():
+                num_repr += self.next_char + self.nth_next_char()
+                self.consume(2)
+                num_type = "number"
+                while self.next_char.isdigit():
+                    num_repr += self.next_char
+                    self.consume()
+
+        # STEP 6
+        num_repr = int(num_repr)
+        return num_type, num_repr
+
+    def consume_numeric_token(self):
+        number = self.consume_number()
+
+        if self.three_code_points_start_identifier():
+            self.generate_new_token("dimension-token")
+            self.token_buffer["value"] = number[1]
+            self.token_buffer["type-flag"] = number[0]
+            self.token_buffer["unit"] = self.consume_an_identifier()
+        elif self.next_char == "%":
+            self.consume()
+            self.generate_new_token("percentage-token")
+            self.token_buffer["value"] = number[1]
+            self.token_buffer["type-flag"] = number[0]
+        else:
+            self.generate_new_token("number-token")
+            self.token_buffer["value"] = number[1]
+            self.token_buffer["type-flag"] = number[0]
+
+        return self.token_buffer
+
+    def consume_ident_like_token(self):
+        string = self.consume_an_identifier()
+
+        if string.lower() == "url" and self.next_char == "(":
+            self.consume()
+            while inside(self.whitespace, self.next_char) and inside(self.whitespace, self.nth_next_char()):
+                self.consume()
+
+            if inside(('"', "'") + self.whitespace, self.next_char):
+                self.generate_new_token("function-token")
+                self.token_buffer["value"] = string
+            else:
+                self.consume_url_token()
+        elif self.next_char == "(":
+            self.consume()
+            self.generate_new_token("function-token")
+            self.token_buffer["value"] = string
+        else:
+            self.generate_new_token("ident-token")
+            self.token_buffer["value"] = string
+
+        return self.token_buffer
+
     def consume_an_identifier(self):
         result = ""
         current_char, next_char = self.current_char, self.next_char
@@ -365,7 +453,7 @@ class CSSTokenizer:
                 self.generate_new_token("CDC-token")
             elif self.three_code_points_start_identifier():
                 self.reconsuming = True
-                self.consume_indent_like_token()
+                self.consume_ident_like_token()
             else:
                 self.generate_new_token("delim-token")
                 self.token_buffer["value"] = current_char
@@ -399,7 +487,7 @@ class CSSTokenizer:
         elif current_char == "\\":
             if self.starts_with_valid_escape():
                 self.reconsuming = True
-                self.consume_indent_like_token()
+                self.consume_ident_like_token()
             else:
                 # GENERATE PARSE ERROR
                 self.generate_new_token("delim-token")
@@ -415,7 +503,7 @@ class CSSTokenizer:
             self.consume_numeric_token()
         elif self.is_identifier_start(current_char):
             self.reconsuming = True
-            self.consume_indent_like_token()
+            self.consume_ident_like_token()
         elif current_char == "eof":
             self.generate_new_token("EOF-token")
         else:
