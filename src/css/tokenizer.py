@@ -101,13 +101,22 @@ class CSSTokenizer:
             return True
 
     def is_non_ascii_code_point(self, char):
-        return ord(char) >= 128
+        try:
+            return ord(char) >= 128
+        except TypeError:
+            return False
 
     def is_identifier_start(self, char):
         return char.isalpha() or self.is_non_ascii_code_point(char) or char == "_"
 
     def is_identifier(self, char):
+        if char == "eof":
+            return False
         return self.is_identifier_start(char) or char.isdigit() or char == "-"
+
+    def is_non_printable_code_point(self, char):
+        point = ord(char)
+        return 0 <= point <= point or char == "\t" or 14 <= point <= 31 or point == 127
 
     def three_code_points_start_identifier(self, first_char=None, second_char=None, third_char=None):
         if first_char is None:
@@ -115,10 +124,7 @@ class CSSTokenizer:
         if second_char is None:
             second_char = self.next_char
         if third_char is None:
-            try:
-                third_char = self.stream[self.index]
-            except IndexError:
-                third_char = "eof"
+            third_char = self.nth_next_char()
 
         if first_char == "-":
             return self.is_identifier_start(second_char) or second_char == "-" or \
@@ -127,6 +133,28 @@ class CSSTokenizer:
             return True
         elif first_char == "\\":
             return self.starts_with_valid_escape(first_char, second_char)
+        else:
+            return False
+
+    def three_code_points_start_number(self, first_char=None, second_char=None, third_char=None):
+        if first_char is None:
+            first_char = self.current_char
+        if second_char is None:
+            second_char = self.next_char
+        if third_char is None:
+            third_char = self.nth_next_char()
+
+        if inside(["+", "-"], first_char):
+            if second_char.isdigit():
+                return True
+            elif second_char == "." and third_char.isdigit():
+                return True
+            else:
+                return False
+        elif first_char == ".":
+            return second_char.isdigit()
+        elif first_char.isdigit():
+            return True
         else:
             return False
 
@@ -360,12 +388,14 @@ class CSSTokenizer:
     def consume_ident_like_token(self):
         string = self.consume_an_identifier()
 
-        if string.lower() == "url" and self.next_char == "(":
-            self.consume()
-            while inside(self.whitespace, self.next_char) and inside(self.whitespace, self.nth_next_char()):
-                self.consume()
+        current_char, next_char = self.consume()
 
-            if inside(('"', "'") + self.whitespace, self.next_char):
+        if string.lower() == "url" and next_char == "(":
+            self.consume()
+            while inside(self.whitespace, next_char) and inside(self.whitespace, self.nth_next_char()):
+                current_char, next_char = self.consume()
+
+            if inside(('"', "'") + self.whitespace, next_char):
                 self.generate_new_token("function-token")
                 self.token_buffer["value"] = string
             else:
@@ -414,6 +444,15 @@ class CSSTokenizer:
             else:
                 self.token_buffer["value"] += current_char
 
+    def consume_remnants_of_bad_url(self):
+        while True:
+            current_char, next_char = self.consume()
+
+            if inside([")", "eof"], current_char):
+                return
+            elif self.starts_with_valid_escape():
+                self.consume_escaped_code_point()
+
     def consume_an_identifier(self):
         result = ""
         current_char, next_char = self.current_char, self.next_char
@@ -435,6 +474,8 @@ class CSSTokenizer:
         # RETURN DEBUGGING
         self.debug_append("[CONSUME_COMMENTS] -> [CONSUME_A_TOKEN()]")
         current_char, next_char = self.consume()
+
+        self.dprint((self.current_char, self.next_char, self.reconsuming))
 
         # CONSUMING WHITESPACE
         if inside(self.whitespace, current_char):
