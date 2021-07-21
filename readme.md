@@ -15,12 +15,22 @@ but instead of javascript you can run python.
 - Paint
 
 ## PLANS
-Currently creating tokenizers for both HTML and CSS.\
-Once done with those, will move on to tree construction stage.\
-Primary goal is to create a working demo first, so will skip\
-python scripts stage for right now will come back to it later.\
-Render tree construction.\
-Layout calculate.\
+Done creating tokenizers for both HTML and CSS.
+
+
+Tree construction stage for CSS is partially completed, working on html.
+
+
+Primary goal is to create a working demo first, so will skip
+python scripts stage for right now will come back to it later.
+
+
+Render tree construction.
+
+
+Layout calculate.
+
+
 Paint (Only basic tags and style rules supported at first)
 
 #### NOTE: This is a school project.
