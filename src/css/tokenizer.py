@@ -380,6 +380,40 @@ class CSSTokenizer:
 
         return self.token_buffer
 
+    def consume_url_token(self):
+        self.generate_new_token("url-token")
+
+        while inside(self.whitespace, self.next_char):
+            self.consume()
+
+        while True:
+            current_char, next_char = self.consume()
+
+            if current_char == ")":
+                return self.token_buffer
+            elif current_char == "eof":
+                # GENERATE PARSE ERROR
+                return self.token_buffer
+            elif inside(self.whitespace, current_char):
+                while inside(self.whitespace, current_char):
+                    current_char, next_char = self.consume()
+                self.reconsuming = True
+            elif inside(['"', "'", "("], current_char) or self.is_non_printable_code_point(current_char):
+                # GENERATE PARSE ERROR
+                self.generate_new_token("bad-url-token")
+                self.consume_remnants_of_bad_url()
+                return self.token_buffer
+            elif current_char == "\\":
+                if self.starts_with_valid_escape():
+                    self.token_buffer["value"] += self.consume_escaped_code_point()
+                else:
+                    # GENERATE PARSE ERROR
+                    self.generate_new_token("bad-url-token")
+                    self.consume_remnants_of_bad_url()
+                    return self.token_buffer
+            else:
+                self.token_buffer["value"] += current_char
+
     def consume_an_identifier(self):
         result = ""
         current_char, next_char = self.current_char, self.next_char
