@@ -83,7 +83,7 @@ class CSSTokenizer:
                       f"┃{'┈' * (func_width // 2 - 3)}  ↓  {'┈' * (func_width // 2 - 2)}┃{'┈' * char_width}┃\n"
 
         report += "┗" + "━" * func_width + "┻" + "━" * char_width + "┛"
-        self.dprint(report, color="blue")
+        self.dprint(report, color="blue", debugging_mode=2)
 
     ####################################################################################
     # CHECKS ###########################################################################
@@ -107,6 +107,8 @@ class CSSTokenizer:
             return False
 
     def is_identifier_start(self, char):
+        if char == "eof":
+            return False
         return char.isalpha() or self.is_non_ascii_code_point(char) or char == "_"
 
     def is_identifier(self, char):
@@ -362,7 +364,10 @@ class CSSTokenizer:
                     self.consume()
 
         # STEP 6
-        num_repr = int(num_repr)
+        try:
+            num_repr = int(num_repr)
+        except ValueError:
+            num_repr = float(num_repr)
         return num_type, num_repr
 
     def consume_numeric_token(self):
@@ -370,17 +375,17 @@ class CSSTokenizer:
 
         if self.three_code_points_start_identifier():
             self.generate_new_token("dimension-token")
-            self.token_buffer["value"] = number[1]
+            self.token_buffer["numeric-value"] = number[1]
             self.token_buffer["type-flag"] = number[0]
             self.token_buffer["unit"] = self.consume_an_identifier()
         elif self.next_char == "%":
             self.consume()
             self.generate_new_token("percentage-token")
-            self.token_buffer["value"] = number[1]
+            self.token_buffer["numeric-value"] = number[1]
             self.token_buffer["type-flag"] = number[0]
         else:
             self.generate_new_token("number-token")
-            self.token_buffer["value"] = number[1]
+            self.token_buffer["numeric-value"] = number[1]
             self.token_buffer["type-flag"] = number[0]
 
         return self.token_buffer
@@ -455,8 +460,9 @@ class CSSTokenizer:
 
     def consume_an_identifier(self):
         result = ""
-        current_char, next_char = self.current_char, self.next_char
         while True:
+            current_char, next_char = self.consume()
+
             if self.is_identifier(current_char):
                 result += current_char
             elif self.starts_with_valid_escape():
@@ -475,15 +481,13 @@ class CSSTokenizer:
         self.debug_append("[CONSUME_COMMENTS] -> [CONSUME_A_TOKEN()]")
         current_char, next_char = self.consume()
 
-        self.dprint((self.current_char, self.next_char, self.reconsuming))
-
         # CONSUMING WHITESPACE
         if inside(self.whitespace, current_char):
             self.debug_append("CONSUMING WHITESPACE", color="red")
 
             while inside(self.whitespace, current_char):
                 current_char, next_char = self.consume()
-                self.reconsuming = True
+            self.reconsuming = True
             self.generate_new_token("whitespace-token")
 
             self.debug_append("FINISHED CONSUMING WHITESPACE", color="red")
@@ -586,6 +590,7 @@ class CSSTokenizer:
             self.token_buffer["value"] = current_char
 
     def tokenize(self):
+        self.consume()  # TO CONSUME THE FIRST CHARACTER, I.E. SKIP CHAR VALUES AS ('', '')
         while self.index <= len(self.stream) or self.reconsuming:
             # DEBUGGING
             self.debug_append("TOKENIZE()", color="magenta")
@@ -604,5 +609,6 @@ class CSSTokenizer:
 
         # DEBUGGING
         self.dprint(f"INPUT: {[self.stream]}", color="green")
-        self.dprint(f"OUTPUT: {self.output}\n", color="green")
+        display_output = str(self.output).replace("},", "},\n")
+        self.dprint(f"OUTPUT: {display_output}\n", color="green")
         self.display_debug_stack()
