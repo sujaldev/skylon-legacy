@@ -2,6 +2,7 @@
 THIS STAGE TAKES INPUT FROM THE TOKENIZER (LIST OF TOKENS) AND WILL GENERATE AN HTML
 DOCUMENT "TREE" AS THE OUTPUT.
 """
+from src.html.dom import *
 
 
 class HTMLParser:
@@ -18,6 +19,9 @@ class HTMLParser:
         # STATE VARIABLES
         self.mode = "initial"
         self.reconsuming = False
+
+        # DOCUMENT
+        self.document = Document()
 
     def consume(self, step):
         # UPDATE TOKENS

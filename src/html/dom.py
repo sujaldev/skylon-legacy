@@ -30,11 +30,13 @@ class OrderedSet:
         return str(self.items)
 
 
+# noinspection PyMethodMayBeStatic
 class Node:
     def __init__(self, parent=None):
         self.parent = parent
         self.children = OrderedSet()
         self.root = self.get_root()
+        self.node_properties = self.set_properties()
 
     def get_root(self):
         if self.parent is None:
@@ -49,3 +51,12 @@ class Node:
         self.children.append(child)
         return self
 
+    def set_properties(self):
+        return {}
+
+
+class Document(Node):
+    def set_properties(self):
+        return {
+            "can_change_mode": False
+        }
