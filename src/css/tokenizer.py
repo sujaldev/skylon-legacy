@@ -365,7 +365,7 @@ class CSSTokenizer:
 
         # STEP 6
         try:
-            num_repr = int(num_repr)
+            num_repr = int(num_repr if num_repr else 0)
         except ValueError:
             num_repr = float(num_repr)
         return num_type, num_repr
@@ -373,12 +373,14 @@ class CSSTokenizer:
     def consume_numeric_token(self):
         number = self.consume_number()
 
+        current_char, next_char = self.consume()
+
         if self.three_code_points_start_identifier():
             self.generate_new_token("dimension-token")
             self.token_buffer["numeric-value"] = number[1]
             self.token_buffer["type-flag"] = number[0]
             self.token_buffer["unit"] = self.consume_an_identifier()
-        elif self.next_char == "%":
+        elif next_char == "%":
             self.consume()
             self.generate_new_token("percentage-token")
             self.token_buffer["numeric-value"] = number[1]
