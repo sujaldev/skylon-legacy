@@ -32,11 +32,13 @@ class OrderedSet:
 
 # noinspection PyMethodMayBeStatic
 class Node:
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, **kwargs):
         self.parent = parent
         self.children = OrderedSet()
         self.root = self.get_root()
-        self.node_properties = self.set_properties()
+
+        self.node_properties = kwargs
+        self.set_properties()
 
     def get_root(self):
         if self.parent is None:
@@ -52,11 +54,13 @@ class Node:
         return self
 
     def set_properties(self):
-        return {}
+        pass
 
 
 class Document(Node):
     def set_properties(self):
-        return {
-            "can_change_mode": False
-        }
+        self.node_properties["can_change_mode"] = False
+
+
+class Html(Node):
+    pass
